@@ -5,11 +5,12 @@ include HOME_ROOT.'/html/testa.php';
 ?>
 
 <?php
-	$cartella = "img/";
+
+$connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
+
+$cartella = "img/";
 	$cartella2 = "html";
 	$cartella3 = "script";
-	mysql_connect("localhost", "root", "");
-	mysql_select_db("ecommerce");
 	
 	$sql = sprintf("SELECT idutente FROM tblUtenti WHERE user='".$_SESSION['username']."'");
 	$result = mysql_query($sql);
