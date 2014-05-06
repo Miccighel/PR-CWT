@@ -8,8 +8,8 @@ include HOME_ROOT.'/html/testa.php';
 
 $connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
 
-$cartella = "img/";
-	$cartella2 = "html";
+$cartellaIm = "img/";
+$cartella2 = "html";
 	$cartella3 = "script";
 	
 	$sql = sprintf("SELECT idutente FROM tblUtenti WHERE user='".$_SESSION['username']."'");
