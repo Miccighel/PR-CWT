@@ -110,7 +110,7 @@ function ricercaProdotto($nomeCercato, $destinazione){
     foreach($dati as $riga ){
         $risultatoPotenziale = strtolower(substr(trim($riga['nomeprodotto']),0,strlen($nomeCercato)));
         if($risultatoPotenziale==strtolower($nomeCercato)){
-            print '<form class="formRicercaProdotto" method="post" action="' . trim($destinazione) . '">';
+            print '<form id="' . trim($riga['codiceprodotto']) . '" method="post" action="' . trim($destinazione) . '">';
             print '<input type="hidden" name="codiceprodotto" value="'.$riga['codiceprodotto'].'"/>';
             print '<input type="hidden" name="console" value="'.$riga['console'].'"/>';
             print '<div class="label"><label>'.$riga['nomeprodotto'].'</label><label> - '.$riga['console'].'</label></div>';
@@ -118,14 +118,14 @@ function ricercaProdotto($nomeCercato, $destinazione){
             print '</form>';
             print '<br />';
             $contantoreRisultati++;
+            print '<script type="text/javascript">';
+            print "gestisciForm('" . "#" . trim($riga['codiceprodotto']) . "','" . trim($destinazione) . "','#coldx');";
+            print '</script>';
         }
     }
     if($contantoreRisultati == 0){
         print '<p class="errore">La ricerca non ha prodotto alcun risultato.</p>';
     }
-    print '<script type="text/javascript">';
-    print "gestisciForm('.formRicercaProdotto','" . trim($destinazione) . "','#coldx');";
-    print '</script>';
 }
 
 function ricercaCategoria($nomeCercato, $destinazione){
@@ -138,21 +138,22 @@ function ricercaCategoria($nomeCercato, $destinazione){
     foreach($dati as $riga ){
         $risultatoPotenziale = strtolower(substr(trim($riga['nome']),0,strlen($nomeCercato)));
         if($risultatoPotenziale==strtolower($nomeCercato)){
-            print '<form class="formRicercaCategoria" method="post" action="' . trim($destinazione) . '">';
+            $idCorretto = preg_replace('/\s+/', 'A', $riga['nome']);
+            print '<form id="' . $idCorretto . '" method="post" action="' . trim($destinazione) . '">';
             print '<div class="label"><label>'.$riga['nome'].'</label></div>';
             print '<input type="hidden" name="nome" value="'.$riga['nome'].'">';
             print '<input type="submit" value="Seleziona"/>';
             print '</form>';
             print '<br />';
             $contantoreRisultati++;
+            print '<script type="text/javascript">';
+            print "gestisciForm('" . "#" . $idCorretto . "','" . trim($destinazione) . "','#coldx');";
+            print '</script>';
         }
     }
     if($contantoreRisultati == 0){
         print '<p class="errore">La ricerca non ha prodotto alcun risultato.</p>';
     }
-    print '<script type="text/javascript">';
-    print "gestisciForm('.formRicercaCategoria','" . trim($destinazione) . "','#coldx');";
-    print '</script>';
 }
 
 function ricercaConsole($nomeCercato, $destinazione){
@@ -165,21 +166,22 @@ function ricercaConsole($nomeCercato, $destinazione){
     foreach($dati as $riga ){
         $risultatoPotenziale = strtolower(substr(trim($riga['nome']),0,strlen($nomeCercato)));
         if($risultatoPotenziale==strtolower($nomeCercato)){
-            print '<form class="formRicercaConsole" method="post" action="' . trim($destinazione) . '">';
+            $idCorretto = preg_replace('/\s+/', 'A', $riga['nome']);
+            print '<form id="' . $idCorretto . '" method="post" action="' . trim($destinazione) . '">';
             print '<div class="label"><label>'.$riga['nome'].'</label></div>';
             print '<input type="hidden" name="nome" value="'.$riga['nome'].'">';
             print '<input type="submit" value="Seleziona"/>';
             print '</form>';
             print '<br />';
             $contantoreRisultati++;
+            print '<script type="text/javascript">';
+            print "gestisciForm('" . "#" . $idCorretto . "','" . trim($destinazione) . "','#coldx');";
+            print '</script>';
         }
     }
     if($contantoreRisultati == 0){
         print '<p class="errore">La ricerca non ha prodotto alcun risultato.</p>';
     }
-    print '<script type="text/javascript">';
-    print "gestisciForm('.formRicercaConsole','" . trim($destinazione) . "','#coldx');";
-    print '</script>';
 }
 
 

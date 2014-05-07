@@ -1,6 +1,5 @@
 <?php
 include '../settings/configurazione.inc';
-include HOME_ROOT . '/html/testa.php';
 include HOME_ROOT.'/script/funzioni.php';
 
 if (isset($_SESSION['collegato'])){
@@ -14,7 +13,7 @@ if (isset($_SESSION['collegato'])){
 
         print '<p class="informazione">Seleziona le immagini da eliminare</p>';
 
-        print '<form method="post" action="../script/scriptEliminazioneImmagine.php">';
+        print '<form id="formEliminazioneImmagini" method="post" action="../script/scriptEliminazioneImmagine.php">';
         print '<input type="hidden" name="galleria" value="'.$dati[0]['galleria'].'">';
         foreach ($thumbnails as $thumb) {
             print '<div id="immagineEliminazione">';
@@ -26,6 +25,10 @@ if (isset($_SESSION['collegato'])){
         print '<div id="pulsanteEliminazione"><input type="submit" value="Elimina"/></div>';
         print '</form>';
 
+        print '<script type="text/javascript">';
+        print "gestisciForm('#formEliminazioneImmagini','../script/scriptEliminazioneImmagine.php','#coldx');";
+        print '</script>';
+
         chiudiConnessione($connessione);
     } else {
         print '<p class="errore">Per poter visualizzare questa pagina devi avere le credenziali da amministratore.</p>';
@@ -34,5 +37,4 @@ if (isset($_SESSION['collegato'])){
     print '<p class="errore">Non sei autorizzato a visualizzare questa pagina, per favore, esegui il login.</p>';
 }
 
-include HOME_ROOT.'/html/coda.html';
 ?>

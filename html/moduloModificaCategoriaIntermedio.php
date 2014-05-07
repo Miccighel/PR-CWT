@@ -28,5 +28,4 @@ if (isset($_SESSION['collegato'])) {
 } else {
     print '<p class="errore">Non sei autorizzato a visualizzare questa pagina, per favore, esegui il login.</p>';
 }
-
 ?>
