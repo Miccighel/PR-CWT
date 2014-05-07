@@ -3,8 +3,8 @@ include '../settings/configurazione.inc';
 include HOME_ROOT . '/html/testa.php';
 ?>
 
-<form id="formLogin" method="post" action="<?php print'../script/scriptControlloLoginAdmin.php'; ?>">
-<fieldset><legend>Login</legend>
+<form id="formLogin" method="post" action="../script/scriptControlloLoginAdmin.php">
+    <fieldset><legend>Login</legend>
 		<div class="label"><label >Username</label></div>
 		<input type="text" name="username" class="obbligatorio" /><br />
         <div class="label"><label >Password</label></div>

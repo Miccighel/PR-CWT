@@ -9,7 +9,7 @@ if (isset($_SESSION['collegato'])) {
         $query = sprintf("SELECT * FROM tblcategorie WHERE nome='" . $_POST['nome'] . "'");
         $dati = eseguiQuery($connessione, $query);
 
-        print '<form method="post" action="../script/scriptModificaCategoria.php">';
+        print '<form id="formModificaCategoria" method="post" action="../script/scriptModificaCategoria.php">';
         print '<fieldset><legend>Informazioni categoria</legend>';
         print '<div class="label"><label >Nome</label></div>';
         print '<input type="hidden" name="nomeOld" value="' . $dati[0]['nome'] . '"></input>';
@@ -17,6 +17,10 @@ if (isset($_SESSION['collegato'])) {
         print '<input type="submit" value="Conferma" class="invia"></input>';
         print '</fieldset>';
         print "</form>";
+
+        print '<script type="text/javascript">';
+        print "gestisciForm('#formModificaCategoria','../script/scriptModificaCategoria.php','#coldx');";
+        print '</script>';
 
     } else {
         print '<p class="errore">Per poter visualizzare questa pagina devi avere le credenziali da amministratore.</p>';

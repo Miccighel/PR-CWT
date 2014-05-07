@@ -9,7 +9,7 @@ if (isset($_SESSION['collegato'])) {
         $query = sprintf("SELECT * FROM tblconsole WHERE nome='" . $_POST['nome'] . "'");
         $dati = eseguiQuery($connessione, $query);
 
-        print '<form method="post" action="../script/scriptModificaConsole.php">';
+        print '<form id="formModificaConsole" method="post" action="../script/scriptModificaConsole.php">';
         print '<fieldset><legend>Informazioni console</legend>';
         print '<div class="label"><label >Nome</label></div>';
         print '<input type="hidden" name="nomeOld" value="' . $dati[0]['nome'] . '"></input>';
@@ -19,6 +19,10 @@ if (isset($_SESSION['collegato'])) {
         print '<input type="submit" value="Conferma" class="invia"></input>';
         print '</fieldset>';
         print "</form>";
+
+        print '<script type="text/javascript">';
+        print "gestisciForm('#formModificaConsole','../script/scriptModificaConsole.php','#coldx');";
+        print '</script>';
 
     } else {
         print '<p class="errore">Per poter visualizzare questa pagina devi avere le credenziali da amministratore.</p>';
