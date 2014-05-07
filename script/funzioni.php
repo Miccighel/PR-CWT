@@ -179,6 +179,7 @@ function ricercaConsole($nomeCercato, $destinazione){
             print '</script>';
         }
     }
+
     if($contantoreRisultati == 0){
         print '<p class="errore">La ricerca non ha prodotto alcun risultato.</p>';
     }
