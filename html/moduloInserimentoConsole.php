@@ -6,7 +6,7 @@ include HOME_ROOT.'/html/testa.php';
 if (isset($_SESSION['collegato'])){
     if ($_SESSION['amministratore'] == true){
 
-        print '<form method="post" action="../script/scriptInserimentoConsole.php">';
+        print '<form id="formInserimentoConsole" method="post" action="../script/scriptInserimentoConsole.php">';
         print '<fieldset><legend>Informazioni Console</legend>';
         print '<div class="label"><label >Nome</label></div>';
         print '<input type="text" name="nome" class="obbligatorio"></input><br /> ';
@@ -22,6 +22,10 @@ if (isset($_SESSION['collegato'])){
 } else {
     print '<p class="errore">Non sei autorizzato a visualizzare questa pagina, per favore, esegui il login.</p>';
 }
+
+print '<script type="text/javascript">';
+print "gestisciForm('#formInserimentoConsole','../script/scriptInserimentoConsole.php','#coldx');";
+print '</script>';
 
 include HOME_ROOT.'/html/coda.html';
 ?>

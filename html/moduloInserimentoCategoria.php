@@ -4,8 +4,8 @@ include HOME_ROOT.'/html/testa.php';
 
 if (isset($_SESSION['collegato'])){
         if ($_SESSION['amministratore'] == true){
-		print '<form method="post" action="../script/scriptInserimentoCategoria.php">';
-		print '<fieldset><legend>Informazioni Categoria</legend>';
+            print '<form id="formInserimentoCategoria" method="post" action="../script/scriptInserimentoCategoria.php">';
+            print '<fieldset><legend>Informazioni Categoria</legend>';
 		print '<div class="label"><label >Nome</label></div>';	
 		print '<input type="text" name="nome"></input>';
 		print '<input type="submit" value="Invia"></input>';
@@ -16,6 +16,10 @@ if (isset($_SESSION['collegato'])){
 } else {
     print '<p class="errore">Non sei autorizzato a visualizzare questa pagina, per favore, esegui il login.</p>';
 }
+
+print '<script type="text/javascript">';
+print "gestisciForm('#formInserimentoCategoria','../script/scriptInserimentoCategoria.php','#coldx');";
+print '</script>';
 
 include HOME_ROOT.'/html/coda.html';
 ?>

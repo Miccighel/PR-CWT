@@ -1,6 +1,5 @@
 <?php
 include '../settings/configurazione.inc';
-include HOME_ROOT . '/html/testa.php';
 include HOME_ROOT . '/script/funzioni.php';
 
 $connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
@@ -19,9 +18,11 @@ if ($dati == null) {
     }
     $_SESSION['utenteautorizzato'] = true;
     $_SESSION['collegato'] = true;
+    print '<script type="text/javascript">';
+    print "$(window.location).attr('href', '../index.php');";
+    print '</script>';
 }
 
 chiudiConnessione($connessione);
 
-include HOME_ROOT . '/html/coda.html';
 ?>
