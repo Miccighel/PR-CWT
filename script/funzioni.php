@@ -110,7 +110,7 @@ function ricercaProdotto($nomeCercato, $destinazione){
     foreach($dati as $riga ){
         $risultatoPotenziale = strtolower(substr(trim($riga['nomeprodotto']),0,strlen($nomeCercato)));
         if($risultatoPotenziale==strtolower($nomeCercato)){
-            print '<form method="post" action="'.trim($destinazione).'">';
+            print '<form class="formRicercaProdotto" method="post" action="' . trim($destinazione) . '">';
             print '<input type="hidden" name="codiceprodotto" value="'.$riga['codiceprodotto'].'"/>';
             print '<input type="hidden" name="console" value="'.$riga['console'].'"/>';
             print '<div class="label"><label>'.$riga['nomeprodotto'].'</label><label> - '.$riga['console'].'</label></div>';
@@ -123,6 +123,9 @@ function ricercaProdotto($nomeCercato, $destinazione){
     if($contantoreRisultati == 0){
         print '<p class="errore">La ricerca non ha prodotto alcun risultato.</p>';
     }
+    print '<script type="text/javascript">';
+    print "gestisciForm('.formRicercaProdotto','" . trim($destinazione) . "','#coldx');";
+    print '</script>';
 }
 
 function ricercaCategoria($nomeCercato, $destinazione){
@@ -135,7 +138,7 @@ function ricercaCategoria($nomeCercato, $destinazione){
     foreach($dati as $riga ){
         $risultatoPotenziale = strtolower(substr(trim($riga['nome']),0,strlen($nomeCercato)));
         if($risultatoPotenziale==strtolower($nomeCercato)){
-            print '<form method="post" action="'.trim($destinazione).'">';
+            print '<form class="formRicercaCategoria" method="post" action="' . trim($destinazione) . '">';
             print '<div class="label"><label>'.$riga['nome'].'</label></div>';
             print '<input type="hidden" name="nome" value="'.$riga['nome'].'">';
             print '<input type="submit" value="Seleziona"/>';
@@ -147,6 +150,9 @@ function ricercaCategoria($nomeCercato, $destinazione){
     if($contantoreRisultati == 0){
         print '<p class="errore">La ricerca non ha prodotto alcun risultato.</p>';
     }
+    print '<script type="text/javascript">';
+    print "gestisciForm('.formRicercaCategoria','" . trim($destinazione) . "','#coldx');";
+    print '</script>';
 }
 
 function ricercaConsole($nomeCercato, $destinazione){
@@ -159,7 +165,7 @@ function ricercaConsole($nomeCercato, $destinazione){
     foreach($dati as $riga ){
         $risultatoPotenziale = strtolower(substr(trim($riga['nome']),0,strlen($nomeCercato)));
         if($risultatoPotenziale==strtolower($nomeCercato)){
-            print '<form method="post" action="'.trim($destinazione).'">';
+            print '<form class="formRicercaConsole" method="post" action="' . trim($destinazione) . '">';
             print '<div class="label"><label>'.$riga['nome'].'</label></div>';
             print '<input type="hidden" name="nome" value="'.$riga['nome'].'">';
             print '<input type="submit" value="Seleziona"/>';
@@ -171,17 +177,24 @@ function ricercaConsole($nomeCercato, $destinazione){
     if($contantoreRisultati == 0){
         print '<p class="errore">La ricerca non ha prodotto alcun risultato.</p>';
     }
+    print '<script type="text/javascript">';
+    print "gestisciForm('.formRicercaConsole','" . trim($destinazione) . "','#coldx');";
+    print '</script>';
 }
 
 
 function stampaModuloRicerca($destinazione, $nome){
-    print '<form method="post" action="'.trim($destinazione).'">';
+    print '<form id="formRicerca" method="post" action="' . trim($destinazione) . '">';
     print '<fieldset><legend>Ricerca '.$nome.'</legend>';
     print '<div class="label"><label >Nome</label></div>';
     print '<input type="text" name="nome" class="obbligatorio"></input>';
     print '<input type="submit" value="Cerca" class="inviato"></input>';
     print '</fieldset>';
     print "</form>";
+
+    print '<script type="text/javascript">';
+    print "gestisciForm('#formRicerca','" . trim($destinazione) . "','#coldx');";
+    print '</script>';
 }
 
 ?>

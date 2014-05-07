@@ -24,3 +24,19 @@ function controlloCampi(campo, lunghezza, messaggio){
         }
     });
 }
+
+function gestisciForm(selettoreInvio, percorsoServer, selettoreRisposta) {
+    $(document).ready(function () {
+        $(selettoreInvio).submit(function () {
+            event.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: percorsoServer,
+                data: $(selettoreInvio).serialize(),
+                success: function (data) {
+                    $(selettoreRisposta).html(data);
+                }
+            });
+        });
+    });
+}

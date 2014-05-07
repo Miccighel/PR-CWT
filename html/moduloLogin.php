@@ -3,8 +3,8 @@ include '../settings/configurazione.inc';
 include HOME_ROOT . '/html/testa.php';
 ?>
 
-<form method="post" action="<?php print'../script/scriptControlloLoginAdmin.php';?>">
-	<fieldset><legend>Login</legend>		
+<form id="formLogin" method="post" action="<?php print'../script/scriptControlloLoginAdmin.php'; ?>">
+<fieldset><legend>Login</legend>
 		<div class="label"><label >Username</label></div>
 		<input type="text" name="username" class="obbligatorio" /><br />
         <div class="label"><label >Password</label></div>
@@ -13,4 +13,10 @@ include HOME_ROOT . '/html/testa.php';
 	</fieldset>
 </form>
 
+<script type="text/javascript">
+    gestisciForm('#formLogin', '../script/scriptControlloLoginAdmin.php', '#coldx');
+</script>
+
 <?php include HOME_ROOT.'/html/coda.html';?>
+
+

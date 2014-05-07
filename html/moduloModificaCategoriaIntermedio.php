@@ -1,7 +1,6 @@
 <?php
 include '../settings/configurazione.inc';
 include HOME_ROOT . '/script/funzioni.php';
-include HOME_ROOT . '/html/testa.php';
 
 if (isset($_SESSION['collegato'])) {
     if ($_SESSION['amministratore'] == true) {
@@ -13,7 +12,7 @@ if (isset($_SESSION['collegato'])) {
         print '<form method="post" action="../script/scriptModificaCategoria.php">';
         print '<fieldset><legend>Informazioni categoria</legend>';
         print '<div class="label"><label >Nome</label></div>';
-        print '<input type="hidden" name="nomeOld" value="'.$dati[0]['nome'].'"></input>';
+        print '<input type="hidden" name="nomeOld" value="' . $dati[0]['nome'] . '"></input>';
         print '<input type="text" name="nome" value="' . $dati[0]['nome'] . '" class="obbligatorio"></input>';
         print '<input type="submit" value="Conferma" class="invia"></input>';
         print '</fieldset>';
@@ -26,5 +25,4 @@ if (isset($_SESSION['collegato'])) {
     print '<p class="errore">Non sei autorizzato a visualizzare questa pagina, per favore, esegui il login.</p>';
 }
 
-include HOME_ROOT . '/html/coda.html';
 ?>
