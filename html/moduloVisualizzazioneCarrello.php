@@ -14,7 +14,7 @@ $dati = eseguiQuery($connessione, $query);
 
 foreach ($dati as $tupla) {
     print '<div id="corpoCatalogo">' .
-        '<div id="catcolsx"><img src="' . HOME_WEB . 'img/thumb/' . $tupla['immagine'] . '" height="165px" width="150px"></img>' . '</div>' .
+        '<div id="catcolsx"><img src="' . HOME_WEB . 'img/thumb/' . $tupla['immagine'] . '" height="165px" width="140px"></img>' . '</div>' .
         '<div id="catcoldx"> <p><b>Codice Prodotto: </b>' . $tupla['codiceprodotto'] . '</p>' .
         '<p><b>Nome Prodotto: </b>' . $tupla['nomeprodotto'] . '</p>' .
         '<p><b>Prezzo: </b>' . $tupla['prezzo'] . ' Euro</p>' .
