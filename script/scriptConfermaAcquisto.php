@@ -1,7 +1,6 @@
 <?php
 include '../settings/configurazione.inc';
 
-include HOME_ROOT.'/html/testa.php';
 ?>
 
 <?php
@@ -30,10 +29,6 @@ $vet3 = mysql_fetch_array($result3);
 	$quantitaaggiornata = $vet8['numeropezzi'] - $vet3['quantita'];
 
 	$sql = sprintf("UPDATE tblprodotti SET numeropezzi='%d' WHERE codiceprodotto='".$vet3['codiceprodotto']."'",$quantitaaggiornata);
-	$result = mysql_query($sql);	
-
-	header("location: ../html/moduloVisualizzazioneCortesia.php");
+$result = mysql_query($sql);
 
 ?>
-
-<?php include HOME_ROOT.'/html/coda.html';?>

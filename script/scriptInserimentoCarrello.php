@@ -2,12 +2,8 @@
 include '../settings/configurazione.inc';
 
 include HOME_ROOT.'/html/testa.php';
-?>
 
-<?php
-
-mysql_connect("localhost", "root", "");
-mysql_select_db("ecommerce")or die('Morto');
+$connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
 
 $utente = $_SESSION['username'];
 $password = $_SESSION['password'];
@@ -48,8 +44,8 @@ if (($quantita > $vet['numeropezzi']) || ($quantita <= 0)) {
 		$vet5= mysql_fetch_array($result);
 			
 		if($quantitatotale>$vet5['numeropezzi']) {
-			print "Attenzione, non puoi inserire una quantità di prodotto maggiore di quella in magazzino!";
-		} else {			
+            print "Attenzione, non puoi inserire una quantit&agrave di prodotto maggiore di quella in magazzino!";
+        } else {
 			if($vet3['codiceprodotto'] == $codiceprodottodainserire && $vet3['codiceutente'] == $vet['idutente']) {					
 				$sql = sprintf("UPDATE tblCarrelli SET quantita='%d' WHERE codiceprodotto='".$codiceprodottodainserire."'"."AND codiceutente='".$vet['idutente']."'",$quantitatotale);
 				$result = mysql_query($sql);				
@@ -61,9 +57,5 @@ if (($quantita > $vet['numeropezzi']) || ($quantita <= 0)) {
 	}	
 }
 
-
-
-
+include HOME_ROOT . '/html/coda.html';
 ?>
-
-<?php include HOME_ROOT.'/html/coda.html';?>

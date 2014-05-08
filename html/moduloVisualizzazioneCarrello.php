@@ -1,6 +1,6 @@
 <?php
 include '../settings/configurazione.inc';
-include HOME_ROOT.'/html/testa.php';
+include HOME_ROOT . '/html/testa.php';
 include HOME_ROOT . '/script/funzioni.php';
 
 $connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
@@ -21,22 +21,26 @@ foreach ($dati as $tupla) {
         '<p><b>Categoria: </b>' . $tupla['categoria'] . '</p>' .
         '<p><b>Console: </b>' . $tupla['console'] . '</p>' .
         '<p><b>Quantita Richiesta: </b>' . $tupla['quantita'] . '</p>';
-    print '<form method="post" action="../script/scriptEliminazioneCarrello.php">';
+    print '<form id="' . $tupla['codiceprodotto'] . '" method="post" action="../script/scriptEliminazioneCarrello.php">';
     print '<input type="hidden" name="codiceEliminazione" value="' . $tupla['codiceprodotto'] . "'/>";
     print '<p><img src="../img/style/cart_remove.png"></img></p>';
     print '<p>Quantita di prodotto da eliminare:';
-    print '<input type="text" name="quantitaEliminazione[]"></input>';
+    print '<input type="text" name="quantitaEliminazione"></input>';
     print '<input type="submit" value="Elimina"></input></p>';
     print '</form>';
     print '</div>' . '</div>';
-
+    print '<script type="text/javascript">';
+    print "gestisciForm('#" . $tupla['codiceprodotto'] . "','" . '../script/scriptEliminazioneCarrello.php' . "','#coldx');";
+    print '</script>';
 }
-
-print '<form method="post" action="../script/scriptConfermaAcquisto.php>';
+print '<form id="conferma' . $tupla['codiceprodotto'] . '" method="post" action="../script/scriptConfermaAcquisto.php">';
 foreach ($dati as $tupla) {
-    print '<input type="hidden" name="' . $tupla['codiceprodotto'] . '" value="' . $tupla['codiceprodotto'] . "'/>";
+    print '<input type="hidden" name="' . $tupla['codiceprodotto'] . '" value="' . $tupla['codiceprodotto'] . '"/>';
 }
 print '<input type="submit" id="pulsanteAcquisto" value="Conferma l\'acquisto">';
 print '</form>';
-include HOME_ROOT.'/html/coda.html';
+print '<script type="text/javascript">';
+print "gestisciForm('#conferma" . $tupla['codiceprodotto'] . "','" . '../script/scriptConfermaAcquisto.php' . "','#coldx');";
+print '</script>';
+include HOME_ROOT . '/html/coda.html';
 ?>

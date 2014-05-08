@@ -1,7 +1,5 @@
 <?php
 include '../settings/configurazione.inc';
-
-include HOME_ROOT.'/html/testa.php';
 ?>
 
 <?php
@@ -34,14 +32,12 @@ if ($quantita > $vet3['quantita']) {
 		
 		if ($vet3['quantita'] == 0) {
 				$sql7=sprintf("DELETE FROM tblcarrelli WHERE codiceutente='%d' AND codiceprodotto='%s'",$vet2['idutente'],$codiceprodottodaeliminare);
-				$result7 = mysql_query($sql7);					
-				header("location: ../html/moduloVisualizzazioneCarrello.php");
-		}
-		header("location: ../html/moduloVisualizzazioneCarrello.php");
-	}
+				$result7 = mysql_query($sql7);
+
+        }
+
+}
 		
 
 
 ?>
-
-<?php include HOME_ROOT.'/html/coda.html';?>
