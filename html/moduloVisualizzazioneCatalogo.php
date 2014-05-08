@@ -16,14 +16,18 @@ foreach($dati as $riga){
 	'<p><b>Quantita Disponibile: </b>'.$riga['numeropezzi'].'</p>'.
 	'<p><b>Categoria: </b>'.$riga['categoria'].'</p>'.
 	'<p><b>Console: </b>'.$riga['console'].'</p>';
-	if(isset($_SESSION['collegato'])){	
-		print '<form method="post" action="../script/scriptInserimentoCarrello.php?prodotto='.$riga['codiceprodotto'].'">';
-		print'<p><img src="../'.$cartellaImmaginePrincipale.'/style/cart_add.png"></img></p>';
-		print '<p><b>Quantita di prodotto da inserire:</b>';
+	if(isset($_SESSION['collegato'])){
+        print '<form id="' . $riga['codiceprodotto'] . '" method="post" action="../script/scriptInserimentoCarrello.php">';
+        print'<p><img src="../'.$cartellaImmaginePrincipale.'/style/cart_add.png"></img></p>';
+        print '<input type="hidden" name="' . $riga['codiceprodotto'] . '" value="' . $riga['codiceprodotto'] . '"/>';
+        print '<p><b>Quantita di prodotto da inserire:</b>';
 		print '<input type="text" name="quantitainserimento"></input></p>';
 		print '<input type="submit" value="Inserisci Prodotto"></input>';
 		print '</form>';
-	} else {
+        print '<script type="text/javascript">';
+        print "gestisciForm('#" . $riga['codiceprodotto'] . "','" . '../script/scriptInserimentoCarrello.php' . "','#coldx');";
+        print '</script>';
+    } else {
 		print '<p>Esegui il login per inserire il prodotto nel carrello</p>';
 	}
 	print '</div>'.'</div>';
