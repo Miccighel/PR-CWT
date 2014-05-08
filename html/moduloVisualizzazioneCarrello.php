@@ -42,5 +42,8 @@ print '</form>';
 print '<script type="text/javascript">';
 print "gestisciForm('#conferma" . $tupla['codiceprodotto'] . "','" . '../script/scriptConfermaAcquisto.php' . "','#coldx');";
 print '</script>';
+
+chiudiConnessione($connessione);
+
 include HOME_ROOT . '/html/coda.html';
 ?>

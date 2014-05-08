@@ -1,58 +1,48 @@
 <?php
 include '../settings/configurazione.inc';
+include HOME_ROOT . '/script/funzioni.php';
 
 $connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
 
 $utente = $_SESSION['username'];
-$password = $_SESSION['password'];
 
-$quantita = $_POST['quantitainserimento'];
+$quantitaInserimento = $_POST['quantita'];
+$codiceInserimento = $_POST['codiceprodotto'];
 
-$codiceprodottodainserire = $_GET['prodotto'];
+$query = sprintf("SELECT numeropezzi FROM tblprodotti WHERE codiceprodotto='%s'", $codiceInserimento);
+$dati = eseguiQuery($connessione, $query);
 
-$sql = sprintf("SELECT * FROM tblProdotti");
-$result = mysql_query($sql);
-$vet = mysql_fetch_array($result);
-
-
-if (($quantita > $vet['numeropezzi']) || ($quantita <= 0)) {
-    print 'Non puoi comprare un numero di prodotti negativo oppure maggiore della quantita disponibile. Riprova.';
+if (($quantitaInserimento > $dati[0]['numeropezzi']) || ($quantitaInserimento <= 0)) {
+    print '<p class="errore">Non puoi comprare un numero di prodotti negativo oppure maggiore della quantita disponibile. Riprova.</p>';
 } else {
-    $sql = sprintf("SELECT idutente FROM tblUtenti WHERE user='" . $utente . "'");
-    $result = mysql_query($sql);
-    $vet = mysql_fetch_array($result);
+    $query = sprintf("SELECT u.codicefiscale, c.codiceprodotto, c.quantita, p.numeropezzi
+             FROM (tblutenti AS u JOIN tblcarrelli AS c ON u.codicefiscale = c.codiceutente)
+             JOIN tblprodotti AS p on c.codiceprodotto = p.codiceprodotto
+             WHERE u.user='%s' AND c.codiceprodotto='%s'", $_SESSION['username'], $codiceInserimento);
 
-    $sql = sprintf("SELECT * FROM tblCarrelli WHERE codiceutente='" . $vet['idutente'] . "'");
-    $result = mysql_query($sql);
-    $vet2 = mysql_fetch_array($result);
+    $dati = eseguiQuery($connessione, $query);
 
-    if ($vet2['codiceprodotto'] == "" && $vet2['codiceutente'] == "") {
-        $sql = sprintf("INSERT INTO tblcarrelli(codiceprodotto, codiceutente, quantita) VALUE ('%s','%d','%d')", $codiceprodottodainserire, $vet['idutente'], $quantita);
-        $result = mysql_query($sql);
+
+    $query = sprintf("SELECT codicefiscale FROM tblutenti WHERE user='%s'", $utente);
+    $infoUtente = eseguiQuery($connessione, $query);
+    $codiceFiscale = $infoUtente[0]['codicefiscale'];
+
+    if (!$dati) {
+        $query = sprintf("INSERT INTO tblcarrelli(codiceprodotto, codiceutente, quantita) VALUE ('%s','%s','%d')", $codiceInserimento, $codiceFiscale, $quantitaInserimento);
+        $dati = eseguiQuery($connessione, $query);
+        print '<p class="successo">Inserimento nel carrello avvenuto correttamente</p>';
     } else {
-
-        $sql = sprintf("SELECT * FROM tblCarrelli WHERE codiceutente='" . $vet['idutente'] . "'" . "AND codiceprodotto='" . $codiceprodottodainserire . "'");
-        $result = mysql_query($sql);
-        $vet3 = mysql_fetch_array($result);
-
-        $quantitatotale = $vet3['quantita'] + $quantita;
-
-        $sql = sprintf("SELECT numeropezzi FROM tblProdotti WHERE codiceprodotto='" . $codiceprodottodainserire . "'");
-        $result = mysql_query($sql);
-        $vet5 = mysql_fetch_array($result);
-
-        if ($quantitatotale > $vet5['numeropezzi']) {
-            print "Attenzione, non puoi inserire una quantit&agrave di prodotto maggiore di quella in magazzino!";
+        $quantitaTotale = $dati[0]['quantita'] + $quantitaInserimento;
+        if ($quantitaTotale > $dati[0]['numeropezzi']) {
+            print '<p class="errore">Attenzione, non puoi inserire una quantit&agrave di prodotto maggiore di quella in magazzino!</p>';
         } else {
-            if ($vet3['codiceprodotto'] == $codiceprodottodainserire && $vet3['codiceutente'] == $vet['idutente']) {
-                $sql = sprintf("UPDATE tblCarrelli SET quantita='%d' WHERE codiceprodotto='" . $codiceprodottodainserire . "'" . "AND codiceutente='" . $vet['idutente'] . "'", $quantitatotale);
-                $result = mysql_query($sql);
-            } else {
-                $sql = sprintf("INSERT INTO tblcarrelli(codiceprodotto, codiceutente, quantita) VALUE ('%s','%d','%d')", $codiceprodottodainserire, $vet['idutente'], $quantita);
-                $result = mysql_query($sql);
-            }
+            $query = sprintf("UPDATE tblcarrelli SET quantita='%d' WHERE codiceprodotto='%s' AND codiceutente ='%s'", $quantitaTotale, $codiceInserimento, $codiceFiscale);
+            $dati = eseguiQuery($connessione, $query);
+            print '<p class="successo">Aggiornamento del carrello avvenuto correttamente</p>';
         }
     }
 }
+
+chiudiConnessione($connessione);
 
 ?>
