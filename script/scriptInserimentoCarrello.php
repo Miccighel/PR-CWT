@@ -22,7 +22,6 @@ if (($quantitaInserimento > $dati[0]['numeropezzi']) || ($quantitaInserimento <=
 
     $dati = eseguiQuery($connessione, $query);
 
-
     $query = sprintf("SELECT codicefiscale FROM tblutenti WHERE user='%s'", $utente);
     $infoUtente = eseguiQuery($connessione, $query);
     $codiceFiscale = $infoUtente[0]['codicefiscale'];
