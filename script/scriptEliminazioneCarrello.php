@@ -1,43 +1,38 @@
 <?php
 include '../settings/configurazione.inc';
-?>
+include HOME_ROOT . '/script/funzioni.php';
 
-<?php
-
-mysql_connect("localhost", "root", "");
-mysql_select_db("ecommerce")or die('Morto');
+$connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
 
 $utente = $_SESSION['username'];
-$quantita = $_POST['quantitaeliminazione'];
-$codiceprodottodaeliminare = $_GET['prodotto'];
+$quantitaEliminazione = $_POST['quantitaEliminazione'];
+$codiceEliminazione = $_POST['codiceEliminazione'];
 
-$sql2 = sprintf("SELECT idutente FROM tblUtenti WHERE user='".$utente."'");
-$result2 = mysql_query($sql2);
-$vet2 = mysql_fetch_array($result2);
+$query = sprintf("SELECT u.codicefiscale, c.codiceprodotto, c.quantita
+             FROM tblutenti AS u JOIN tblcarrelli AS c ON u.codicefiscale = c.codiceutente
+             WHERE u.user='%s' AND c.codiceprodotto='%s'", $utente, $codiceEliminazione);
+$dati = eseguiQuery($connessione, $query);
 
-$sql3=sprintf("SELECT * FROM tblcarrelli WHERE codiceutente='".$vet2['idutente']."' AND codiceprodotto='".$codiceprodottodaeliminare."'");
-$result3 = mysql_query($sql3);
-$vet3 = mysql_fetch_array($result3);
+if ($quantitaEliminazione > $dati[0]['quantita']) {
+    print '<p class="errore">Non puoi eliminare dal carrello una quantita maggiore di quella inserita precedentemente</p>';
+} else {
 
-if ($quantita > $vet3['quantita']) {
-	print "Non puoi eliminare dal carrello una quantita maggiore di quella inserita precedentemente";
-} else { 		
-		$quantitaaggiornata = $vet3['quantita'] - $quantita;
-		$sql = sprintf("UPDATE tblCarrelli SET quantita='%d' WHERE codiceprodotto='".$codiceprodottodaeliminare."'"."AND codiceutente='".$vet2['idutente']."'",$quantitaaggiornata);
-		$result = mysql_query($sql);	
-		
-		$sql3=sprintf("SELECT * FROM tblcarrelli WHERE codiceutente='".$vet2['idutente']."' AND codiceprodotto='".$codiceprodottodaeliminare."'");
-		$result3 = mysql_query($sql3);
-		$vet3 = mysql_fetch_array($result3);		
-		
-		if ($vet3['quantita'] == 0) {
-				$sql7=sprintf("DELETE FROM tblcarrelli WHERE codiceutente='%d' AND codiceprodotto='%s'",$vet2['idutente'],$codiceprodottodaeliminare);
-				$result7 = mysql_query($sql7);
+    $query = sprintf("SELECT codicefiscale FROM tblutenti WHERE user='%s'", $utente);
+    $infoUtente = eseguiQuery($connessione, $query);
+    $codiceFiscale = $infoUtente[0]['codicefiscale'];
 
-        }
+    $quantitaAggiornata = $dati[0]['quantita'] - $quantitaEliminazione;
+    $query = sprintf("UPDATE tblCarrelli SET quantita='%d' WHERE codiceprodotto='%s' AND codiceutente='%s'", $quantitaAggiornata, $codiceEliminazione, $codiceFiscale);
+    $dati = eseguiQuery($connessione, $query);
+
+    $query = sprintf("SELECT quantita FROM tblcarrelli WHERE codiceprodotto='%s' AND codiceutente='%s'", $codiceEliminazione, $codiceFiscale);
+    $dati = eseguiQuery($connessione, $query);
+
+    if ($dati[0]['quantita'] <= 0) {
+        $query = sprintf("DELETE FROM tblcarrelli WHERE codiceutente='%s' AND codiceprodotto='%s'", $codiceFiscale, $codiceEliminazione);
+        $dati = eseguiQuery($connessione, $query);
+    }
+    print '<p class="successo">Aggiornamento del carrello eseguito correttamente</p>';
 
 }
-		
-
-
 ?>

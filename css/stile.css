@@ -6,14 +6,14 @@ body {
     background-image: -webkit-linear-gradient(bottom, #ACF2EB 0%, #FFFFFF 350px);
     background-image: -ms-linear-gradient(bottom, #ACF2EB 0%, #FFFFFF 350px);
     background-image: linear-gradient(to bottom, #ACF2EB 0%, #FFFFFF 350px);
-    font-size:76%;
+    font-size: 76%;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     font-size: 13px;
     color: #837669;
 }
 
 p {
-    padding-left:2px;
+    padding-left: 2px;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     font-size: 13px;
     margin-top: 5.05px;
@@ -37,7 +37,7 @@ p.informazione {
 
 a {
     color: #000000;
-    text-decoration:none;
+    text-decoration: none;
 }
 
 a:hover {
@@ -48,37 +48,37 @@ a img {
     border: none;
 }
 
-div#contenuto{
-    width:900px;
-    margin-left:auto;
-    margin-right:auto;
+div#contenuto {
+    width: 900px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-h1{
-    text-align:center;
+h1 {
+    text-align: center;
 }
 
 .label {
-    width:180px;
-    float:left;
+    width: 180px;
+    float: left;
 }
 
 fieldset {
-    border:1px solid #ABCDEF;
+    border: 1px solid #ABCDEF;
     margin-right: 0;
 }
 
 input.evidenzia {
-    border:1px solid red;
+    border: 1px solid red;
 }
 
 span.errore {
     margin-left: 5px;
-    color:red;
+    color: red;
 }
 
-textarea{
-    resize:none;
+textarea {
+    resize: none;
 }
 
 .ui-datepicker {
@@ -88,9 +88,9 @@ textarea{
 
 /* STILE TESTA */
 
-div#testa{
+div#testa {
     height: 60px;
-    position:relative;
+    position: relative;
     background-image: -o-linear-gradient(bottom, #FF8C00 17%, #FFBF00 60px);
     background-image: -moz-linear-gradient(bottom, #FF8C00 17%, #FFBF00 60px);
     background-image: -webkit-linear-gradient(bottom, #FF8C00 17%, #FFBF00 60px);
@@ -104,61 +104,60 @@ div#testa{
     border-top-right-radius: 20px;
 }
 
-p#titolo{
-    position:absolute;
-    width:100%;
-    top:50%;
-    margin-left:-50%;
-    margin-top:-.5em;
-    left:50%;;
-    padding-left:54px;
-    font-size:20px;
-    color:#fff;
-    float:left;
+p#titolo {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    margin-left: -50%;
+    margin-top: -.5em;
+    left: 50%;;
+    padding-left: 54px;
+    font-size: 20px;
+    color: #fff;
+    float: left;
 }
 
 div#logo {
     background: url(../img/style/img03.jpg) no-repeat left top;
-    height:230px;
+    height: 230px;
 }
 
 /* STILE CORPO */
 
 div#corpo {
     color: #006666;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 /* STILE COLONNA SINISTRA */
 
-div#colsx{
+div#colsx {
     float: left;
-    width:180px;
-    min-height:600px;
+    width: 180px;
+    min-height: 600px;
 }
 
 /* STILE COLONNA DESTRA */
 
-div#coldx{
-    float:left;
+div#coldx {
+    float: left;
     width: 714px;
-    min-height:600px;
-    border-left:1px solid #ABCDEF;
+    min-height: 600px;
+    border-left: 1px solid #ABCDEF;
     padding-bottom: 5px;
     padding-left: 5px;
 }
 
 div#corpoCatalogo {
     width: 714px;
-    float:left;
-    margin-bottom: 10px;
+    float: left;
     margin-top: 5px;
     text-align: justify;
 }
 
 div#catcolsx {
     float: left;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 div#catcoldx {
@@ -168,20 +167,20 @@ div#catcoldx {
 }
 
 div#immagineEliminazione {
-    float:left;
-    margin-left:22px;
+    float: left;
+    margin-left: 22px;
     margin-bottom: 10px;
 }
 
-div#pulsanteEliminazione{
-    width:694px;
-    float:left;
+div#pulsanteEliminazione {
+    width: 694px;
+    float: left;
     margin-left: 21px;
-    padding:0;
+    padding: 0;
 }
 
 div#pulsanteEliminazione input {
-    margin:0;
+    margin: 0;
 }
 
 input#pulsanteAcquisto {
@@ -199,8 +198,8 @@ div#coda {
     background-image: -webkit-linear-gradient(bottom, #FFBF00 0%, #FF8C00 60px);
     background-image: -ms-linear-gradient(bottom, #FFBF00 0%, #FF8C00 60px);
     background-image: linear-gradient(to bottom, #FFBF00 0%, #FF8C00 60px);
-    margin-bottom:1px;
-    position:relative;
+    margin-bottom: 1px;
+    position: relative;
     -webkit-border-bottom-right-radius: 20px;
     -webkit-border-bottom-left-radius: 20px;
     -moz-border-radius-bottomright: 20px;

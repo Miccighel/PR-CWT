@@ -9,7 +9,6 @@
     <script type="text/javascript" src="<?php print HOME_WEB; ?>js/funzioni.js"></script>
     <style type="text/css">
         @import url(<?php print HOME_WEB;?> css/stile.css);
-        @import url(<?php print HOME_WEB;?> css/reset.css);
         @import url(<?php print HOME_WEB;?> css/jquery-ui.min.css);
     </style>
 </head>

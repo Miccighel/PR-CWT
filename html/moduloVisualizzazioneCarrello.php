@@ -14,7 +14,7 @@ $dati = eseguiQuery($connessione, $query);
 
 foreach ($dati as $tupla) {
     print '<div id="corpoCatalogo">' .
-        '<div id="catcolsx"><img src="' . HOME_WEB . 'img/thumb/' . $tupla['immagine'] . '" height="165px" width="140px"></img>' . '</div>' .
+        '<div id="catcolsx"><img src="' . HOME_WEB . 'img/thumb/' . $tupla['immagine'] . '" height="210px" width="140px"></img>' . '</div>' .
         '<div id="catcoldx"> <p><b>Codice Prodotto: </b>' . $tupla['codiceprodotto'] . '</p>' .
         '<p><b>Nome Prodotto: </b>' . $tupla['nomeprodotto'] . '</p>' .
         '<p><b>Prezzo: </b>' . $tupla['prezzo'] . ' Euro</p>' .
@@ -22,7 +22,7 @@ foreach ($dati as $tupla) {
         '<p><b>Console: </b>' . $tupla['console'] . '</p>' .
         '<p><b>Quantita Richiesta: </b>' . $tupla['quantita'] . '</p>';
     print '<form id="' . $tupla['codiceprodotto'] . '" method="post" action="../script/scriptEliminazioneCarrello.php">';
-    print '<input type="hidden" name="codiceEliminazione" value="' . $tupla['codiceprodotto'] . "'/>";
+    print '<input type="hidden" name="codiceEliminazione" value="' . $tupla['codiceprodotto'] . '"/>';
     print '<p><img src="../img/style/cart_remove.png"></img></p>';
     print '<p>Quantita di prodotto da eliminare:';
     print '<input type="text" name="quantitaEliminazione"></input>';

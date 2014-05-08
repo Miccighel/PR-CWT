@@ -9,6 +9,9 @@ $(document).ready(function(){
         controlloCampi('.obbligatorio',1,'Questo campo &egrave obbligatorio');
         controlloCampi('#codiceprodotto',8,'Il codice prodotto deve essere di 8 cifre');
     });
+
+    $("#infoProdotto").accordion();
+
 });
 
 function controlloCampi(campo, lunghezza, messaggio){
