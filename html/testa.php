@@ -47,7 +47,7 @@
             if (isset($_SESSION['amministratore']) || isset($_SESSION['utenteautorizzato'])) {
                 print'<a href=' . HOME_WEB . 'html/moduloVisualizzazioneCarrello.php>Visualizza Carrello</a><br />';
             } else {
-                print'<a href=' . HOME_WEB . 'html/moduloLogin.php>Visualizza Carrello</a><br />';
+                print'<a href=' . HOME_WEB . 'html/moduloLogin.php?n=1>Visualizza Carrello</a><br />';
             }
             ?>
             <a href="<?php print HOME_WEB ?>html/moduloVisualizzazioneCatalogo.php">Visualizza Catalogo</a><br/>
