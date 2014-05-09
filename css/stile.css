@@ -189,7 +189,7 @@ div#pulsanteEliminazione input {
 }
 
 input#pulsanteAcquisto {
-    margin-left: 5px;
+    margin:0;
 }
 
 /* STILE CODA */
