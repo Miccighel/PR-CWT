@@ -200,4 +200,28 @@ function stampaModuloRicerca($destinazione, $nome){
     print '</script>';
 }
 
+function cancellaCartella($cartella)
+{
+    if (is_dir($cartella)) {
+        $files = scandir($cartella);
+        for ($i = 2; $i < count($files); $i++) {
+            unlink($cartella . '/' . $files[$i]);
+        }
+        rmdir($cartella);
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function cancellaImmagine($immagine)
+{
+    if (file_exists($immagine)) {
+        unlink($immagine);
+        return true;
+    } else {
+        return false;
+    }
+}
+
 ?>
