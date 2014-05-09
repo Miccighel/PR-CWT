@@ -4,6 +4,7 @@ include HOME_ROOT.'/script/funzioni.php';
 
 if (isset($_SESSION['collegato'])){
     if ($_SESSION['amministratore'] == true){
+
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             ricercaProdotto($_POST['nome'],'../script/scriptEliminazioneProdotto.php');
         } else {

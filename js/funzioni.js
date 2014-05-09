@@ -10,7 +10,11 @@ $(document).ready(function(){
         controlloCampi('#codiceprodotto',8,'Il codice prodotto deve essere di 8 cifre');
     });
 
-    $("#infoProdotto").accordion();
+    $('#colsx a').each(function(index) {
+        if(this.href.trim() == window.location){
+            $(this).addClass("voceselezionata");
+        }
+    });
 
 });
 

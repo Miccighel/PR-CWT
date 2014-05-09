@@ -1,28 +1,16 @@
 <?php
 include '../settings/configurazione.inc';
-include HOME_ROOT.'/html/testa.php';
-?>
-
-<?php
-
-mysql_connect("localhost", "root", "");
-mysql_select_db("ecommerce");
+include HOME_ROOT.'/script/funzioni.php';
 
 if (isset($_SESSION['collegato'])){
-        if ($_SESSION['amministratore'] == true){
-        print '<form method="post" action="../script/scriptEliminazioneCategoria.php">';
-        print '<fieldset><legend>Ricerca Categoria</legend>';
-        print '<select name="categoria">';
-        $sql = sprintf("SELECT * FROM tblCategorie");
-        $result = mysql_query($sql);
-        while($vet = mysql_fetch_array($result)){
-            $_SESSION['nomecat']=$vet['nome'];
-            print '<option value='.$vet['idcat'].'>'.$vet['nome'].'</option>';
+    if ($_SESSION['amministratore'] == true){
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            ricercaCategoria($_POST['nome'],'../script/scriptEliminazioneCategoria.php');
+        } else {
+            include HOME_ROOT . '/html/testa.php';
+            stampaModuloRicerca('moduloEliminazioneCategoria.php','categoria');
+            include HOME_ROOT . '/html/coda.html';
         }
-        print '</select>';
-        print '<input type="submit" value="Invia"></input>';
-        print '</fieldset>';
-        print "</form>";
     } else {
         print '<p class="errore">Per poter visualizzare questa pagina devi avere le credenziali da amministratore.</p>';
     }
@@ -30,5 +18,3 @@ if (isset($_SESSION['collegato'])){
     print '<p class="errore">Non sei autorizzato a visualizzare questa pagina, per favore, esegui il login.</p>';
 }
 ?>
-
-<?php include HOME_ROOT.'/html/coda.html';?>

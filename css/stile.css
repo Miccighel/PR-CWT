@@ -59,7 +59,7 @@ h1 {
 }
 
 .label {
-    width: 180px;
+    width: 230px;
     float: left;
 }
 
@@ -135,6 +135,11 @@ div#colsx {
     float: left;
     width: 180px;
     min-height: 600px;
+    padding-top: 3px;
+}
+
+div#colsx a.voceselezionata {
+    background-color:#ABCDEF;
 }
 
 /* STILE COLONNA DESTRA */

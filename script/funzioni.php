@@ -101,19 +101,17 @@ function generaThumbnail($imSorgente, $percorso, $larghezza, $altezza, $indice){
 
 function ricercaProdotto($nomeCercato, $destinazione){
     $connessione = creaConnessione(SERVER,UTENTE,PASSWORD,DATABASE);
+    print '<p class="informazione">Sono stati individuati i seguenti risultati potenziali</p>';
     $query = sprintf("SELECT * FROM tblprodotti AS p LEFT JOIN tblprodotticonsole AS pc ON p.codiceprodotto = pc.codiceprodotto");
-
     $dati = eseguiQuery($connessione,$query);
     $contantoreRisultati = 0;
-
-    print '<p class="informazione">Sono stati individuati i seguenti risultati potenziali</p>';
     foreach($dati as $riga ){
         $risultatoPotenziale = strtolower(substr(trim($riga['nomeprodotto']),0,strlen($nomeCercato)));
         if($risultatoPotenziale==strtolower($nomeCercato)){
             print '<form id="' . trim($riga['codiceprodotto']) . '" method="post" action="' . trim($destinazione) . '">';
             print '<input type="hidden" name="codiceprodotto" value="'.$riga['codiceprodotto'].'"/>';
             print '<input type="hidden" name="console" value="'.$riga['console'].'"/>';
-            print '<div class="label"><label>'.$riga['nomeprodotto'].'</label><label> - '.$riga['console'].'</label></div>';
+            print '<div class="label"><label>'.$riga['nomeprodotto'].' - '.$riga['console'].'</label></div>';
             print '<input type="submit" value="Seleziona"/>';
             print '</form>';
             print '<br />';
@@ -130,7 +128,7 @@ function ricercaProdotto($nomeCercato, $destinazione){
 
 function ricercaCategoria($nomeCercato, $destinazione){
     $connessione = creaConnessione(SERVER,UTENTE,PASSWORD,DATABASE);
-    $query = sprintf("SELECT * FROM tblcategorie");
+    $query = sprintf("SELECT * FROM tblcategorie ORDER BY nome ASC");
     $dati = eseguiQuery($connessione,$query);
     $contantoreRisultati = 0;
 
@@ -158,7 +156,7 @@ function ricercaCategoria($nomeCercato, $destinazione){
 
 function ricercaConsole($nomeCercato, $destinazione){
     $connessione = creaConnessione(SERVER,UTENTE,PASSWORD,DATABASE);
-    $query = sprintf("SELECT * FROM tblconsole");
+    $query = sprintf("SELECT * FROM tblconsole ORDER BY nome ASC");
     $dati = eseguiQuery($connessione,$query);
     $contantoreRisultati = 0;
 

@@ -48,8 +48,6 @@ if (isset($_SESSION['collegato'])) {
         print '<p class="errore">Per poter visualizzare questa pagina devi avere le credenziali da amministratore.</p>';
     }
 } else {
-
     print '<p class="errore">non sei autorizzato a visualizzare questa pagina, per favore, esegui il login.</p>';
-
 }
 ?>

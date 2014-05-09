@@ -12,9 +12,9 @@ if (isset($_SESSION['collegato'])){
             include HOME_ROOT . '/html/coda.html';
         }
     } else {
-		print 'Per poter visualizzare questa pagina devi avere le credenziali da amministratore.';
+		print '<p class="errore">Per poter visualizzare questa pagina devi avere le credenziali da amministratore.</p>';
 	}
 } else {
-	print 'Non sei autorizzato a visualizzare questa pagina, per favore, esegui il login.';
+	print '<p class="errore">Non sei autorizzato a visualizzare questa pagina, per favore, esegui il login.</p>';
 }
 ?>

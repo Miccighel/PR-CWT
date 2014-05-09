@@ -28,7 +28,7 @@ foreach($dati as $riga){
         print "gestisciForm('#" . $riga['codiceprodotto'] . "','" . '../script/scriptInserimentoCarrello.php' . "','#coldx');";
         print '</script>';
     } else {
-		print '<p>Esegui il login per inserire il prodotto nel carrello</p>';
+		print '<p class="informazione">Esegui il login per inserire il prodotto nel carrello</p>';
 	}
 	print '</div>'.'</div>';
 }

@@ -1,37 +1,27 @@
 <?php
 include '../settings/configurazione.inc';
+include HOME_ROOT . '/script/funzioni.php';
 
-include HOME_ROOT.'/html/testa.php';
-?>
+if (isset($_SESSION['collegato'])) {
+    if ($_SESSION['amministratore'] == true) {
+        $connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
 
-<?php
+        $query = sprintf("SELECT COUNT(codiceprodotto) FROM tblprodotti WHERE categoria='%s'", $_POST['nome']);
+        $dati = eseguiQuery($connessione, $query);
 
-if (isset($_SESSION['collegato'])){
-        if ($_SESSION['amministratore'] == true){
-		
-			mysql_connect("localhost", "root", "");
-			mysql_select_db("ecommerce");		
-	
-			$sql = sprintf("DELETE FROM tblCategorie WHERE nome='%s'", $_SESSION['nomecat']);
-			$result = mysql_query($sql);			
-			
-			$sql = sprintf("SELECT * FROM tblcategorie WHERE idcat='".$_POST['categoria']."'");
-			$result = mysql_query($sql);
-			$vet = mysql_fetch_array($result);
-	
-			$sql = sprintf("DELETE FROM tblProdotti WHERE categoria='%d'", $vet['idcat']);
-			$result = mysql_query($sql);
-			
-			header("location: ../index.php");
-		
-	} else {
-		print 'Non sei autorizzato a visualizzare questa pagina, per favore, esegui il login';
-	}
+        if(intval($dati[0]['COUNT(codiceprodotto)'] > 0)){
+            print '<p class="informazione">Elimina tutti i prodotti presenti in questa categoria prima di procedere</p>';
+        } else {
+            $query = sprintf("DELETE FROM tblcategorie WHERE nome='%s'", $_POST['nome']);
+            $dati = eseguiQuery($connessione, $query);
+            print '<p class="successo">La categoria e tutti i suoi prodotti sono stati eliminati con successo</p>';
+        }
+
+        chiudiConnessione($connessione);
+    } else {
+        print '<p class="errore">Non sei autorizzato a visualizzare questa pagina, per favore, esegui il login</p>';
+    }
 } else {
-	print 'Non sei autorizzato a visualizzare questa pagina, per favore, esegui il login';
+    print '<p class="errore">Non sei autorizzato a visualizzare questa pagina, per favore, esegui il login</p>';
 }
-
-
 ?>
-
-<?php include HOME_ROOT.'/html/coda.html';?>
