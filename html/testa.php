@@ -6,10 +6,15 @@
     <title>Games Commerce</title>
     <script type="text/javascript" src="<?php print HOME_WEB; ?>js/jquery.min.js"></script>
     <script type="text/javascript" src="<?php print HOME_WEB; ?>js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="<?php print HOME_WEB; ?>js/pirobox_extended_min.js"></script>
+    <script type="text/javascript" src="<?php print HOME_WEB; ?>js/modernizr.custom.17475.js"></script>
+    <script type="text/javascript" src="<?php print HOME_WEB; ?>js/jquery.elastislide.js"></script>
     <script type="text/javascript" src="<?php print HOME_WEB; ?>js/funzioni.js"></script>
     <style type="text/css">
         @import url(<?php print HOME_WEB;?>css/stile.css);
         @import url(<?php print HOME_WEB;?>css/jquery-ui.min.css);
+        @import url(<?php print HOME_WEB;?>css/style.css);
+        @import url(<?php print HOME_WEB;?>css/elastislide.css);
     </style>
 </head>
 <body>
@@ -21,7 +26,8 @@
     </div>
     <div id="corpo">
         <div id="colsx">
-            <a href="<?php print HOME_WEB; ?>index.php">HomePage</a><br/>
+            <ul>
+                <li><a href="<?php print HOME_WEB; ?>index.php">HomePage</a></li>
 
             <?php
 
@@ -30,35 +36,36 @@
             }
             if (isset($_SESSION['amministratore'])) {
                 if ($_SESSION['amministratore']) {
-                    print'<a href=' . HOME_WEB . 'html/moduloInserimentoProdotto.php>Inserimento Prodotto</a><br />';
-                    print'<a href=' . HOME_WEB . 'html/moduloModificaProdotto.php>Modifica Prodotto</a><br />';
-                    print'<a href=' . HOME_WEB . 'html/moduloEliminazioneProdotto.php>Eliminazione Prodotto</a><br />';
-                    print'<a href=' . HOME_WEB . 'html/moduloInserimentoImmagine.php>Inserimento Immagini</a><br />';
-                    print'<a href=' . HOME_WEB . 'html/moduloEliminazioneImmagine.php>Eliminazione Immagini</a><br />';
-                    print'<a href=' . HOME_WEB . 'html/moduloInserimentoCategoria.php>Inserimento Categoria</a><br />';
-                    print'<a href=' . HOME_WEB . 'html/moduloModificaCategoria.php>Modifica Categoria</a><br />';
-                    print'<a href=' . HOME_WEB . 'html/moduloEliminazioneCategoria.php>Eliminazione Categoria</a><br />';
-                    print'<a href=' . HOME_WEB . 'html/moduloInserimentoConsole.php>Inserimento Console</a><br />';
-                    print'<a href=' . HOME_WEB . 'html/moduloModificaConsole.php>Modifica Console</a><br />';
-                    print'<a href=' . HOME_WEB . 'html/moduloEliminazioneConsole.php>Eliminazione Console</a><br />';
-                    print'<a href=' . HOME_WEB . 'html/moduloAmministrazione.php>Pannello Amministrativo</a><br />';
+                    print'<li><a href=' . HOME_WEB . 'html/moduloInserimentoProdotto.php>Inserimento Prodotto</a></li>';
+                    print'<li><a href=' . HOME_WEB . 'html/moduloModificaProdotto.php>Modifica Prodotto</a></li>';
+                    print'<li><a href=' . HOME_WEB . 'html/moduloEliminazioneProdotto.php>Eliminazione Prodotto</a></li>';
+                    print'<li><a href=' . HOME_WEB . 'html/moduloInserimentoImmagine.php>Inserimento Immagini</a></li>';
+                    print'<li><a href=' . HOME_WEB . 'html/moduloEliminazioneImmagine.php>Eliminazione Immagini</a></li>';
+                    print'<li><a href=' . HOME_WEB . 'html/moduloInserimentoCategoria.php>Inserimento Categoria</a></li>';
+                    print'<li><a href=' . HOME_WEB . 'html/moduloModificaCategoria.php>Modifica Categoria</a></li>';
+                    print'<li><a href=' . HOME_WEB . 'html/moduloEliminazioneCategoria.php>Eliminazione Categoria</a></li>';
+                    print'<li><a href=' . HOME_WEB . 'html/moduloInserimentoConsole.php>Inserimento Console</a></li>';
+                    print'<li><a href=' . HOME_WEB . 'html/moduloModificaConsole.php>Modifica Console</a></li>';
+                    print'<li><a href=' . HOME_WEB . 'html/moduloEliminazioneConsole.php>Eliminazione Console</a></li>';
+                    print'<li><a href=' . HOME_WEB . 'html/moduloAmministrazione.php>Pannello Amministrativo</a></li>';
                 }
             }
             if (isset($_SESSION['amministratore']) || isset($_SESSION['utenteautorizzato'])) {
-                print'<a href=' . HOME_WEB . 'html/moduloVisualizzazioneCarrello.php>Visualizza Carrello</a><br />';
+                print'<li><a href=' . HOME_WEB . 'html/moduloVisualizzazioneCarrello.php>Visualizza Carrello</a></li>';
             } else {
-                print'<a href=' . HOME_WEB . 'html/moduloLogin.php?n=1>Visualizza Carrello</a><br />';
+                print'<li><a href=' . HOME_WEB . 'html/moduloLogin.php?n=1>Visualizza Carrello</a></li>';
             }
             ?>
-            <a href="<?php print HOME_WEB ?>html/moduloVisualizzazioneCatalogo.php">Visualizza Catalogo</a><br/>
+            <li><a href="<?php print HOME_WEB ?>html/moduloVisualizzazioneCatalogo.php">Visualizza Catalogo</a></li>
             <?php
             if (isset($_SESSION['collegato'])) {
-                print '<a href=' . HOME_WEB . 'html/moduloProfiloUtente.php>Gestione Profilo Utente</a><br/>';
+                print '<li><a href=' . HOME_WEB . 'html/moduloProfiloUtente.php>Gestione Profilo Utente</a></li>';
             }
             if (!isset($_SESSION['collegato'])) {
-                print '<a href=' . HOME_WEB . 'html/moduloLogin.php>Login</a><br/>';
+                print '<li><a href=' . HOME_WEB . 'html/moduloLogin.php>Login</a></li>';
             } else {
-                print '<a href=' . HOME_WEB . 'script/scriptLogout.php>Logout</a><br/>';
+                print '<li><a href=' . HOME_WEB . 'script/scriptLogout.php>Logout</a></li>';
+                print '</ul>';
             }
             if (isset($_SESSION['utenteautorizzato'])) {
                 if ($_SESSION['utenteautorizzato']) {
@@ -71,4 +78,4 @@
             }
             ?>
         </div>
-        <div id="coldx">
+    <div id="coldx">

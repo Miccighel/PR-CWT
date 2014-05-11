@@ -138,8 +138,21 @@ div#colsx {
     padding-top: 3px;
 }
 
-div#colsx a.voceselezionata {
+div.galleria img {
+    float:left;
+    margin-left:5px;
+}
+
+div#colsx li a.voceselezionata {
     background-color:#ABCDEF;
+}
+
+div#colsx ul {
+    list-style-type: none;
+    padding-top: 0;       
+    margin-top: 0;
+    padding-left: 0;       
+    margin-left: 0;        
 }
 
 /* STILE COLONNA DESTRA */
@@ -166,9 +179,14 @@ div#catcolsx {
 }
 
 div#catcoldx {
-    width: 490px;
+    width: 494px;
     float: left;
     word-wrap: break-word;
+}
+
+div.galleria {
+    width:492px;
+    margin-left:1px;
 }
 
 div#immagineEliminazione {

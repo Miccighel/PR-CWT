@@ -13,16 +13,16 @@ foreach($dati as $riga){
 	'<p><b>Nome Prodotto: </b>'.$riga['nomeprodotto'].'</p>'.
 	'<p><b>Descrizione: </b>'.$riga['descrizione'].'</p>'.
 	'<p><b>Prezzo: </b>'.$riga['prezzo'].' €</p>'.
-	'<p><b>Quantita Disponibile: </b>'.$riga['numeropezzi'].'</p>'.
+	'<p><b>Quantit&agrave Disponibile: </b>'.$riga['numeropezzi'].'</p>'.
 	'<p><b>Categoria: </b>'.$riga['categoria'].'</p>'.
 	'<p><b>Console: </b>'.$riga['console'].'</p>';
 	if(isset($_SESSION['collegato'])){
         print '<form id="' . $riga['codiceprodotto'] . '" method="post" action="../script/scriptInserimentoCarrello.php">';
         print'<p><img src="../'.$cartellaImmaginePrincipale.'/style/cart_add.png"></img></p>';
         print '<input type="hidden" name="codiceprodotto" value="' . $riga['codiceprodotto'] . '"/>';
-        print '<p><b>Quantita di prodotto da inserire:</b>';
-        print '<input type="text" name="quantita"></input></p>';
-        print '<input type="submit" value="Inserisci Prodotto"></input>';
+        print '<p><b>Quantit&agrave:</b>';
+        print '<input type="text" size="3" name="quantita"></input>';
+        print '<input type="submit" value="Aggiungi al carrello"></input></p>';
 		print '</form>';
         print '<script type="text/javascript">';
         print "gestisciForm('#" . $riga['codiceprodotto'] . "','" . '../script/scriptInserimentoCarrello.php' . "','#coldx');";
@@ -30,8 +30,19 @@ foreach($dati as $riga){
     } else {
 		print '<p class="informazione">Esegui il login per inserire il prodotto nel carrello</p>';
 	}
-	print '</div>'.'</div>';
+	print '<div class="galleria">';
+	print '<script type="text/javascript">';
+    print 'gestisciImmaginiGalleria();';
+    print '</script>';
+    print '<ul id="carouse" class="elastislide-list">';
+	visualizzaGalleria($riga['galleria'],$riga['codiceprodotto']);
+	print '</ul>';
+	print '</div>';
+	print '</div></div>';
 }
+print '<script type="text/javascript">';
+print 'gestisciThumbnailsGalleria();';
+print '</script>';
 
 chiudiConnessione($connessione);
 

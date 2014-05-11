@@ -1,6 +1,7 @@
 <?php
 include '../settings/configurazione.inc';
 include HOME_ROOT . '/script/funzioni.php';
+print '<script type="text/javascript" src="'.HOME_WEB.'js/funzioni.js"></script>';
 
 if (isset($_SESSION['collegato'])) {
     if ($_SESSION['amministratore'] == true) {
@@ -14,7 +15,7 @@ if (isset($_SESSION['collegato'])) {
         print '<div class="label"><label >Nome Prodotto</label></div>';
         print '<input type="text" name="nomeprodotto" class="obbligatorio" value="' . $dati[0]['nomeprodotto'] . '"></input><br /> ';
         print '<div class="label"><label >Descrizione</label></div>';
-        print '<textarea rows="5" cols="40" name="descrizione" class="obbligatorio">' . $dati[0]['descrizione'] . '</textarea><br />';
+        print '<textarea rows="5" cols="40" name="descrizione">' . $dati[0]['descrizione'] . '</textarea><br />';
         print '<div class="label"><label >Prezzo (€)</label></div>';
         print '<input type="text" name="prezzo" class="obbligatorio" value="' . $dati[0]['prezzo'] . '"/><br />';
         print '<div class="label"><label >Numero Pezzi</label></div>';

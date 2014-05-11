@@ -37,33 +37,35 @@ function gestioneImmagine($indice, $galleria){
     }
     if ($errore == UPLOAD_ERR_OK) {
         copy($temp, HOME_ROOT . '/' . 'img' . '/'.$galleria.'/' . $nome);
-        $messaggio = "Il file è stato caricato senza problemi";
+        $messaggio = "L'immagine è stata caricata senza problemi";
         print '<p class="successo">' . $nome . ' - Esito : ' . strtoupper($messaggio) . "</p>";
+        return true;
     } else {
         switch ($errore) {
             case UPLOAD_ERR_INI_SIZE:
-                $messaggio = "Il file caricato è troppo grande rispetto alla direttiva specificata in php.ini";
+                $messaggio = "L'immagine caricata è troppo grande rispetto alla direttiva specificata in php.ini";
                 break;
             case UPLOAD_ERR_FORM_SIZE:
-                $messaggio = "Il file caricato è troppo grande rispetto alla direttiva specificata nel form html";
+                $messaggio = "L'immagine caricata è troppo grande rispetto alla direttiva specificata nel form html";
                 break;
             case UPLOAD_ERR_PARTIAL:
-                $messaggio = "Il file è stato caricato parzialmente";
+                $messaggio = "L'immagine è stata caricata parzialmente";
                 break;
             case UPLOAD_ERR_NO_FILE:
-                $messaggio = "Il file non è stato caricato";
+                $messaggio = "L'immagine non è stata caricata";
                 break;
             case UPLOAD_ERR_NO_TMP_DIR:
-                $messaggio = "File temporaneo mancante";
+                $messaggio = "Immagine temporanea mancante";
                 break;
             case UPLOAD_ERR_CANT_WRITE:
-                $messaggio = "Impossibile scrivere file su disco";
+                $messaggio = "Impossibile scrivere l'immagine su disco";
                 break;
             case UPLOAD_ERR_EXTENSION:
-                $messaggio = "Caricamento del file bloccato da un estensione";
+                $messaggio = "Caricamento dell'immagine bloccato da un estensione";
                 break;
         }
         print '<p class="errore">' . $nome . ' - Esito : ' . strtoupper($messaggio) . "</p>";
+        return false;
     }
 }
 
@@ -97,6 +99,16 @@ function generaThumbnail($imSorgente, $percorso, $larghezza, $altezza, $indice){
     }
     imagedestroy($thumb);
     imagedestroy($immagine);
+}
+
+function visualizzaGalleria($galleria,$nomeClasse) {
+    $percorsoThumbnails = '../img/thumb/'.$galleria.'/';
+    $percorsoGalleria = '../img/'.$galleria.'/';
+    $thumbnails = glob($percorsoThumbnails . "*.jpg");
+    foreach ($thumbnails as $thumb) {
+        print '<li><a href="'.$percorsoGalleria.basename($thumb).'" rel="gallery" class="pirobox_gall'.$nomeClasse.'">
+                <img width="100" height="58" src="'.$thumb.'"/></a></li>';
+    }
 }
 
 function ricercaProdotto($nomeCercato, $destinazione){

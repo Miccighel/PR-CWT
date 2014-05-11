@@ -10,12 +10,11 @@ $(document).ready(function(){
         controlloCampi('#codiceprodotto',8,'Il codice prodotto deve essere di 8 cifre');
     });
 
-    $('#colsx a').each(function(index) {
+    $('#colsx li a').each(function(index) {
         if(this.href.trim() == window.location){
             $(this).addClass("voceselezionata");
         }
     });
-
 });
 
 function controlloCampi(campo, lunghezza, messaggio){
@@ -44,6 +43,24 @@ function gestisciForm(selettoreInvio, percorsoServer, selettoreRisposta) {
                     $(selettoreRisposta).html(data);
                 }
             });
+        });
+    });
+}
+
+function gestisciImmaginiGalleria() {
+    $(document).ready(function() {
+        $().piroBox_ext({
+            piro_speed : 700,
+            bg_alpha : 0.5,
+            piro_scroll : true // pirobox always positioned at the center of the page
+        });
+    });
+}
+
+function gestisciThumbnailsGalleria() {
+    $(document).ready(function() {
+        $( '.elastislide-list' ).each(function(){
+            $(this).elastislide();
         });
     });
 }
