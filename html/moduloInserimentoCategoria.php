@@ -6,7 +6,7 @@ if (isset($_SESSION['collegato'])){
         if ($_SESSION['amministratore'] == true){
             print '<form id="formInserimentoCategoria" method="post" action="../script/scriptInserimentoCategoria.php">';
             print '<fieldset><legend>Informazioni Categoria</legend>';
-		print '<div class="label"><label >Nome</label></div>';	
+		print '<div class="label"><label >Nome</label></div>';
 		print '<input type="text" name="nome"></input>';
 		print '<input type="submit" value="Invia"></input>';
 		print '</fieldset>';

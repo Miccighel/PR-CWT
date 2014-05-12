@@ -1,11 +1,11 @@
 /* STILI GENERALI */
 
 body {
-    background-image: -o-linear-gradient(bottom, #ACF2EB 0%, #FFFFFF 350px);
-    background-image: -moz-linear-gradient(bottom, #ACF2EB 0%, #FFFFFF 350px);
-    background-image: -webkit-linear-gradient(bottom, #ACF2EB 0%, #FFFFFF 350px);
-    background-image: -ms-linear-gradient(bottom, #ACF2EB 0%, #FFFFFF 350px);
-    background-image: linear-gradient(to bottom, #ACF2EB 0%, #FFFFFF 350px);
+    background-image: -o-linear-gradient(bottom, #ABCDEF 0%, #FFFFFF 350px);
+    background-image: -moz-linear-gradient(bottom, #ABCDEF 0%, #FFFFFF 350px);
+    background-image: -webkit-linear-gradient(bottom, #ABCDEF 0%, #FFFFFF 350px);
+    background-image: -ms-linear-gradient(bottom, #ABCDEF 0%, #FFFFFF 350px);
+    background-image: linear-gradient(to bottom, #ABCDEF 0%, #FFFFFF 350px);
     font-size: 76%;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     font-size: 13px;
@@ -64,8 +64,11 @@ h1 {
 }
 
 fieldset {
-    border: 1px solid #ABCDEF;
-    margin-right: 0;
+    border-top: 1px solid #ABCDEF;
+    border-bottom: 1px solid #ABCDEF;
+    border-left: 0;
+    border-right:0;
+    margin-right:0;
 }
 
 input.evidenzia {
@@ -87,6 +90,63 @@ textarea {
 }
 
 /* STILE TESTA */
+
+nav#menu {
+    margin-top: 1px;
+    margin-bottom: 1px;
+    background-color: #ABCDEF;
+    text-transform: uppercase;
+}
+
+nav ul ul {
+    display: none;
+}
+
+nav ul li:hover {
+    background-color:#FF8C00;
+}
+
+nav ul li:hover > ul {
+    display: block;
+}
+
+nav ul {
+    padding: 0;
+    margin:0;
+    border-radius: 10px;
+    list-style: none;
+    position: relative;
+}
+nav ul:after {
+    content: ""; clear: both; display: block;
+}
+
+nav ul li {
+    float: left;
+    margin:auto;
+}
+
+nav ul li a {
+    display: block;
+    height:35px;
+    padding-top: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #757575;
+    text-decoration: none;
+}
+
+nav ul ul {
+    border-radius: 0px; padding: 0;
+    position: absolute; top: 100%;
+}
+
+nav ul ul li {
+    float: none;
+    background-color:#ABCDEF;
+    position: relative;
+}
+
 
 div#testa {
     height: 60px;
@@ -132,10 +192,7 @@ div#corpo {
 /* STILE COLONNA SINISTRA */
 
 div#colsx {
-    float: left;
-    width: 180px;
-    min-height: 600px;
-    padding-top: 3px;
+    width:0;
 }
 
 div.galleria img {
@@ -159,17 +216,17 @@ div#colsx ul {
 
 div#coldx {
     float: left;
-    width: 714px;
+    width: 892px;
     min-height: 600px;
-    border-left: 1px solid #ABCDEF;
-    padding-bottom: 5px;
-    padding-left: 5px;
+    border-left:1px solid #ABCDEF;
+    border-right:1px solid #ABCDEF;
+    border-top:1px solid #ABCDEF;
+    padding:3px;
 }
 
 div#corpoCatalogo {
-    width: 714px;
+    width: 893px;
     float: left;
-    margin-top: 5px;
     text-align: justify;
 }
 
@@ -179,19 +236,17 @@ div#catcolsx {
 }
 
 div#catcoldx {
-    width: 494px;
     float: left;
     word-wrap: break-word;
 }
 
 div.galleria {
-    width:492px;
     margin-left:1px;
 }
 
 div#immagineEliminazione {
     float: left;
-    margin-left: 22px;
+    margin-left: 50px;
     margin-bottom: 10px;
 }
 

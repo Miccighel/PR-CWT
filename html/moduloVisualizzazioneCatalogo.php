@@ -17,9 +17,7 @@ foreach($dati as $riga){
 	'<p><b>Categoria: </b>'.$riga['categoria'].'</p>'.
 	'<p><b>Console: </b>'.$riga['console'].'</p>';
 	if(isset($_SESSION['collegato'])){
-        print '<form id="' . $riga['codiceprodotto'] . '" method="post" action="../script/scriptInserimentoCarrello.php">';
-        print'<p><img src="../'.$cartellaImmaginePrincipale.'/style/cart_add.png"></img></p>';
-        print '<input type="hidden" name="codiceprodotto" value="' . $riga['codiceprodotto'] . '"/>';
+        print '<form id="' . $riga['codiceprodotto'] . '" method="post" action="../script/scriptInserimentoCarrello.php">';        print '<input type="hidden" name="codiceprodotto" value="' . $riga['codiceprodotto'] . '"/>';
         print '<p><b>Quantit&agrave:</b>';
         print '<input type="text" size="3" name="quantita"></input>';
         print '<input type="submit" value="Aggiungi al carrello"></input></p>';

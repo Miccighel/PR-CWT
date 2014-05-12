@@ -11,7 +11,7 @@ $percorsoGalleria = 'img/' . $dati[0]['galleria'];
 
 for ($i = 0; $i < count($_FILES['immagini']['name']); $i++) {
     if(gestioneImmagine($i,$dati[0]['galleria'])){
-    	generaThumbnail($_FILES['immagini']['tmp_name'][$i],'/img/thumb/'.$dati[0]['galleria'],320,220,$i);
+    	generaThumbnail($_FILES['immagini']['tmp_name'][$i],'/img/thumb/'.$dati[0]['galleria'],370,220,$i);
 	}
 }
 
