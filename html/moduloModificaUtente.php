@@ -10,7 +10,7 @@ if (isset($_SESSION['collegato'])){
     print '<p class="informazione">Attenzione, dovrai eseguire di nuovo il login, una volta modificato il profilo</p>';
     print '<form id="formProfiloUtente" action="../script/scriptModificaUtente.php" method="post">';
     print '<fieldset><legend>Informazioni profilo utente</legend>';
-    print '<input type="hidden" name="oldcodicefiscale" value="' . $dati[0]['codicefiscale'] . '"></input><br /> ';
+    print '<input type="hidden" name="oldcodicefiscale" value="' . $dati[0]['codicefiscale'] . '"></input>';
     print '<div class="label"><label >Codice Fiscale</label></div>';
     print '<input type="text" maxlength="16" name="codicefiscale" class="obbligatorio" value="' . $dati[0]['codicefiscale'] . '"></input><br /> ';
     print '<div class="label"><label >Nome</label></div>';

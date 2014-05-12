@@ -183,7 +183,7 @@ function ricercaConsole($nomeCercato, $destinazione){
         $risultatoPotenziale = strtolower(substr(trim($riga['nome']),0,strlen($nomeCercato)));
         if($risultatoPotenziale==strtolower($nomeCercato)){
             print '<form method="post" action="' . trim($destinazione) . '">';
-            print '<div class="label"><label>'.$riga['user'].'</label></div>';
+            print '<div class="label"><label>'.$riga['nome'].'</label></div>';
             print '<input type="submit" value="Seleziona"/>';
             print '</form>';
             print '<br />';

@@ -16,7 +16,7 @@ p {
     padding-left: 2px;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     font-size: 13px;
-    margin-top: 5.05px;
+    margin-top: 0;
     margin-bottom: 5.05px;
 }
 
@@ -217,7 +217,7 @@ div#colsx ul {
 div#coldx {
     float: left;
     width: 892px;
-    min-height: 600px;
+    min-height: 250px;
     border-left:1px solid #ABCDEF;
     border-right:1px solid #ABCDEF;
     border-top:1px solid #ABCDEF;

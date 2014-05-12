@@ -7,8 +7,8 @@ if (isset($_SESSION['collegato'])){
             print '<form id="formInserimentoCategoria" method="post" action="../script/scriptInserimentoCategoria.php">';
             print '<fieldset><legend>Informazioni Categoria</legend>';
 		print '<div class="label"><label >Nome</label></div>';
-		print '<input type="text" name="nome"></input>';
-		print '<input type="submit" value="Invia"></input>';
+		print '<input type="text" name="nome" class="obbligatorio"></input>';
+		print '<input type="submit" value="Invia" class="invia"></input>';
 		print '</fieldset>';
 		print "</form>";
 	} else {
