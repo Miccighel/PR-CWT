@@ -133,6 +133,9 @@ function ricercaProdotto($nomeCercato, $destinazione){
             print '</script>';
         }
     }
+
+    chiudiConnessione($connessione);
+
     if($contantoreRisultati == 0){
         print '<p class="errore">La ricerca non ha prodotto alcun risultato.</p>';
     }
@@ -161,6 +164,9 @@ function ricercaCategoria($nomeCercato, $destinazione){
             print '</script>';
         }
     }
+
+    chiudiConnessione($connessione);
+
     if($contantoreRisultati == 0){
         print '<p class="errore">La ricerca non ha prodotto alcun risultato.</p>';
     }
@@ -176,10 +182,8 @@ function ricercaConsole($nomeCercato, $destinazione){
     foreach($dati as $riga ){
         $risultatoPotenziale = strtolower(substr(trim($riga['nome']),0,strlen($nomeCercato)));
         if($risultatoPotenziale==strtolower($nomeCercato)){
-            $idCorretto = preg_replace('/\s+/', 'A', $riga['nome']);
-            print '<form id="' . $idCorretto . '" method="post" action="' . trim($destinazione) . '">';
-            print '<div class="label"><label>'.$riga['nome'].'</label></div>';
-            print '<input type="hidden" name="nome" value="'.$riga['nome'].'">';
+            print '<form method="post" action="' . trim($destinazione) . '">';
+            print '<div class="label"><label>'.$riga['user'].'</label></div>';
             print '<input type="submit" value="Seleziona"/>';
             print '</form>';
             print '<br />';
@@ -190,11 +194,56 @@ function ricercaConsole($nomeCercato, $destinazione){
         }
     }
 
+    chiudiConnessione($connessione);
+
     if($contantoreRisultati == 0){
         print '<p class="errore">La ricerca non ha prodotto alcun risultato.</p>';
     }
 }
 
+function ricercaUtente($utenteCercato, $destinazione){
+    $connessione = creaConnessione(SERVER,UTENTE,PASSWORD,DATABASE);
+    $query = sprintf("SELECT user, dirittoAmministratore FROM tblutenti WHERE user != '%s' ORDER BY user ASC",$_SESSION['username']);
+    $dati = eseguiQuery($connessione,$query);
+    $contantoreRisultati = 0;
+    $selezionata = '';
+
+    print '<p class="informazione">Sono stati individuati i seguenti risultati potenziali</p><br />';
+    foreach($dati as $riga ){
+        $risultatoPotenziale = strtolower(substr(trim($riga['user']),0,strlen($utenteCercato)));
+        $contantoreRisultati++;
+        if($risultatoPotenziale==strtolower($utenteCercato)){
+            if($riga['dirittoAmministratore'] == 'si'){
+                $selezionata = 'selected';
+            }
+            print '<form method="post" action="' . trim($destinazione) . '">';
+            print '<div class="label"><label>'.$riga['user'].'</label></div>';
+            print '<input type="hidden" name="user[]" value="'.$riga['user'].'">';
+            print '<select name="dirittoAmministratore[]">';
+            if($riga['dirittoAmministratore'] == 'si'){
+                print '<option selected>si</option>';
+                print '<option>no</option>';
+            }else{
+                print '<option>si</option>';
+                print '<option selected>no</option>';
+            }
+            print '</select>';
+            print '<label> diritto da amministratore';
+            print '<br /><br />';
+        }
+    }
+    print '<input type="submit" value="Conferma"/>';
+    print '</form>';
+    print '<script type="text/javascript">';
+    print "gestisciForm('" . "#" . trim($riga['user']) . "','" . trim($destinazione) . "','#coldx');";
+    print '</script>';
+
+    chiudiConnessione($connessione);
+
+    if($contantoreRisultati == 0){
+        print '<p class="errore">La ricerca non ha prodotto alcun risultato.</p>';
+    }
+}
 
 function stampaModuloRicerca($destinazione, $nome){
     print '<form id="formRicerca" method="post" action="' . trim($destinazione) . '">';
@@ -210,8 +259,7 @@ function stampaModuloRicerca($destinazione, $nome){
     print '</script>';
 }
 
-function cancellaCartella($cartella)
-{
+function cancellaCartella($cartella) {
     if (is_dir($cartella)) {
         $files = scandir($cartella);
         for ($i = 2; $i < count($files); $i++) {
@@ -224,8 +272,7 @@ function cancellaCartella($cartella)
     }
 }
 
-function cancellaImmagine($immagine)
-{
+function cancellaImmagine($immagine) {
     if (file_exists($immagine)) {
         unlink($immagine);
         return true;
