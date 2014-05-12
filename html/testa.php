@@ -71,7 +71,7 @@
             <li><a href="<?php print HOME_WEB ?>html/moduloVisualizzazioneCatalogo.php">Catalogo</a></li>
             <?php
             if (isset($_SESSION['collegato'])) {
-                print '<li><a href=' . HOME_WEB . 'html/moduloProfiloUtente.php>Profilo Utente</a></li>';
+                print '<li><a href=' . HOME_WEB . 'html/moduloModificaUtente.php>Profilo Utente</a></li>';
             }
             if (!isset($_SESSION['collegato'])) {
                 print '<li><a href=' . HOME_WEB . 'html/moduloLogin.php>Login</a></li>';

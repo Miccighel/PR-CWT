@@ -23,8 +23,8 @@ foreach ($dati as $tupla) {
         '<p><b>Quantita Richiesta: </b>' . $tupla['quantita'] . '</p>';
     print '<form id="' . $tupla['codiceprodotto'] . '" method="post" action="../script/scriptEliminazioneCarrello.php">';
     print '<input type="hidden" name="codiceEliminazione" value="' . $tupla['codiceprodotto'] . '"/>';
-    print '<p>Quantita di prodotto da eliminare:';
-    print '<input type="text" name="quantitaEliminazione"></input>';
+    print '<p>Quantit&agrave:';
+    print '<input type="text" size="3" name="quantitaEliminazione"></input>';
     print '<input type="submit" value="Elimina"></input></p>';
     print '</form>';
     print '</div>' . '</div>';

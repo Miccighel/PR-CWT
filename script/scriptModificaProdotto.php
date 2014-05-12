@@ -9,7 +9,7 @@ $connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
 $indice = -1;
 
 if(gestioneImmagine($indice,'')){
-	generaThumbnail($_FILES['immagine']['tmp_name'],'/img/thumb',220,320,$indice);
+	generaThumbnail($_FILES['immagine']['tmp_name'],'/img/thumb',200,268,$indice);
 }
 
 $query = sprintf("SELECT galleria FROM tblprodotti WHERE codiceprodotto='%s'", $_POST['codiceprodotto']);

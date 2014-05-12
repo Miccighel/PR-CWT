@@ -10,7 +10,7 @@ $percorsoCartella = '../img/' . trim($_POST['galleria']);
 $indice = -1;
 
 gestioneImmagine($indice,'');
-generaThumbnail($_FILES['immagine']['tmp_name'],'/img/thumb',220,268,$indice);
+generaThumbnail($_FILES['immagine']['tmp_name'],'/img/thumb',200,268,$indice);
 
 $query = sprintf("INSERT INTO tblprodotti(codiceprodotto, nomeprodotto, descrizione, prezzo, numeropezzi, immagine, galleria, categoria) VALUE ('%s','%s','%s','%d','%d','%s','%s','%s')", strtoupper(trim($_POST['codiceprodotto'])), $_POST['nomeprodotto'], $_POST['descrizione'], $_POST['prezzo'], $_POST['numeropezzi'], $_FILES['immagine']['name'], trim($_POST['galleria']), $_POST['categoria']);
 $dati = eseguiQuery($connessione, $query);

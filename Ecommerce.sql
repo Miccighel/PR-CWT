@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS tblutenti (
   cognome               VARCHAR(20) NOT NULL,
   datanascita           CHAR(10)    NOT NULL,
   indirizzo             VARCHAR(50) NOT NULL,
-  email                 VARCHAR(30) NOT NULL,
+  email                 VARCHAR(30) NOT NULL UNIQUE,
   telefono              VARCHAR(15) NOT NULL,
   user                  VARCHAR(30) NOT NULL UNIQUE,
   psw                   VARCHAR(40) NOT NULL,
