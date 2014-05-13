@@ -189,29 +189,6 @@ div#corpo {
     overflow: hidden;
 }
 
-/* STILE COLONNA SINISTRA */
-
-div#colsx {
-    width:0;
-}
-
-div.galleria img {
-    float:left;
-    margin-left:5px;
-}
-
-div#colsx li a.voceselezionata {
-    background-color:#ABCDEF;
-}
-
-div#colsx ul {
-    list-style-type: none;
-    padding-top: 0;       
-    margin-top: 0;
-    padding-left: 0;       
-    margin-left: 0;        
-}
-
 /* STILE COLONNA DESTRA */
 
 div#coldx {
@@ -263,6 +240,11 @@ div#pulsanteEliminazione input {
 
 input#pulsanteAcquisto {
     margin:0;
+}
+
+p.numeriPagine {
+    text-align:center;
+    font-size: 1.4em;
 }
 
 /* STILE CODA */

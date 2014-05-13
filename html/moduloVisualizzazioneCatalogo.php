@@ -1,49 +1,92 @@
 <?php
 include '../settings/configurazione.inc';
 include HOME_ROOT . '/script/funzioni.php';
-include HOME_ROOT.'/html/testa.php';
+include HOME_ROOT . '/html/testa.php';
 
 $connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
 $query = sprintf("SELECT * FROM tblprodotti AS p LEFT JOIN tblprodotticonsole AS pc ON p.codiceprodotto = pc.codiceprodotto");
 $dati = eseguiQuery($connessione, $query);
 $cartellaImmaginePrincipale = 'img';
-foreach($dati as $riga){
-	print '<div id="corpoCatalogo">'.'<div id="catcolsx"><img src="'.HOME_WEB.'/'.$cartellaImmaginePrincipale.'/thumb/'.$riga['immagine'].'"></img>'.'</div>'.
-	'<div id="catcoldx"><p><b>Codice Prodotto: </b>'.$riga['codiceprodotto'].'</p>'.
-	'<p><b>Nome Prodotto: </b>'.$riga['nomeprodotto'].'</p>'.
-	'<p><b>Descrizione: </b>'.$riga['descrizione'].'</p>'.
-	'<p><b>Prezzo: </b>'.$riga['prezzo'].' €</p>'.
-	'<p><b>Quantit&agrave Disponibile: </b>'.$riga['numeropezzi'].'</p>'.
-	'<p><b>Categoria: </b>'.$riga['categoria'].'</p>'.
-	'<p><b>Console: </b>'.$riga['console'].'</p>';
-	if(isset($_SESSION['collegato'])){
-        print '<form id="' . $riga['codiceprodotto'] . '" method="post" action="../script/scriptInserimentoCarrello.php">';
-        print '<input type="hidden" name="codiceprodotto" value="' . $riga['codiceprodotto'] . '"/>';
+
+$numeroPagine = ceil(count($dati) / PRODOTTIPERPAGINA);
+
+if (!isset($_GET["pagina"])) {
+    $pagina = 1;
+} else {
+    $pagina = $_GET["pagina"];
+}
+
+$i = ($pagina * PRODOTTIPERPAGINA) - (PRODOTTIPERPAGINA);
+while ($i < PRODOTTIPERPAGINA * $pagina && $i< count($dati)) {
+    print '<div id="corpoCatalogo">' . '<div id="catcolsx"><img src="' . HOME_WEB . '/' . $cartellaImmaginePrincipale . '/thumb/' . $dati[$i]['immagine'] . '"></img>' . '</div>' .
+        '<div id="catcoldx"><p><b>Codice Prodotto: </b>' . $dati[$i]['codiceprodotto'] . '</p>' .
+        '<p><b>Nome Prodotto: </b>' . $dati[$i]['nomeprodotto'] . '</p>' .
+        '<p><b>Descrizione: </b>' . $dati[$i]['descrizione'] . '</p>' .
+        '<p><b>Prezzo: </b>' . $dati[$i]['prezzo'] . ' €</p>' .
+        '<p><b>Quantit&agrave Disponibile: </b>' . $dati[$i]['numeropezzi'] . '</p>' .
+        '<p><b>Categoria: </b>' . $dati[$i]['categoria'] . '</p>' .
+        '<p><b>Console: </b>' . $dati[$i]['console'] . '</p>';
+    if (isset($_SESSION['collegato'])) {
+        print '<form id="' . $dati[$i]['codiceprodotto'] . '" method="post" action="../script/scriptInserimentoCarrello.php">';
+        print '<input type="hidden" name="codiceprodotto" value="' . $dati[$i]['codiceprodotto'] . '"/>';
         print '<p><b>Quantit&agrave:</b>';
         print '<input type="text" size="3" name="quantita"></input>';
         print '<input type="submit" value="Aggiungi al carrello"></input></p>';
-		print '</form>';
+        print '</form>';
         print '<script type="text/javascript">';
-        print "gestisciForm('#" . $riga['codiceprodotto'] . "','" . '../script/scriptInserimentoCarrello.php' . "','#coldx');";
+        print "gestisciForm('#" . $dati[$i]['codiceprodotto'] . "','" . '../script/scriptInserimentoCarrello.php' . "','#coldx');";
         print '</script>';
     } else {
-		print '<p class="informazione">Esegui il login per inserire il prodotto nel carrello</p>';
-	}
-	print '<div class="galleria">';
-	print '<script type="text/javascript">';
+        print '<p class="informazione">Esegui il login per inserire il prodotto nel carrello</p>';
+    }
+    print '<div class="galleria">';
+    print '<script type="text/javascript">';
     print 'gestisciImmaginiGalleria();';
     print '</script>';
     print '<ul id="carouse" class="elastislide-list">';
-	visualizzaGalleria($riga['galleria'],$riga['codiceprodotto']);
-	print '</ul>';
-	print '</div>';
-	print '</div></div>';
+    visualizzaGalleria($dati[$i]['galleria'], $dati[$i]['codiceprodotto']);
+    print '</ul>';
+    print '</div>';
+    print '</div></div>';
+    $i++;
 }
+
+print '<p class="numeriPagine">Pagine: ';
+if($pagina == 1) {
+    print '<a href="moduloVisualizzazioneCatalogo.php?pagina=' . ($pagina + 1) . '">'.'<b>'.($pagina).' </b>'.($pagina+1).'</a>';
+    if($numeroPagine-$pagina>2){
+        print' ... '.'<a href="moduloVisualizzazioneCatalogo.php?pagina='.$numeroPagine.'">'.$numeroPagine.'</a>';
+    }
+} elseif ($pagina == $numeroPagine) {
+    if($numeroPagine-1>2){
+        print '<a href="moduloVisualizzazioneCatalogo.php?pagina=1">1</a> ... ';
+    }
+    print '<a href="moduloVisualizzazioneCatalogo.php?pagina=' . ($pagina - 1) . '">'.($pagina-1).'<b> '.($pagina).'</b>'.'</a>';
+} else {
+    print '<a href="moduloVisualizzazioneCatalogo.php?pagina=1">1 </a>';
+    if($pagina-1>2){
+        print ' ... ';
+    }
+    if($pagina - 1 != 1){
+        print '<a href="moduloVisualizzazioneCatalogo.php?pagina=' . ($pagina - 1) . '">'.($pagina - 1).' </a>';
+    }
+    print '<b>'.$pagina.'</b>';
+    if($pagina + 1 != $numeroPagine){
+        print '<a href="moduloVisualizzazioneCatalogo.php?pagina=' . ($pagina + 1) . '"> '.($pagina + 1).'</a>';
+    }
+    if($numeroPagine-$pagina>2){
+        print' ...';
+    }
+    print '<a href="moduloVisualizzazioneCatalogo.php?pagina='.$numeroPagine.'"> '.$numeroPagine.'</a>';
+}
+print '</p>';
+
+
 print '<script type="text/javascript">';
 print 'gestisciThumbnailsGalleria();';
 print '</script>';
 
 chiudiConnessione($connessione);
 
-include HOME_ROOT.'/html/coda.html';
+include HOME_ROOT . '/html/coda.html';
 ?>
