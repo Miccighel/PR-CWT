@@ -44,17 +44,17 @@ while ($i < PRODOTTIPERPAGINA * $pagina && $i< count($dati)) {
     $i++;
 }
 
-print '<form id="conferma' . $dati[0]['codiceprodotto'] . '" method="post" action="../script/scriptConfermaAcquisto.php">';
+print '<form id="confermaAcquisto" method="post" action="../script/scriptConfermaAcquisto.php">';
 foreach ($dati as $tupla) {
     print '<input type="hidden" name="' . $tupla['codiceprodotto'] . '" value="' . $tupla['codiceprodotto'] . '"/>';
 }
 print '<input type="submit" id="pulsanteAcquisto" value="Conferma l\'acquisto">';
+print '</form>';
 
 visualizzaPaginazione($pagina,$numeroPagine,'Carrello');
 
-print '</form>';
 print '<script type="text/javascript">';
-print "gestisciForm('#conferma" . $dati[0]['codiceprodotto'] . "','" . '../script/scriptConfermaAcquisto.php' . "','#coldx');";
+print "gestisciForm('#confermaAcquisto','" . '../script/scriptConfermaAcquisto.php' . "','#coldx');";
 print '</script>';
 
 chiudiConnessione($connessione);
