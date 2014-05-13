@@ -12,34 +12,48 @@ JOIN tblprodotticonsole AS pc ON p.codiceprodotto = pc.codiceprodotto WHERE u.us
 
 $dati = eseguiQuery($connessione, $query);
 
-foreach ($dati as $tupla) {
+$numeroPagine = ceil(count($dati) / PRODOTTIPERPAGINA);
+
+if (!isset($_GET["pagina"])) {
+    $pagina = 1;
+} else {
+    $pagina = $_GET["pagina"];
+}
+
+$i = ($pagina * PRODOTTIPERPAGINA) - (PRODOTTIPERPAGINA);
+
+while ($i < PRODOTTIPERPAGINA * $pagina && $i< count($dati)) {
     print '<div id="corpoCatalogo">' .
-        '<div id="catcolsx"><img src="' . HOME_WEB . 'img/thumb/' . $tupla['immagine'] . '" height="165px" width="120px"></img>' . '</div>' .
-        '<div id="catcoldx"> <p><b>Codice Prodotto: </b>' . $tupla['codiceprodotto'] . '</p>' .
-        '<p><b>Nome Prodotto: </b>' . $tupla['nomeprodotto'] . '</p>' .
-        '<p><b>Prezzo: </b>' . $tupla['prezzo'] . ' Euro</p>' .
-        '<p><b>Categoria: </b>' . $tupla['categoria'] . '</p>' .
-        '<p><b>Console: </b>' . $tupla['console'] . '</p>' .
-        '<p><b>Quantita Richiesta: </b>' . $tupla['quantita'] . '</p>';
-    print '<form id="' . $tupla['codiceprodotto'] . '" method="post" action="../script/scriptEliminazioneCarrello.php">';
-    print '<input type="hidden" name="codiceEliminazione" value="' . $tupla['codiceprodotto'] . '"/>';
+        '<div id="catcolsx"><img src="' . HOME_WEB . 'img/thumb/' . $dati[$i]['immagine'] . '" height="165px" width="120px"></img>' . '</div>' .
+        '<div id="catcoldx"> <p><b>Codice Prodotto: </b>' . $dati[$i]['codiceprodotto'] . '</p>' .
+        '<p><b>Nome Prodotto: </b>' . $dati[$i]['nomeprodotto'] . '</p>' .
+        '<p><b>Prezzo: </b>' . $dati[$i]['prezzo'] . ' Euro</p>' .
+        '<p><b>Categoria: </b>' . $dati[$i]['categoria'] . '</p>' .
+        '<p><b>Console: </b>' . $dati[$i]['console'] . '</p>' .
+        '<p><b>Quantita Richiesta: </b>' . $dati[$i]['quantita'] . '</p>';
+    print '<form id="' . $dati[$i]['codiceprodotto'] . '" method="post" action="../script/scriptEliminazioneCarrello.php">';
+    print '<input type="hidden" name="codiceEliminazione" value="' . $dati[$i]['codiceprodotto'] . '"/>';
     print '<p>Quantit&agrave:';
     print '<input type="text" size="3" name="quantitaEliminazione"></input>';
     print '<input type="submit" value="Elimina"></input></p>';
     print '</form>';
     print '</div>' . '</div>';
     print '<script type="text/javascript">';
-    print "gestisciForm('#" . $tupla['codiceprodotto'] . "','" . '../script/scriptEliminazioneCarrello.php' . "','#coldx');";
+    print "gestisciForm('#" . $dati[$i]['codiceprodotto'] . "','" . '../script/scriptEliminazioneCarrello.php' . "','#coldx');";
     print '</script>';
+    $i++;
 }
-print '<form id="conferma' . $tupla['codiceprodotto'] . '" method="post" action="../script/scriptConfermaAcquisto.php">';
+
+visualizzaPaginazione($pagina,$numeroPagine,'Carrello');
+
+print '<form id="conferma' . $dati[0]['codiceprodotto'] . '" method="post" action="../script/scriptConfermaAcquisto.php">';
 foreach ($dati as $tupla) {
     print '<input type="hidden" name="' . $tupla['codiceprodotto'] . '" value="' . $tupla['codiceprodotto'] . '"/>';
 }
 print '<input type="submit" id="pulsanteAcquisto" value="Conferma l\'acquisto">';
 print '</form>';
 print '<script type="text/javascript">';
-print "gestisciForm('#conferma" . $tupla['codiceprodotto'] . "','" . '../script/scriptConfermaAcquisto.php' . "','#coldx');";
+print "gestisciForm('#conferma" . $dati[0]['codiceprodotto'] . "','" . '../script/scriptConfermaAcquisto.php' . "','#coldx');";
 print '</script>';
 
 chiudiConnessione($connessione);

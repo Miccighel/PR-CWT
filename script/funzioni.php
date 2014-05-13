@@ -281,4 +281,50 @@ function cancellaImmagine($immagine) {
     }
 }
 
+function visualizzaPaginazione($pagina,$numeroPagine,$destinazione){
+    if($numeroPagine > 1){
+        print '<p class="numeriPagine">Pagine: ';
+        if($pagina == 1) {
+            if(($pagina + 1) != $numeroPagine){
+                print '<b>'.($pagina).' </b><a href="moduloVisualizzazione'.$destinazione.'.php?pagina=' . ($pagina + 1) . '">'.($pagina+1).'</a>';
+            } else {
+                print '<b>'.($pagina).' </b></a>';
+            }
+            if($numeroPagine-$pagina>2){
+                print' ... '.'<a href="moduloVisualizzazione'.$destinazione.'.php?pagina='.$numeroPagine.'">'.$numeroPagine.'</a>';
+            }else{
+                print'<a href="moduloVisualizzazione'.$destinazione.'.php?pagina='.$numeroPagine.'"> '.$numeroPagine.'</a>';
+            }
+        } elseif ($pagina == $numeroPagine) {
+            if($numeroPagine-1>2){
+                print '<a href="moduloVisualizzazione'.$destinazione.'.php?pagina=1">1</a> ... ';
+            }else{
+                print '<a href="moduloVisualizzazione'.$destinazione.'.php?pagina=1">1 </a>';
+            }
+            if(($pagina - 1) != 1){
+                print '<a href="moduloVisualizzazione'.$destinazione.'.php?pagina=' . ($pagina - 1) . '">'.($pagina-1).'</a>'.'<b> '.($pagina).'</b>';
+            }else{
+                print '<b> '.($pagina).'</b>';
+            }
+        } else {
+            print '<a href="moduloVisualizzazione'.$destinazione.'.php?pagina=1">1 </a>';
+            if($pagina-1>2){
+                print ' ... ';
+            }
+            if($pagina - 1 != 1){
+                print '<a href="moduloVisualizzazione'.$destinazione.'.php?pagina=' . ($pagina - 1) . '">'.($pagina - 1).' </a>';
+            }
+            print '<b>'.$pagina.'</b>';
+            if($pagina + 1 != $numeroPagine){
+                print '<a href="moduloVisualizzazione'.$destinazione.'.php?pagina=' . ($pagina + 1) . '"> '.($pagina + 1).'</a>';
+            }
+            if($numeroPagine-$pagina>2){
+                print' ...';
+            }
+            print '<a href="moduloVisualizzazione'.$destinazione.'.php?pagina='.$numeroPagine.'"> '.$numeroPagine.'</a>';
+        }
+        print '</p>';
+    }
+}
+
 ?>

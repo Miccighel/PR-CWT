@@ -51,36 +51,7 @@ while ($i < PRODOTTIPERPAGINA * $pagina && $i< count($dati)) {
     $i++;
 }
 
-print '<p class="numeriPagine">Pagine: ';
-if($pagina == 1) {
-    print '<a href="moduloVisualizzazioneCatalogo.php?pagina=' . ($pagina + 1) . '">'.'<b>'.($pagina).' </b>'.($pagina+1).'</a>';
-    if($numeroPagine-$pagina>2){
-        print' ... '.'<a href="moduloVisualizzazioneCatalogo.php?pagina='.$numeroPagine.'">'.$numeroPagine.'</a>';
-    }
-} elseif ($pagina == $numeroPagine) {
-    if($numeroPagine-1>2){
-        print '<a href="moduloVisualizzazioneCatalogo.php?pagina=1">1</a> ... ';
-    }
-    print '<a href="moduloVisualizzazioneCatalogo.php?pagina=' . ($pagina - 1) . '">'.($pagina-1).'<b> '.($pagina).'</b>'.'</a>';
-} else {
-    print '<a href="moduloVisualizzazioneCatalogo.php?pagina=1">1 </a>';
-    if($pagina-1>2){
-        print ' ... ';
-    }
-    if($pagina - 1 != 1){
-        print '<a href="moduloVisualizzazioneCatalogo.php?pagina=' . ($pagina - 1) . '">'.($pagina - 1).' </a>';
-    }
-    print '<b>'.$pagina.'</b>';
-    if($pagina + 1 != $numeroPagine){
-        print '<a href="moduloVisualizzazioneCatalogo.php?pagina=' . ($pagina + 1) . '"> '.($pagina + 1).'</a>';
-    }
-    if($numeroPagine-$pagina>2){
-        print' ...';
-    }
-    print '<a href="moduloVisualizzazioneCatalogo.php?pagina='.$numeroPagine.'"> '.$numeroPagine.'</a>';
-}
-print '</p>';
-
+visualizzaPaginazione($pagina,$numeroPagine,'Catalogo');
 
 print '<script type="text/javascript">';
 print 'gestisciThumbnailsGalleria();';
