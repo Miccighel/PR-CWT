@@ -21,7 +21,7 @@ print '</table></div>';
 print '</fieldset>';
 
 print '<p id="carteCredito">';
-print '<span>Scegli la modalità di pagamento che preferisci:</span> ';
+print '<span>Modalit&agrave di pagamento:</span> ';
 print '<img src="../img/style/amex1.png"/>';
 print '<img src="../img/style/visa1.png"/>';
 print '<img src="../img/style/mastercard1.png"/>';

@@ -34,7 +34,7 @@ while ($i < PRODOTTIPERPAGINA * $pagina && $i< count($dati)) {
     print '<form id="' . $dati[$i]['codiceprodotto'] . '" method="post" action="../script/scriptEliminazioneCarrello.php">';
     print '<input type="hidden" name="codiceEliminazione" value="' . $dati[$i]['codiceprodotto'] . '"/>';
     print '<p><b>Quantit&agrave:</b>';
-    print '<input type="text" size="3" name="quantitaEliminazione" class="intero"></input>';
+    print '<input type="text" size="3" name="quantitaEliminazione" class="intero" value="0"></input>';
     print '<input type="submit" class="invia" value="Elimina"></input></p>';
     print '</form>';
     print '</div>' . '</div>';

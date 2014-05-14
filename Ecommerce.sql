@@ -65,7 +65,11 @@ VALUES
   ('PRDT1313', 'Borderlands 2', 'Frenetico sparatutto ambientato nel mondo di Pandora', 45, 100,
    'borderlands2coverPS3.jpg', 'borderlands2', 'FPS'),
   ('PRDT1515', 'Total War Rome 2', 'Guida le armate di Roma alla conquista del mondo!', 60, 250,
-   'totalwarrome2cover.jpg', 'totalwarrome2', 'RTS');
+   'totalwarrome2cover.jpg', 'totalwarrome2', 'RTS'),
+  ('PRDT1616', 'Killzone Shadow Fall', 'Un nuovo emozionante capitolo per la saga di Guerrilla Games', 70, 350,
+   'killzoneshadowfallcoverPS4.jpg', 'killzoneshadowfall', 'FPS'),
+  ('PRDT1717', 'Pokemon X', 'Un nuovo bellissimo capitolo della lunghissima saga dei mostriciattoli di Nintendo!', 35, 1500,
+   'pokemonxcover3DS.jpg', 'pokemonx', 'RPG');
 
 DROP TABLE IF EXISTS tblutenti;
 CREATE TABLE IF NOT EXISTS tblutenti (
@@ -88,9 +92,9 @@ VALUES
   ('SPRMHL92T17D962J', 'Mario', 'Rossi', '17/12/92', 'Via Roma 12', 'admin@gamescommerce.it', '3336665454', 'admin',
    sha1('password'), 'si'),
   ('THGMGF87D22Y789B', 'Gianni', 'Balengo', '05/03/78', 'Piazza Svizzera 48', 'giannibalengo@gmail.com', '333456871',
-   'giannibal78', sha1('password2'), 'no'),
+   'gianni', sha1('password2'), 'no'),
   ('WERTIF22V48Z777N', 'Giuliano', 'Palma', '12/12/88', 'Corso Verdi 3', 'giulianopalma@hotmail.it', '3495412347',
-   'giulpal12', sha1('password3'), 'no');
+   'giul', sha1('password3'), 'no');
 
 DROP TABLE IF EXISTS tblcarrelli;
 CREATE TABLE IF NOT EXISTS tblcarrelli (
@@ -112,7 +116,11 @@ INSERT INTO tblcarrelli (codiceprodotto, codiceutente, quantita) VALUES
   ('PRDT1212', 'THGMGF87D22Y789B', 12),
   ('PRDT1313', 'THGMGF87D22Y789B', 18),
   ('PRDT1313', 'WERTIF22V48Z777N', 2),
-  ('PRDT1515', 'SPRMHL92T17D962J', 5);
+  ('PRDT1515', 'SPRMHL92T17D962J', 5),
+  ('PRDT1616', 'SPRMHL92T17D962J', 1),
+  ('PRDT1717', 'SPRMHL92T17D962J', 100),
+  ('PRDT1717', 'WERTIF22V48Z777N', 28);
+
 
 DROP TABLE IF EXISTS tblprodotticonsole;
 CREATE TABLE IF NOT EXISTS tblprodotticonsole (
@@ -131,7 +139,9 @@ CREATE TABLE IF NOT EXISTS tblprodotticonsole (
 INSERT INTO tblprodotticonsole (codiceprodotto, console) VALUES
   ('PRDT1212', 'XBOX 360'),
   ('PRDT1313', 'Playstation 3'),
-  ('PRDT1515', 'PC');
+  ('PRDT1515', 'PC'),
+  ('PRDT1616', 'Playstation 4'),
+  ('PRDT1717', '3DS');
 
 
 

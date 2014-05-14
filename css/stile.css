@@ -188,6 +188,7 @@ div#coldx {
     width: 892px;
     border: 1px solid gray;
     padding:3px;
+    min-height: 250px;
 }
 
 div#corpoCatalogo {
