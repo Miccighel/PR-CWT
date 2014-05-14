@@ -5,6 +5,6 @@ define('SERVER','localhost');
 define('UTENTE','root');
 define('PASSWORD','');
 define('DATABASE','ecommerce');
-define('PRODOTTIPERPAGINA',3);
+define('PRODOTTIPERPAGINA',1);
 session_start();
 ?>

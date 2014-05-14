@@ -17,9 +17,9 @@ if (isset($_SESSION['collegato'])) {
         print '<div class="label"><label >Descrizione</label></div>';
         print '<textarea rows="5" cols="40" name="descrizione"/></textarea><br />';
         print '<div class="label"><label >Prezzo (€)</label></div>';
-        print '<input type="text" name="prezzo" class="obbligatorio"/><br />';
+        print '<input type="text" name="prezzo" class="obbligatorio decimale"/><br />';
         print '<div class="label"><label >Numero Pezzi</label></div>';
-        print '<input type="text" name="numeropezzi" class="obbligatorio"/><br />';
+        print '<input type="text" name="numeropezzi" class="obbligatorio intero"/><br />';
         print '<div class="label"><label >Immagine</label></div>';
         print '<input type="file" name="immagine" class="obbligatorio"/><br />';
         print '<div class="label"><label >Galleria Immagini</label></div>';

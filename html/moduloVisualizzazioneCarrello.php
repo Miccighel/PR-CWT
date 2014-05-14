@@ -33,9 +33,9 @@ while ($i < PRODOTTIPERPAGINA * $pagina && $i< count($dati)) {
         '<p><b>Quantita Richiesta: </b>' . $dati[$i]['quantita'] . '</p>';
     print '<form id="' . $dati[$i]['codiceprodotto'] . '" method="post" action="../script/scriptEliminazioneCarrello.php">';
     print '<input type="hidden" name="codiceEliminazione" value="' . $dati[$i]['codiceprodotto'] . '"/>';
-    print '<p>Quantit&agrave:';
-    print '<input type="text" size="3" name="quantitaEliminazione"></input>';
-    print '<input type="submit" value="Elimina"></input></p>';
+    print '<p><b>Quantit&agrave:</b>';
+    print '<input type="text" size="3" name="quantitaEliminazione" class="intero"></input>';
+    print '<input type="submit" class="invia" value="Elimina"></input></p>';
     print '</form>';
     print '</div>' . '</div>';
     print '<script type="text/javascript">';
@@ -44,17 +44,15 @@ while ($i < PRODOTTIPERPAGINA * $pagina && $i< count($dati)) {
     $i++;
 }
 
-print '<form id="confermaAcquisto" method="post" action="../script/scriptConfermaAcquisto.php">';
-foreach ($dati as $tupla) {
-    print '<input type="hidden" name="' . $tupla['codiceprodotto'] . '" value="' . $tupla['codiceprodotto'] . '"/>';
-}
+print '<form id="confermaAcquisto" method="post" action="moduloVisualizzazioneFattura.php">';
+print '<input type="hidden" name="codicefiscale" value="'.$dati[0]['codicefiscale'].'"/>';
 print '<input type="submit" id="pulsanteAcquisto" value="Conferma l\'acquisto">';
 print '</form>';
 
 visualizzaPaginazione($pagina,$numeroPagine,'Carrello');
 
 print '<script type="text/javascript">';
-print "gestisciForm('#confermaAcquisto','" . '../script/scriptConfermaAcquisto.php' . "','#coldx');";
+print "gestisciForm('#confermaAcquisto','" . 'moduloVisualizzazioneFattura.php' . "','#coldx');";
 print '</script>';
 
 chiudiConnessione($connessione);

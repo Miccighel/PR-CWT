@@ -213,6 +213,7 @@ div#catcolsx {
 }
 
 div#catcoldx {
+    width:690px;
     float: left;
     word-wrap: break-word;
 }
@@ -245,6 +246,35 @@ input#pulsanteAcquisto {
 p.numeriPagine {
     text-align:center;
     font-size: 1.4em;
+}
+
+p.numeriPagine a {
+    color: #006666;
+}
+
+p.numeriPagine b {
+    color: black;
+}
+
+div#tabella {
+    text-align: center;
+}
+
+div#tabella table td {
+    padding:5px;
+    width:400px;
+    margin-left: auto;
+    margin-right: auto;
+    border-right:1px solid #ABCDEF;
+}
+
+div#tabella table tr:last-child td:last-child {
+    border-right:0;
+    font-weight:bold;
+}
+
+div#tabella table tr:first-child {
+    font-weight:bold;
 }
 
 /* STILE CODA */

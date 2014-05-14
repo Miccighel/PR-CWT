@@ -1,7 +1,26 @@
 <?php
 include '../settings/configurazione.inc';
-?>
+include HOME_ROOT . '/script/funzioni.php';
 
-<?php
-print '<h1><p>GRAZIE PER AVER COMPRATO I NOSTRI PRODOTTI!</p></h1>';
+$connessione = creaConnessione(SERVER,UTENTE,PASSWORD,DATABASE);
+$query = sprintf("SELECT p.codiceprodotto, p.nomeprodotto, c.quantita, p.prezzo FROM tblcarrelli AS c JOIN tblprodotti AS p ON c.codiceprodotto = p.codiceprodotto WHERE c.codiceutente='%s'",$_POST['codicefiscale']);
+$dati = eseguiQuery($connessione, $query);
+
+$prezzoFinale = 0;
+
+print '<form method="post" action="../script/scriptConfermaAcquisto.php">';
+print '<fieldset><legend>Fattura</legend>';
+print '<div id="tabella"><table>';
+print '<tr><td>Codice</td><td>Nome</td><td>Quantit&agrave</td><td>Prezzo unitario</td><td>Prezzo parziale</td></tr>';
+foreach ($dati as $prodotto) {
+    print '<tr><td>'.$prodotto['codiceprodotto'].'</td><td>'.$prodotto['nomeprodotto'].'</td><td>'.$prodotto['quantita'].'</td><td>'.$prodotto['prezzo'].'</td><td>'.($prodotto['prezzo']*$prodotto['quantita']).'</td></tr>';
+    $prezzoFinale = $prezzoFinale + ($prodotto['prezzo']*$prodotto['quantita']);
+}
+print '<tr><td colspan="4"></td><td>'.$prezzoFinale.'</td><td>Prezzo finale</td></tr>';
+print '</table></div>';
+print '</fieldset>';
+print '</form>';
+
+chiudiConnessione($connessione);
+
 ?>

@@ -24,7 +24,7 @@ if (isset($_SESSION['collegato'])){
     print '<div class="label"><label >Email</label></div>';
     print '<input type="text" name="email" class="obbligatorio" value="' . $dati[0]['email'] . '"></input><br /> ';
     print '<div class="label"><label >Telefono</label></div>';
-    print '<input type="text" name="telefono" class="obbligatorio" value="' . $dati[0]['telefono'] . '"></input><br /> ';
+    print '<input type="text" name="telefono" class="obbligatorio intero" value="' . $dati[0]['telefono'] . '"></input><br /> ';
     print '<div class="label"><label >Username</label></div>';
     print '<input type="text" name="username" class="obbligatorio" value="' . $dati[0]['user'] . '"></input><br /> ';
     print '<div class="label"><label>Password</label></div>';

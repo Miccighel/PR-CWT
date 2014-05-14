@@ -30,8 +30,8 @@ while ($i < PRODOTTIPERPAGINA * $pagina && $i< count($dati)) {
         print '<form id="' . $dati[$i]['codiceprodotto'] . '" method="post" action="../script/scriptInserimentoCarrello.php">';
         print '<input type="hidden" name="codiceprodotto" value="' . $dati[$i]['codiceprodotto'] . '"/>';
         print '<p><b>Quantit&agrave:</b>';
-        print '<input type="text" size="3" name="quantita"></input>';
-        print '<input type="submit" value="Aggiungi al carrello"></input></p>';
+        print '<input type="text" size="3" name="quantita" class="intero"></input>';
+        print '<input type="submit" class="invia" value="Aggiungi al carrello"></input></p>';
         print '</form>';
         print '<script type="text/javascript">';
         print "gestisciForm('#" . $dati[$i]['codiceprodotto'] . "','" . '../script/scriptInserimentoCarrello.php' . "','#coldx');";

@@ -22,7 +22,7 @@ include HOME_ROOT . '/html/testa.php';
             <input type="text" name="email" class="obbligatorio"/><br/>
 
             <div class="label"><label>Telefono</label></div>
-            <input type="text" name="telefono" class="obbligatorio"/><br/>
+            <input type="text" name="telefono" class="obbligatorio intero"/><br/>
 
             <div class="label"><label>Username</label></div>
             <input type="text" name="username" class="obbligatorio"/><br/>
