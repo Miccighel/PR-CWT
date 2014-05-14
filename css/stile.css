@@ -1,11 +1,7 @@
 /* STILI GENERALI */
 
 body {
-    background-image: -o-linear-gradient(bottom, #ABCDEF 0%, #FFFFFF 350px);
-    background-image: -moz-linear-gradient(bottom, #ABCDEF 0%, #FFFFFF 350px);
-    background-image: -webkit-linear-gradient(bottom, #ABCDEF 0%, #FFFFFF 350px);
-    background-image: -ms-linear-gradient(bottom, #ABCDEF 0%, #FFFFFF 350px);
-    background-image: linear-gradient(to bottom, #ABCDEF 0%, #FFFFFF 350px);
+    background: url(../img/style/base.png);
     font-size: 76%;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     font-size: 13px;
@@ -64,8 +60,8 @@ h1 {
 }
 
 fieldset {
-    border-top: 1px solid #ABCDEF;
-    border-bottom: 1px solid #ABCDEF;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
     border-left: 0;
     border-right:0;
     margin-right:0;
@@ -94,7 +90,7 @@ textarea {
 nav#menu {
     margin-top: 1px;
     margin-bottom: 1px;
-    background-color: #ABCDEF;
+    background-color: gray;
     text-transform: uppercase;
 }
 
@@ -103,7 +99,7 @@ nav ul ul {
 }
 
 nav ul li:hover {
-    background-color:#FF8C00;
+    background-color:#B2B2B2;
 }
 
 nav ul li:hover > ul {
@@ -132,7 +128,7 @@ nav ul li a {
     padding-top: 15px;
     padding-left: 10px;
     padding-right: 10px;
-    color: #757575;
+    color:#fff;
     text-decoration: none;
 }
 
@@ -143,19 +139,14 @@ nav ul ul {
 
 nav ul ul li {
     float: none;
-    background-color:#ABCDEF;
+    background-color:gray;
     position: relative;
 }
-
 
 div#testa {
     height: 60px;
     position: relative;
-    background-image: -o-linear-gradient(bottom, #FF8C00 17%, #FFBF00 60px);
-    background-image: -moz-linear-gradient(bottom, #FF8C00 17%, #FFBF00 60px);
-    background-image: -webkit-linear-gradient(bottom, #FF8C00 17%, #FFBF00 60px);
-    background-image: -ms-linear-gradient(bottom, #FF8C00 17%, #FFBF00 60px);
-    background-image: linear-gradient(to bottom, #FF8C00 17%, #FFBF00 60px);
+    background-color:gray;
     -webkit-border-top-left-radius: 20px;
     -webkit-border-top-right-radius: 20px;
     -moz-border-radius-topleft: 20px;
@@ -178,14 +169,15 @@ p#titolo {
 }
 
 div#logo {
-    background: url(../img/style/sfondo.jpg) no-repeat left top;
-    height: 230px;
+    margin-top: 1px;
+    background: url(../img/style/testata.jpg) no-repeat left top;
+    height: 293px;
 }
 
 /* STILE CORPO */
 
 div#corpo {
-    color: #006666;
+    color: #404040;
     overflow: hidden;
 }
 
@@ -194,10 +186,7 @@ div#corpo {
 div#coldx {
     float: left;
     width: 892px;
-    min-height: 210px;
-    border-left:1px solid #ABCDEF;
-    border-right:1px solid #ABCDEF;
-    border-top:1px solid #ABCDEF;
+    border: 1px solid gray;
     padding:3px;
 }
 
@@ -216,6 +205,10 @@ div#catcoldx {
     width:690px;
     float: left;
     word-wrap: break-word;
+}
+
+div#infoProgetto {
+    text-align:center;
 }
 
 div.galleria {
@@ -249,7 +242,7 @@ p.numeriPagine {
 }
 
 p.numeriPagine a {
-    color: #006666;
+    color: #404040;
 }
 
 p.numeriPagine b {
@@ -265,7 +258,7 @@ div#tabella table td {
     width:400px;
     margin-left: auto;
     margin-right: auto;
-    border-right:1px solid #ABCDEF;
+    border-right:1px solid gray;
 }
 
 div#tabella table tr:last-child td:last-child {
@@ -277,18 +270,33 @@ div#tabella table tr:first-child {
     font-weight:bold;
 }
 
+p#carteCredito {
+    float:right;
+    margin-top: 10px;
+}
+
+p#carteCredito img {
+    margin-left: 5px;
+}
+
+p#carteCredito span {
+    position:relative;
+    bottom:17.5px;
+}
+
+p#carteCredito input {
+    margin:0;
+    padding:0;
+}
+
 /* STILE CODA */
 
 div#coda {
     text-align: center;
     color: #fff;
     height: 58px;
-    background-image: -o-linear-gradient(bottom, #FFBF00 0%, #FF8C00 60px);
-    background-image: -moz-linear-gradient(bottom, #FFBF00 0%, #FF8C00 60px);
-    background-image: -webkit-linear-gradient(bottom, #FFBF00 0%, #FF8C00 60px);
-    background-image: -ms-linear-gradient(bottom, #FFBF00 0%, #FF8C00 60px);
-    background-image: linear-gradient(to bottom, #FFBF00 0%, #FF8C00 60px);
-    margin-bottom: 1px;
+    background-color:gray;
+    margin-top: 1px;
     position: relative;
     -webkit-border-bottom-right-radius: 20px;
     -webkit-border-bottom-left-radius: 20px;

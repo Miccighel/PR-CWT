@@ -8,7 +8,7 @@ $dati = eseguiQuery($connessione, $query);
 
 $prezzoFinale = 0;
 
-print '<form method="post" action="../script/scriptConfermaAcquisto.php">';
+print '<form method="post" id="formFattura" action="../script/scriptConfermaAcquisto.php">';
 print '<fieldset><legend>Fattura</legend>';
 print '<div id="tabella"><table>';
 print '<tr><td>Codice</td><td>Nome</td><td>Quantit&agrave</td><td>Prezzo unitario</td><td>Prezzo parziale</td></tr>';
@@ -19,7 +19,21 @@ foreach ($dati as $prodotto) {
 print '<tr><td colspan="4"></td><td>'.$prezzoFinale.'</td><td>Prezzo finale</td></tr>';
 print '</table></div>';
 print '</fieldset>';
+
+print '<p id="carteCredito">';
+print '<span>Scegli la modalità di pagamento che preferisci:</span> ';
+print '<img src="../img/style/amex1.png"/>';
+print '<img src="../img/style/visa1.png"/>';
+print '<img src="../img/style/mastercard1.png"/>';
+print '<img src="../img/style/cirrus1.png"/>';
+print '<br /><input type="submit" value="Conferma pagamento" class="invia" />';
+print '</p>';
+
 print '</form>';
+
+print '<script type="text/javascript">';
+print "gestisciForm('#formFattura','" . '../script/scriptConfermaAcquisto.php' . "','#coldx');";
+print '</script>';
 
 chiudiConnessione($connessione);
 
