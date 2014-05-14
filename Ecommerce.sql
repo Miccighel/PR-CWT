@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `tblprodotti` (
   codiceprodotto CHAR(8)      NOT NULL,
   nomeprodotto   VARCHAR(30)  NOT NULL,
   descrizione    VARCHAR(250) NOT NULL,
-  prezzo         INT(3)       NOT NULL,
+  prezzo         FLOAT(4)     NOT NULL,
   numeropezzi    INT(5)       NOT NULL,
   immagine       VARCHAR(100) NOT NULL,
   galleria       VARCHAR(20)  NOT NULL,
@@ -60,15 +60,15 @@ CREATE TABLE IF NOT EXISTS `tblprodotti` (
 
 INSERT INTO tblprodotti (codiceprodotto, nomeprodotto, descrizione, prezzo, numeropezzi, immagine, galleria, categoria)
 VALUES
-  ('PRDT1212', 'Borderlands 2', 'Frenetico sparatutto ambientato nel mondo di Pandora', 45, 100,
+  ('PRDT1212', 'Borderlands 2', 'Frenetico sparatutto ambientato nel mondo di Pandora', 45.00, 100,
    'borderlands2coverXbox360.jpg', 'borderlands2', 'FPS'),
-  ('PRDT1313', 'Borderlands 2', 'Frenetico sparatutto ambientato nel mondo di Pandora', 45, 100,
+  ('PRDT1313', 'Borderlands 2', 'Frenetico sparatutto ambientato nel mondo di Pandora', 45.00, 100,
    'borderlands2coverPS3.jpg', 'borderlands2', 'FPS'),
-  ('PRDT1515', 'Total War Rome 2', 'Guida le armate di Roma alla conquista del mondo!', 60, 250,
+  ('PRDT1515', 'Total War Rome 2', 'Guida le armate di Roma alla conquista del mondo!', 60.00, 250,
    'totalwarrome2cover.jpg', 'totalwarrome2', 'RTS'),
-  ('PRDT1616', 'Killzone Shadow Fall', 'Un nuovo emozionante capitolo per la saga di Guerrilla Games', 70, 350,
+  ('PRDT1616', 'Killzone Shadow Fall', 'Un nuovo emozionante capitolo per la saga di Guerrilla Games', 70.00, 350,
    'killzoneshadowfallcoverPS4.jpg', 'killzoneshadowfall', 'FPS'),
-  ('PRDT1717', 'Pokemon X', 'Un nuovo bellissimo capitolo della lunghissima saga dei mostriciattoli di Nintendo!', 35, 1500,
+  ('PRDT1717', 'Pokemon X', 'Un nuovo bellissimo capitolo della lunghissima saga dei mostriciattoli di Nintendo!', 35.50, 1500,
    'pokemonxcover3DS.jpg', 'pokemonx', 'RPG');
 
 DROP TABLE IF EXISTS tblutenti;

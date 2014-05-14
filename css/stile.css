@@ -60,8 +60,8 @@ h1 {
 }
 
 fieldset {
-    border-top: 1px solid gray;
-    border-bottom: 1px solid gray;
+    border-top: 1px solid #606060;
+    border-bottom: 1px solid #606060;
     border-left: 0;
     border-right:0;
     margin-right:0;
@@ -90,7 +90,7 @@ textarea {
 nav#menu {
     margin-top: 1px;
     margin-bottom: 1px;
-    background-color: gray;
+    background-color: #606060;
     text-transform: uppercase;
 }
 
@@ -139,14 +139,14 @@ nav ul ul {
 
 nav ul ul li {
     float: none;
-    background-color:gray;
+    background-color:#606060;
     position: relative;
 }
 
 div#testa {
     height: 60px;
     position: relative;
-    background-color:gray;
+    background-color:#606060;
     -webkit-border-top-left-radius: 20px;
     -webkit-border-top-right-radius: 20px;
     -moz-border-radius-topleft: 20px;
@@ -186,13 +186,14 @@ div#corpo {
 div#coldx {
     float: left;
     width: 892px;
-    border: 1px solid gray;
+    border: 1px solid #606060;
     padding:3px;
     min-height: 250px;
 }
 
 div#corpoCatalogo {
     width: 893px;
+    margin-bottom: 5px;
     float: left;
     text-align: justify;
 }
@@ -259,7 +260,7 @@ div#tabella table td {
     width:400px;
     margin-left: auto;
     margin-right: auto;
-    border-right:1px solid gray;
+    border-right:1px solid #606060;
 }
 
 div#tabella table tr:last-child td:last-child {
@@ -296,7 +297,7 @@ div#coda {
     text-align: center;
     color: #fff;
     height: 58px;
-    background-color:gray;
+    background-color:#606060;
     margin-top: 1px;
     position: relative;
     -webkit-border-bottom-right-radius: 20px;

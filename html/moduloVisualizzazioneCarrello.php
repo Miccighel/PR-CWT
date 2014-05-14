@@ -27,7 +27,7 @@ while ($i < PRODOTTIPERPAGINA * $pagina && $i< count($dati)) {
         '<div id="catcolsx"><img src="' . HOME_WEB . 'img/thumb/' . $dati[$i]['immagine'] . '" height="165px" width="120px"></img>' . '</div>' .
         '<div id="catcoldx"> <p><b>Codice Prodotto: </b>' . $dati[$i]['codiceprodotto'] . '</p>' .
         '<p><b>Nome Prodotto: </b>' . $dati[$i]['nomeprodotto'] . '</p>' .
-        '<p><b>Prezzo: </b>' . $dati[$i]['prezzo'] . ' Euro</p>' .
+        '<p><b>Prezzo: </b>' . number_format($dati[$i]['prezzo'],2) . ' &#128</p>' .
         '<p><b>Categoria: </b>' . $dati[$i]['categoria'] . '</p>' .
         '<p><b>Console: </b>' . $dati[$i]['console'] . '</p>' .
         '<p><b>Quantita Richiesta: </b>' . $dati[$i]['quantita'] . '</p>';

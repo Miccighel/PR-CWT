@@ -13,10 +13,10 @@ print '<fieldset><legend>Fattura</legend>';
 print '<div id="tabella"><table>';
 print '<tr><td>Codice</td><td>Nome</td><td>Quantit&agrave</td><td>Prezzo unitario</td><td>Prezzo parziale</td></tr>';
 foreach ($dati as $prodotto) {
-    print '<tr><td>'.$prodotto['codiceprodotto'].'</td><td>'.$prodotto['nomeprodotto'].'</td><td>'.$prodotto['quantita'].'</td><td>'.$prodotto['prezzo'].'</td><td>'.($prodotto['prezzo']*$prodotto['quantita']).'</td></tr>';
+    print '<tr><td>'.$prodotto['codiceprodotto'].'</td><td>'.$prodotto['nomeprodotto'].'</td><td>'.$prodotto['quantita'].'</td><td>'.$prodotto['prezzo'].' &#128</td><td>'.($prodotto['prezzo']*$prodotto['quantita']).' &#128</td></tr>';
     $prezzoFinale = $prezzoFinale + ($prodotto['prezzo']*$prodotto['quantita']);
 }
-print '<tr><td colspan="4"></td><td>'.$prezzoFinale.'</td><td>Prezzo finale</td></tr>';
+print '<tr><td colspan="4"></td><td>'.$prezzoFinale.' &#128</td><td>Prezzo finale</td></tr>';
 print '</table></div>';
 print '</fieldset>';
 

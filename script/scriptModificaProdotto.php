@@ -24,7 +24,6 @@ if (HOME_ROOT . '/' . 'img' . '/' . $dati[0]['galleria'] != HOME_ROOT . '/' . 'i
 	}
 }
 
-
 $query = sprintf("UPDATE tblprodotti SET nomeprodotto='%s', descrizione='%s', prezzo='%d', numeropezzi='%d', immagine='%s',galleria='%s',categoria='%s' WHERE codiceprodotto='%s'", $_POST['nomeprodotto'], $_POST['descrizione'], $_POST['prezzo'], $_POST['numeropezzi'], $_FILES['immagine']['name'], $_POST['galleria'], $_POST['categoria'], $_POST['codiceprodotto']);
 $dati = eseguiQuery($connessione, $query);
 

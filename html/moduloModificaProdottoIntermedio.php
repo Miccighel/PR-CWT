@@ -16,8 +16,8 @@ if (isset($_SESSION['collegato'])) {
         print '<input type="text" name="nomeprodotto" class="obbligatorio" value="' . $dati[0]['nomeprodotto'] . '"></input><br /> ';
         print '<div class="label"><label >Descrizione</label></div>';
         print '<textarea rows="5" cols="40" name="descrizione">' . $dati[0]['descrizione'] . '</textarea><br />';
-        print '<div class="label"><label >Prezzo (€)</label></div>';
-        print '<input type="text" name="prezzo" class="obbligatorio decimale" value="' . $dati[0]['prezzo'] . '"/><br />';
+        print '<div class="label"><label >Prezzo (&#128)</label></div>';
+        print '<input type="text" name="prezzo" class="obbligatorio decimale" value="' . number_format($dati[0]['prezzo'],2) . '"/><br />';
         print '<div class="label"><label >Numero Pezzi</label></div>';
         print '<input type="text" name="numeropezzi" class="obbligatorio intero" value="' . $dati[0]['numeropezzi'] . '"/><br />';
         print '<div class="label"><label >Immagine</label></div>';

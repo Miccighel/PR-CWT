@@ -22,7 +22,7 @@ while ($i < PRODOTTIPERPAGINA * $pagina && $i< count($dati)) {
         '<div id="catcoldx"><p><b>Codice Prodotto: </b>' . $dati[$i]['codiceprodotto'] . '</p>' .
         '<p><b>Nome Prodotto: </b>' . $dati[$i]['nomeprodotto'] . '</p>' .
         '<p><b>Descrizione: </b>' . $dati[$i]['descrizione'] . '</p>' .
-        '<p><b>Prezzo: </b>' . $dati[$i]['prezzo'] . ' €</p>' .
+        '<p><b>Prezzo: </b>' . number_format($dati[$i]['prezzo'],2) . ' &#128</p>' .
         '<p><b>Quantit&agrave Disponibile: </b>' . $dati[$i]['numeropezzi'] . '</p>' .
         '<p><b>Categoria: </b>' . $dati[$i]['categoria'] . '</p>' .
         '<p><b>Console: </b>' . $dati[$i]['console'] . '</p>';
