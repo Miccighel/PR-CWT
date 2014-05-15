@@ -68,7 +68,7 @@ fieldset {
 }
 
 input.evidenzia {
-    border: 1px solid red;
+    border-color:red;
 }
 
 span.errore {
