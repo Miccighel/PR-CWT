@@ -111,27 +111,24 @@ function visualizzaGalleria($galleria,$nomeClasse) {
     }
 }
 
-function ricercaProdotto($nomeCercato, $destinazione){
+function ricercaProdotto($nomeCercato,$destinazione) {
     $connessione = creaConnessione(SERVER,UTENTE,PASSWORD,DATABASE);
     print '<p class="informazione">Sono stati individuati i seguenti risultati potenziali</p>';
-    $query = sprintf("SELECT * FROM tblprodotti AS p LEFT JOIN tblprodotticonsole AS pc ON p.codiceprodotto = pc.codiceprodotto");
+    $query = "SELECT * FROM tblprodotti AS p LEFT JOIN tblprodotticonsole AS pc ON p.codiceprodotto = pc.codiceprodotto WHERE nomeprodotto LIKE '%".$nomeCercato."%' ORDER BY nomeprodotto ASC";
     $dati = eseguiQuery($connessione,$query);
     $contantoreRisultati = 0;
     foreach($dati as $riga ){
-        $risultatoPotenziale = strtolower(substr(trim($riga['nomeprodotto']),0,strlen($nomeCercato)));
-        if($risultatoPotenziale==strtolower($nomeCercato)){
-            print '<form id="' . trim($riga['codiceprodotto']) . '" method="post" action="' . trim($destinazione) . '">';
-            print '<input type="hidden" name="codiceprodotto" value="'.$riga['codiceprodotto'].'"/>';
-            print '<input type="hidden" name="console" value="'.$riga['console'].'"/>';
-            print '<div class="label"><label>'.$riga['nomeprodotto'].' - '.$riga['console'].'</label></div>';
-            print '<input type="submit" value="Seleziona"/>';
-            print '</form>';
-            print '<br />';
-            $contantoreRisultati++;
-            print '<script type="text/javascript">';
-            print "gestisciForm('" . "#" . trim($riga['codiceprodotto']) . "','" . trim($destinazione) . "','#coldx');";
-            print '</script>';
-        }
+        print '<form id="' . trim($riga['codiceprodotto']) . '" method="post" action="' . trim($destinazione) . '">';
+        print '<input type="hidden" name="codiceprodotto" value="'.$riga['codiceprodotto'].'"/>';
+        print '<input type="hidden" name="console" value="'.$riga['console'].'"/>';
+        print '<div class="label"><label>'.$riga['nomeprodotto'].' - '.$riga['console'].'</label></div>';
+        print '<input type="submit" value="Seleziona"/>';
+        print '</form>';
+        print '<br />';
+        $contantoreRisultati++;
+        print '<script type="text/javascript">';
+        print "gestisciForm('" . "#" . trim($riga['codiceprodotto']) . "','" . trim($destinazione) . "','#coldx');";
+        print '</script>';
     }
 
     chiudiConnessione($connessione);
@@ -143,26 +140,23 @@ function ricercaProdotto($nomeCercato, $destinazione){
 
 function ricercaCategoria($nomeCercato, $destinazione){
     $connessione = creaConnessione(SERVER,UTENTE,PASSWORD,DATABASE);
-    $query = sprintf("SELECT * FROM tblcategorie ORDER BY nome ASC");
+    $query = "SELECT * FROM tblcategorie WHERE nome LIKE '%".$nomeCercato."%'"."ORDER BY nome ASC";
     $dati = eseguiQuery($connessione,$query);
     $contantoreRisultati = 0;
 
     print '<p class="informazione">Sono stati individuati i seguenti risultati potenziali</p>';
     foreach($dati as $riga ){
-        $risultatoPotenziale = strtolower(substr(trim($riga['nome']),0,strlen($nomeCercato)));
-        if($risultatoPotenziale==strtolower($nomeCercato)){
-            $idCorretto = preg_replace('/\s+/', 'A', $riga['nome']);
-            print '<form id="' . $idCorretto . '" method="post" action="' . trim($destinazione) . '">';
-            print '<div class="label"><label>'.$riga['nome'].'</label></div>';
-            print '<input type="hidden" name="nome" value="'.$riga['nome'].'">';
-            print '<input type="submit" value="Seleziona"/>';
-            print '</form>';
-            print '<br />';
-            $contantoreRisultati++;
-            print '<script type="text/javascript">';
-            print "gestisciForm('" . "#" . $idCorretto . "','" . trim($destinazione) . "','#coldx');";
-            print '</script>';
-        }
+        $idCorretto = preg_replace('/\s+/', 'A', $riga['nome']);
+        print '<form id="' . $idCorretto . '" method="post" action="' . trim($destinazione) . '">';
+        print '<div class="label"><label>'.$riga['nome'].'</label></div>';
+        print '<input type="hidden" name="nome" value="'.$riga['nome'].'">';
+        print '<input type="submit" value="Seleziona"/>';
+        print '</form>';
+        print '<br />';
+        $contantoreRisultati++;
+        print '<script type="text/javascript">';
+        print "gestisciForm('" . "#" . $idCorretto . "','" . trim($destinazione) . "','#coldx');";
+        print '</script>';
     }
 
     chiudiConnessione($connessione);
@@ -174,24 +168,21 @@ function ricercaCategoria($nomeCercato, $destinazione){
 
 function ricercaConsole($nomeCercato, $destinazione){
     $connessione = creaConnessione(SERVER,UTENTE,PASSWORD,DATABASE);
-    $query = sprintf("SELECT * FROM tblconsole ORDER BY nome ASC");
+    $query = "SELECT * FROM tblconsole WHERE nome LIKE '%".$nomeCercato."%'"."ORDER BY nome ASC";
     $dati = eseguiQuery($connessione,$query);
     $contantoreRisultati = 0;
 
     print '<p class="informazione">Sono stati individuati i seguenti risultati potenziali</p>';
     foreach($dati as $riga ){
-        $risultatoPotenziale = strtolower(substr(trim($riga['nome']),0,strlen($nomeCercato)));
-        if($risultatoPotenziale==strtolower($nomeCercato)){
-            print '<form method="post" action="' . trim($destinazione) . '">';
-            print '<div class="label"><label>'.$riga['nome'].'</label></div>';
-            print '<input type="submit" value="Seleziona"/>';
-            print '</form>';
-            print '<br />';
-            $contantoreRisultati++;
-            print '<script type="text/javascript">';
-            print "gestisciForm('" . "#" . $idCorretto . "','" . trim($destinazione) . "','#coldx');";
-            print '</script>';
-        }
+        print '<form method="post" action="' . trim($destinazione) . '">';
+        print '<div class="label"><label>'.$riga['nome'].'</label></div>';
+        print '<input type="submit" value="Seleziona"/>';
+        print '</form>';
+        print '<br />';
+        $contantoreRisultati++;
+        print '<script type="text/javascript">';
+        print "gestisciForm('" . "#" . $idCorretto . "','" . trim($destinazione) . "','#coldx');";
+        print '</script>';
     }
 
     chiudiConnessione($connessione);
@@ -203,34 +194,32 @@ function ricercaConsole($nomeCercato, $destinazione){
 
 function ricercaUtente($utenteCercato, $destinazione){
     $connessione = creaConnessione(SERVER,UTENTE,PASSWORD,DATABASE);
-    $query = sprintf("SELECT user, dirittoAmministratore FROM tblutenti WHERE user != '%s' ORDER BY user ASC",$_SESSION['username']);
+    $query = "SELECT user, dirittoAmministratore FROM tblutenti WHERE user != '".$_SESSION['username']."' AND user LIKE '%".$utenteCercato."%'"." ORDER BY user ASC";
+
     $dati = eseguiQuery($connessione,$query);
     $contantoreRisultati = 0;
     $selezionata = '';
 
     print '<p class="informazione">Sono stati individuati i seguenti risultati potenziali</p><br />';
     foreach($dati as $riga ){
-        $risultatoPotenziale = strtolower(substr(trim($riga['user']),0,strlen($utenteCercato)));
         $contantoreRisultati++;
-        if($risultatoPotenziale==strtolower($utenteCercato)){
-            if($riga['dirittoAmministratore'] == 'si'){
-                $selezionata = 'selected';
-            }
-            print '<form method="post" action="' . trim($destinazione) . '">';
-            print '<div class="label"><label>'.$riga['user'].'</label></div>';
-            print '<input type="hidden" name="user[]" value="'.$riga['user'].'">';
-            print '<select name="dirittoAmministratore[]">';
-            if($riga['dirittoAmministratore'] == 'si'){
-                print '<option selected>si</option>';
-                print '<option>no</option>';
-            }else{
-                print '<option>si</option>';
-                print '<option selected>no</option>';
-            }
-            print '</select>';
-            print '<label> diritto da amministratore';
-            print '<br /><br />';
+        if($riga['dirittoAmministratore'] == 'si'){
+            $selezionata = 'selected';
         }
+        print '<form method="post" action="' . trim($destinazione) . '">';
+        print '<div class="label"><label>'.$riga['user'].'</label></div>';
+        print '<input type="hidden" name="user[]" value="'.$riga['user'].'">';
+        print '<select name="dirittoAmministratore[]">';
+        if($riga['dirittoAmministratore'] == 'si'){
+            print '<option selected>si</option>';
+            print '<option>no</option>';
+        }else{
+            print '<option>si</option>';
+            print '<option selected>no</option>';
+        }
+        print '</select>';
+        print '<label> diritto da amministratore';
+        print '<br /><br />';
     }
     print '<input type="submit" value="Conferma"/>';
     print '</form>';
