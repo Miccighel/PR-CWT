@@ -107,7 +107,7 @@ function visualizzaGalleria($galleria,$nomeClasse) {
     $thumbnails = glob($percorsoThumbnails . "*.jpg");
     foreach ($thumbnails as $thumb) {
         print '<li><a href="'.$percorsoGalleria.basename($thumb).'" rel="gallery" class="pirobox_gall'.$nomeClasse.'">
-                <img width="100" height="58" src="'.$thumb.'"/></a></li>';
+                <img width="100" alt="Non trovata" height="58" src="'.$thumb.'"></a></li>';
     }
 }
 
@@ -238,8 +238,8 @@ function stampaModuloRicerca($destinazione, $nome){
     print '<form id="formRicerca" method="post" action="' . trim($destinazione) . '">';
     print '<fieldset><legend>Ricerca '.$nome.'</legend>';
     print '<div class="label"><label >Nome</label></div>';
-    print '<input type="text" name="nome" class="obbligatorio"></input>';
-    print '<input type="submit" value="Cerca" class="inviato"></input>';
+    print '<input type="text" name="nome" class="obbligatorio">';
+    print '<input type="submit" value="Cerca" class="inviato">';
     print '</fieldset>';
     print "</form>";
 
@@ -277,7 +277,7 @@ function visualizzaPaginazione($pagina,$numeroPagine,$destinazione){
             if(($pagina + 1) != $numeroPagine){
                 print '<b>'.($pagina).' </b><a href="moduloVisualizzazione'.$destinazione.'.php?pagina=' . ($pagina + 1) . '">'.($pagina+1).'</a>';
             } else {
-                print '<b>'.($pagina).' </b></a>';
+                print '<b>'.($pagina).' </b>';
             }
             if($numeroPagine-$pagina>2){
                 print' ... '.'<a href="moduloVisualizzazione'.$destinazione.'.php?pagina='.$numeroPagine.'">'.$numeroPagine.'</a>';

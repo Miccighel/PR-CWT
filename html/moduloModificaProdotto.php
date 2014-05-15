@@ -5,7 +5,7 @@ include HOME_ROOT . '/script/funzioni.php';
 if (isset($_SESSION['collegato'])) {
     if ($_SESSION['amministratore'] == true) {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            ricerca($_POST['nome'], 'moduloModificaProdottoIntermedio.php');
+            ricercaProdotto($_POST['nome'], 'moduloModificaProdottoIntermedio.php');
         } else {
             include HOME_ROOT . '/html/testa.php';
             stampaModuloRicerca('moduloModificaProdotto.php', 'prodotto');

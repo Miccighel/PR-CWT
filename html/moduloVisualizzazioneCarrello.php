@@ -23,9 +23,9 @@ if (!isset($_GET["pagina"])) {
 $i = ($pagina * PRODOTTIPERPAGINA) - (PRODOTTIPERPAGINA);
 
 while ($i < PRODOTTIPERPAGINA * $pagina && $i< count($dati)) {
-    print '<div id="corpoCatalogo">' .
-        '<div id="catcolsx"><img src="' . HOME_WEB . 'img/thumb/' . $dati[$i]['immagine'] . '" height="165px" width="120px"></img>' . '</div>' .
-        '<div id="catcoldx"> <p><b>Codice Prodotto: </b>' . $dati[$i]['codiceprodotto'] . '</p>' .
+    print '<div class="corpoCatalogo">' .
+        '<div class="catcolsx"><img src="' . HOME_WEB . 'img/thumb/' . $dati[$i]['immagine'] . '" height="165px" width="120px"></img>' . '</div>' .
+        '<div class="catcoldx"> <p><b>Codice Prodotto: </b>' . $dati[$i]['codiceprodotto'] . '</p>' .
         '<p><b>Nome Prodotto: </b>' . $dati[$i]['nomeprodotto'] . '</p>' .
         '<p><b>Prezzo: </b>' . number_format($dati[$i]['prezzo'],2) . ' &#128</p>' .
         '<p><b>Categoria: </b>' . $dati[$i]['categoria'] . '</p>' .

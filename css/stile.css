@@ -191,19 +191,19 @@ div#coldx {
     min-height: 250px;
 }
 
-div#corpoCatalogo {
+div.corpoCatalogo {
     width: 893px;
     margin-bottom: 5px;
     float: left;
     text-align: justify;
 }
 
-div#catcolsx {
+div.catcolsx {
     float: left;
     overflow: hidden;
 }
 
-div#catcoldx {
+div.catcoldx {
     width:690px;
     float: left;
     word-wrap: break-word;
@@ -312,6 +312,7 @@ div#coda {
     background-color:#606060;
     margin-top: 1px;
     position: relative;
+    padding-right:10px;
     -webkit-border-bottom-right-radius: 20px;
     -webkit-border-bottom-left-radius: 20px;
     -moz-border-radius-bottomright: 20px;
@@ -320,6 +321,16 @@ div#coda {
     border-bottom-left-radius: 20px;
 }
 
+div#coda span {
+    position:relative;
+    top:16px;
+}
+
+div#coda img {
+    float:right;
+    position:relative;
+    top:13px;
+}
 
 
 

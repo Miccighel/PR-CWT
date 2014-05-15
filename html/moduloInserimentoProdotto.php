@@ -11,11 +11,11 @@ if (isset($_SESSION['collegato'])) {
         print '<form id="formInserimentoProdotto" enctype="multipart/form-data" method="post" action="../script/scriptInserimentoProdotto.php">';
         print '<fieldset><legend>Informazioni Prodotto</legend>';
         print '<div class="label"><label >Codice Prodotto</label></div>';
-        print '<input type="text" maxlength="8" name="codiceprodotto" class="obbligatorio" id="codiceprodotto"></input><br /> ';
+        print '<input type="text" maxlength="8" name="codiceprodotto" class="obbligatorio" id="codiceprodotto"><br /> ';
         print '<div class="label"><label >Nome Prodotto</label></div>	';
-        print '<input type="text" name="nomeprodotto" class="obbligatorio"></input><br /> ';
+        print '<input type="text" name="nomeprodotto" class="obbligatorio"><br /> ';
         print '<div class="label"><label >Descrizione</label></div>';
-        print '<textarea rows="5" cols="40" name="descrizione"/></textarea><br />';
+        print '<textarea rows="5" cols="40" name="descrizione"></textarea><br />';
         print '<div class="label"><label >Prezzo (€)</label></div>';
         print '<input type="text" name="prezzo" class="obbligatorio decimale"/><br />';
         print '<div class="label"><label >Numero Pezzi</label></div>';
@@ -40,7 +40,7 @@ if (isset($_SESSION['collegato'])) {
             print '<option value="' . $riga['nome'] . '">' . $riga['nome'] . '</option>';
         }
         print '</select>';
-        print '<br /><input type="submit" class="invia" value="Conferma"></input>';
+        print '<br /><input type="submit" class="invia" value="Conferma">';
         print '</fieldset>';
         print "</form>";
         chiudiConnessione($connessione);

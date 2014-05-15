@@ -18,20 +18,20 @@ if (!isset($_GET["pagina"])) {
 
 $i = ($pagina * PRODOTTIPERPAGINA) - (PRODOTTIPERPAGINA);
 while ($i < PRODOTTIPERPAGINA * $pagina && $i< count($dati)) {
-    print '<div id="corpoCatalogo">' . '<div id="catcolsx"><img src="' . HOME_WEB . '/' . $cartellaImmaginePrincipale . '/thumb/' . $dati[$i]['immagine'] . '"></img>' . '</div>' .
-        '<div id="catcoldx"><p><b>Codice Prodotto: </b>' . $dati[$i]['codiceprodotto'] . '</p>' .
+    print '<div class="corpoCatalogo">' . '<div class="catcolsx"><img alt="Immagine non trovata" src="' . HOME_WEB . '/' . $cartellaImmaginePrincipale . '/thumb/' . $dati[$i]['immagine'] . '">' . '</div>' .
+        '<div class="catcoldx"><p><b>Codice Prodotto: </b>' . $dati[$i]['codiceprodotto'] . '</p>' .
         '<p><b>Nome Prodotto: </b>' . $dati[$i]['nomeprodotto'] . '</p>' .
         '<p><b>Descrizione: </b>' . $dati[$i]['descrizione'] . '</p>' .
-        '<p><b>Prezzo: </b>' . number_format($dati[$i]['prezzo'],2) . ' &#128</p>' .
-        '<p><b>Quantit&agrave Disponibile: </b>' . $dati[$i]['numeropezzi'] . '</p>' .
+        '<p><b>Prezzo: </b>' . number_format($dati[$i]['prezzo'],2) . ' &euro;</p>' .
+        '<p><b>Quantit&agrave; Disponibile: </b>' . $dati[$i]['numeropezzi'] . '</p>' .
         '<p><b>Categoria: </b>' . $dati[$i]['categoria'] . '</p>' .
         '<p><b>Console: </b>' . $dati[$i]['console'] . '</p>';
     if (isset($_SESSION['collegato'])) {
         print '<form id="' . $dati[$i]['codiceprodotto'] . '" method="post" action="../script/scriptInserimentoCarrello.php">';
         print '<input type="hidden" name="codiceprodotto" value="' . $dati[$i]['codiceprodotto'] . '"/>';
-        print '<p><b>Quantit&agrave:</b>';
-        print '<input type="text" size="3" name="quantita" class="intero" value="0"></input>';
-        print '<input type="submit" class="invia" value="Aggiungi al carrello"></input></p>';
+        print '<p><b>Quantit&agrave;</b>';
+        print '<input type="text" size="3" name="quantita" class="intero" value="0">';
+        print '<input type="submit" class="invia" value="Aggiungi al carrello"></p>';
         print '</form>';
         print '<script type="text/javascript">';
         print "gestisciForm('#" . $dati[$i]['codiceprodotto'] . "','" . '../script/scriptInserimentoCarrello.php' . "','#coldx');";
