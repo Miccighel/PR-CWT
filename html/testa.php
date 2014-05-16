@@ -78,7 +78,7 @@
             print '</ul>';
             print '</nav>';
             ?>
-    <div id="corpo">
-        <div id="colsx">
-        </div>
-    <div id="coldx">
+            <div id="corpo">
+                <div id="colsx">
+                </div>
+                <div id="coldx"> <!-- Chiusura di coldx nel file coda.html -->

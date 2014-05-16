@@ -16,15 +16,21 @@ p {
     margin-bottom: 5.05px;
 }
 
+/* Messaggio di conferma se l'azione si compie con successo */
+
 p.successo {
     text-align: center;
     background-color: #ADFF2F;
 }
 
+/* Messaggio d'errore se l'azione non va a buon fine */
+
 p.errore {
     text-align: center;
     background-color: #FF6347;
 }
+
+/* Messaggio informativo riguardante l'azione da compiere */
 
 p.informazione {
     text-align: center;
@@ -44,6 +50,8 @@ a img {
     border: none;
 }
 
+/* Contenitore che racchiude l'intero sito web centrando le pagine */
+
 div#contenuto {
     width: 900px;
     margin-left: auto;
@@ -53,6 +61,8 @@ div#contenuto {
 h1 {
     text-align: center;
 }
+
+/* Classe che gestisce le etichette dei form */
 
 .label {
     width: 230px;
@@ -67,9 +77,13 @@ fieldset {
     margin-right:0;
 }
 
+/* Se nei form ci sono dei campi obbligatori non compilati tale classe viene aggiunta via jQuery */
+
 input.evidenzia {
     border-color:red;
 }
+
+/* Messaggio d'errore inserito accanto al controllo del form */
 
 span.errore {
     margin-left: 5px;
@@ -80,12 +94,16 @@ textarea {
     resize: none;
 }
 
+/* Posizionamento del calendario nei campi "data" (ottenuto via plugin esterno) */
+
 .ui-datepicker {
     margin-left: 155px;
     margin-top: -26px;
 }
 
-/* STILE TESTA */
+/* STILE TESTATA */
+
+/* Gestione del menu dropdown (no jQuery) */
 
 nav#menu {
     margin-top: 1px;
@@ -96,6 +114,10 @@ nav#menu {
 
 nav ul ul {
     display: none;
+    border-radius: 0px;
+    padding: 0;
+    position: absolute;
+    top: 100%;
 }
 
 nav ul li:hover {
@@ -113,8 +135,11 @@ nav ul {
     list-style: none;
     position: relative;
 }
+
 nav ul:after {
-    content: ""; clear: both; display: block;
+    content: "";
+    clear: both;
+    display: block;
 }
 
 nav ul li {
@@ -132,16 +157,13 @@ nav ul li a {
     text-decoration: none;
 }
 
-nav ul ul {
-    border-radius: 0px; padding: 0;
-    position: absolute; top: 100%;
-}
-
 nav ul ul li {
     float: none;
     background-color:#606060;
     position: relative;
 }
+
+/* Gestione del titolo e del logo */
 
 div#testa {
     height: 60px;
@@ -176,12 +198,16 @@ div#logo {
 
 /* STILE CORPO */
 
+/* Contenitore della parte centrale del sito */
+
 div#corpo {
     color: #404040;
     overflow: hidden;
 }
 
 /* STILE COLONNA DESTRA */
+
+/* Contenitore della colonna */
 
 div#coldx {
     float: left;
@@ -191,6 +217,8 @@ div#coldx {
     min-height: 250px;
 }
 
+/* Contenitore delle informazioni relative ai prodotti del catalogo */
+
 div.corpoCatalogo {
     width: 893px;
     margin-bottom: 5px;
@@ -198,10 +226,14 @@ div.corpoCatalogo {
     text-align: justify;
 }
 
+/* Colonna sinistra del catalogo (non utilizzata nella versione finale) */
+
 div.catcolsx {
     float: left;
     overflow: hidden;
 }
+
+/* Colonna destra del catalogo */
 
 div.catcoldx {
     width:690px;
@@ -209,19 +241,27 @@ div.catcoldx {
     word-wrap: break-word;
 }
 
+/* Messaggio iniziale presente nell'index */
+
 div#infoProgetto {
     text-align:center;
 }
 
+/* Galleria di immagini relativa ad ogni prodotto mostrato */
+
 div.galleria {
     margin-left:1px;
 }
+
+/* Contenitore delle immagini presenti nella galleria durante l'eliminazione delle immagini stesse */
 
 div#immagineEliminazione {
     float: left;
     margin-left: 50px;
     margin-bottom: 10px;
 }
+
+/* Posizionamento del pulsante di conferma nell'eliminazione delle immagini */
 
 div#pulsanteEliminazione {
     width: 694px;
@@ -234,9 +274,13 @@ div#pulsanteEliminazione input {
     margin: 0;
 }
 
+/* Posizionamento del pulsante durante la conferma dell'acquisto dei prodotti in carrello */
+
 input#pulsanteAcquisto {
     margin:0;
 }
+
+/* Gestione dei numeri di pagina */
 
 p.numeriPagine {
     text-align:center;
@@ -250,6 +294,8 @@ p.numeriPagine a {
 p.numeriPagine b {
     color: black;
 }
+
+/* Gestione della tabella utilizzata per presentare la fattura */
 
 div#tabella {
     text-align: center;
@@ -283,6 +329,8 @@ div#tabella table tr:last-child td:first-child {
 div#tabella table tr:last-child td:last-child {
     border-right:1px solid #606060;
 }
+
+/* Gestione delle modalità di pagamento */
 
 p#carteCredito {
     float:right;

@@ -12,6 +12,7 @@ if (isset($_SESSION['collegato'])) {
         print '<form id="formModificaCategoria" method="post" action="../script/scriptModificaCategoria.php">';
         print '<fieldset><legend>Informazioni categoria</legend>';
         print '<div class="label"><label >Nome</label></div>';
+        // Il seguente campo nascosto viene utilizzato per individuare il vecchio valore della chiave primaria nel database e quindi aggiornarlo
         print '<input type="hidden" name="nomeOld" value="' . $dati[0]['nome'] . '"></input>';
         print '<input type="text" name="nome" value="' . $dati[0]['nome'] . '" class="obbligatorio"></input>';
         print '<input type="submit" value="Conferma" class="invia"></input>';

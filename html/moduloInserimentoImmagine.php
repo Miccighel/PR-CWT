@@ -3,7 +3,7 @@ include '../settings/configurazione.inc';
 include HOME_ROOT.'/script/funzioni.php';
 
 if (isset($_SESSION['collegato'])){
-        if ($_SESSION['amministratore'] == true){
+    if ($_SESSION['amministratore'] == true){
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             ricercaProdotto($_POST['nome'],'moduloInserimentoImmagineIntermedio.php');
         } else {

@@ -1,14 +1,14 @@
 <?php
 include '../settings/configurazione.inc';
-include HOME_ROOT.'/script/funzioni.php';
+include HOME_ROOT . '/script/funzioni.php';
 
-if (isset($_SESSION['collegato'])){
-    if ($_SESSION['amministratore'] == true){
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            ricercaConsole($_POST['nome'],'../script/scriptEliminazioneConsole.php');
+if (isset($_SESSION['collegato'])) {
+    if ($_SESSION['amministratore'] == true) {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            ricercaConsole($_POST['nome'], '../script/scriptEliminazioneConsole.php');
         } else {
             include HOME_ROOT . '/html/testa.php';
-            stampaModuloRicerca('moduloEliminazioneConsole.php','console');
+            stampaModuloRicerca('moduloEliminazioneConsole.php', 'console');
             include HOME_ROOT . '/html/coda.html';
         }
     } else {

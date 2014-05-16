@@ -7,6 +7,7 @@ if (isset($_SESSION['collegato'])){
     $connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
     $query = sprintf("SELECT * FROM tblutenti WHERE user='" . $_SESSION['username']. "'");
     $dati = eseguiQuery($connessione, $query);
+
     print '<p class="informazione">Attenzione, dovrai eseguire di nuovo il login, una volta modificato il profilo</p>';
     print '<form id="formProfiloUtente" action="../script/scriptModificaUtente.php" method="post">';
     print '<fieldset><legend>Informazioni profilo utente</legend>';

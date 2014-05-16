@@ -22,6 +22,7 @@ if (isset($_SESSION['collegato'])) {
         $pagina = $_GET["pagina"];
     }
 
+    // $i indica il primo prodotto di ogni pagina.
     $i = ($pagina * PRODOTTIPERPAGINA) - (PRODOTTIPERPAGINA);
 
     while ($i < PRODOTTIPERPAGINA * $pagina && $i < count($dati)) {
@@ -47,6 +48,9 @@ if (isset($_SESSION['collegato'])) {
     }
 
     print '<form id="confermaAcquisto" method="post" action="moduloVisualizzazioneFattura.php">';
+
+    // Questo campo nascosto verrà utilizzato per la conferma dell'acquisto e la conseguente eliminazione del carrello dell'utente.
+
     print '<input type="hidden" name="codicefiscale" value="' . $dati[0]['codicefiscale'] . '"/>';
     print '<input type="submit" id="pulsanteAcquisto" value="Conferma l\'acquisto">';
     print '</form>';

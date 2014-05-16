@@ -17,6 +17,7 @@ if (isset($_SESSION['collegato'])) {
         print '<div class="label"><label >Descrizione</label></div>';
         print '<textarea rows="5" cols="40" name="descrizione">' . $dati[0]['descrizione'] . '</textarea><br />';
         print '<div class="label"><label >Prezzo (&#128)</label></div>';
+        // La funzione number_format viene utilizzata per visualizzare correttamente il prezzo
         print '<input type="text" name="prezzo" class="obbligatorio decimale" value="' . number_format($dati[0]['prezzo'],2) . '"/><br />';
         print '<div class="label"><label >Numero Pezzi</label></div>';
         print '<input type="text" name="numeropezzi" class="obbligatorio intero" value="' . $dati[0]['numeropezzi'] . '"/><br />';
@@ -26,16 +27,20 @@ if (isset($_SESSION['collegato'])) {
         print '<input type="text" name="galleria" class="obbligatorio" value="' . $dati[0]['galleria'] . '"/><br />';
         print '<div class="label"><label >Categoria Prodotto</label></div>';
         print '<select name="categoria" class="obbligatorio">';
+
         $query = sprintf("SELECT nome FROM tblcategorie");
         $datiCategoria = eseguiQuery($connessione, $query);
+
         foreach ($datiCategoria as $riga) {
             print '<option value="' . $riga['nome'] . '"' . ($riga['nome'] == $dati[0]['categoria'] ? 'selected="selected"' : "") . '>' . $riga['nome'] . '</option>';
         }
         print '</select><br />';
         print '<div class="label"><label >Console</label></div>';
         print '<select name="console" class="obbligatorio">';
+
         $query = sprintf("SELECT nome FROM tblconsole");
         $datiConsole = eseguiQuery($connessione, $query);
+
         foreach ($datiConsole as $riga) {
             print '<option value="' . $riga['nome'] . '"' . ($riga['nome'] == $_POST['console'] ? 'selected="selected"' : "") . '>' . $riga['nome'] . '</option>';
         }
