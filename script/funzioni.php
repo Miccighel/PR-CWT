@@ -147,7 +147,7 @@ function ricercaCategoria($nomeCercato, $destinazione){
     print '<p class="informazione">Sono stati individuati i seguenti risultati potenziali</p>';
     foreach($dati as $riga ){
         $idCorretto = preg_replace('/\s+/', 'A', $riga['nome']);
-        print '<form id="' . $idCorretto . '" method="post" action="' . trim($destinazione) . '">';
+        print '<form id="'.$idCorretto.'" method="post" action="' . trim($destinazione) . '">';
         print '<div class="label"><label>'.$riga['nome'].'</label></div>';
         print '<input type="hidden" name="nome" value="'.$riga['nome'].'">';
         print '<input type="submit" value="Seleziona"/>';
@@ -155,7 +155,7 @@ function ricercaCategoria($nomeCercato, $destinazione){
         print '<br />';
         $contantoreRisultati++;
         print '<script type="text/javascript">';
-        print "gestisciForm('" . "#" . $idCorretto . "','" . trim($destinazione) . "','#coldx');";
+        print "gestisciForm('"."#".$idCorretto."','".trim($destinazione) . "','#coldx');";
         print '</script>';
     }
 
@@ -174,7 +174,9 @@ function ricercaConsole($nomeCercato, $destinazione){
 
     print '<p class="informazione">Sono stati individuati i seguenti risultati potenziali</p>';
     foreach($dati as $riga ){
-        print '<form method="post" action="' . trim($destinazione) . '">';
+        $idCorretto = preg_replace('/\s+/', 'A', $riga['nome']);
+        print '<form id="' . $idCorretto . '" method="post" action="' . trim($destinazione) . '">';
+        print '<input type="hidden" name="nome" value="'.$riga['nome'].'">';
         print '<div class="label"><label>'.$riga['nome'].'</label></div>';
         print '<input type="submit" value="Seleziona"/>';
         print '</form>';
@@ -239,7 +241,7 @@ function stampaModuloRicerca($destinazione, $nome){
     print '<fieldset><legend>Ricerca '.$nome.'</legend>';
     print '<div class="label"><label >Nome</label></div>';
     print '<input type="text" name="nome" class="obbligatorio">';
-    print '<input type="submit" value="Cerca" class="inviato">';
+    print '<input type="submit" value="Cerca" >';
     print '</fieldset>';
     print "</form>";
 

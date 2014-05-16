@@ -78,7 +78,6 @@ function controlloCampi(campo, lunghezza, messaggio){
 function gestisciForm(selettoreInvio, percorsoServer, selettoreRisposta) {
     $(document).ready(function () {
         $(selettoreInvio).submit(function () {
-            event.preventDefault();
             $.ajax({
                 type: "POST",
                 url: percorsoServer,
@@ -87,6 +86,7 @@ function gestisciForm(selettoreInvio, percorsoServer, selettoreRisposta) {
                     $(selettoreRisposta).html(data);
                 }
             });
+            return false;
         });
     });
 }

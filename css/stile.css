@@ -324,13 +324,16 @@ div#coda {
 div#coda span {
     position:relative;
     top:16px;
+    left:50px;
 }
 
 div#coda img {
     float:right;
     position:relative;
     top:13px;
+    margin-left:5px;
 }
+
 
 
 
