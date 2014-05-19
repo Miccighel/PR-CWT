@@ -59,10 +59,10 @@
                     print'<li><a href=' . HOME_WEB . 'html/moduloAmministrazione.php>Amministrazione</a></li>';
                 }
             }
-            if (isset($_SESSION['amministratore']) || isset($_SESSION['utenteautorizzato'])) {
+            if (isset($_SESSION['collegato'])) {
                 print'<li><a href=' . HOME_WEB . 'html/moduloVisualizzazioneCarrello.php>Carrello</a></li>';
             } else {
-                print'<li><a href=' . HOME_WEB . 'html/moduloLogin.php?n=1>Carrello</a></li>';
+                print'<li><a href=' . HOME_WEB . 'html/moduloLogin.php>Carrello</a></li>';
             }
             ?>
             <li><a href="<?php print HOME_WEB ?>html/moduloVisualizzazioneCatalogo.php">Catalogo</a></li>

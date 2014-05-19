@@ -8,16 +8,22 @@ $dati = eseguiQuery($connessione, $query);
 
 if ($dati == null) {
     print '<p class="errore">Alcuni dei tuoi dati sono errati, riprova</p>';
-} else {
+} else { // Se la query ritorna una tupla
+    // Le due variabili di sessione vengono impostate per mantenere lo stato dell'utente verificato
     $_SESSION['username'] = $_POST['username'];
     $_SESSION['password'] = $_POST['password'];
+    // Se il flag relativo ai privilegi amministrativi è si, allora l'utente è un amministratore
     if ($dati[0]["dirittoamministratore"] == "si") {
+        /* La seguente variabile di sessione viene usata in diversi punti del codice per fare in modo che solamente
+        l'amministratore possa accedere a determinare aree del sito*/
         $_SESSION['amministratore'] = true;
     } else {
         $_SESSION['amministratore'] = false;
     }
-    $_SESSION['utenteautorizzato'] = true;
+    /* La seguente variabile di sessione viene usata per controllare che qualcuno sia collegato, indipendentemente dal
+    fatto che sia amministratore o meno */
     $_SESSION['collegato'] = true;
+    // Una volta terminate le operazioni, viene eseguito un ridirezionamento tramite jQuery
     print '<script type="text/javascript">';
     print "$(window.location).attr('href', '../index.php');";
     print '</script>';
