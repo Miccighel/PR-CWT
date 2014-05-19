@@ -44,23 +44,23 @@ function gestioneImmagine($indice, $galleria){
     // Se le campo 'error' viene trovato il seguente flag, si può procedere con la copia dell'immagine
     if ($errore == UPLOAD_ERR_OK) {
         copy($temp, HOME_ROOT . '/' . 'img' . '/'.$galleria.'/' . $nome);
-        $messaggio = "L'immagine è stata caricata senza problemi";
+        $messaggio = "L'immagine &egrave; stata caricata senza problemi";
         print '<p class="successo">' . $nome . ' - Esito : ' . strtoupper($messaggio) . "</p>";
         return true;
     } else {
         // Se viene individuato qualsiasi altro flag, c'è stato un problema
         switch ($errore) {
             case UPLOAD_ERR_INI_SIZE:
-                $messaggio = "L'immagine caricata è troppo grande rispetto alla direttiva specificata in php.ini";
+                $messaggio = "L'immagine caricata &egrave; troppo grande rispetto alla direttiva specificata in php.ini";
                 break;
             case UPLOAD_ERR_FORM_SIZE:
-                $messaggio = "L'immagine caricata è troppo grande rispetto alla direttiva specificata nel form html";
+                $messaggio = "L'immagine caricata &egrave; troppo grande rispetto alla direttiva specificata nel form html";
                 break;
             case UPLOAD_ERR_PARTIAL:
-                $messaggio = "L'immagine è stata caricata parzialmente";
+                $messaggio = "L'immagine &egrave; stata caricata parzialmente";
                 break;
             case UPLOAD_ERR_NO_FILE:
-                $messaggio = "L'immagine non è stata caricata";
+                $messaggio = "L'immagine non &egrave; stata caricata";
                 break;
             case UPLOAD_ERR_NO_TMP_DIR:
                 $messaggio = "Immagine temporanea mancante";
@@ -122,8 +122,8 @@ function generaThumbnail($imSorgente, $percorso, $larghezza, $altezza, $indice){
 function visualizzaGalleria($galleria,$nomeClasse) {
     $percorsoThumbnails = '../img/thumb/'.$galleria.'/';
     $percorsoGalleria = '../img/'.$galleria.'/';
-    // La funzione glob cerca tutti i file di tipo .jpg presenti nel percorso specificato.
-    $thumbnails = glob($percorsoThumbnails . "*.jpg");
+    // La funzione glob cerca tutte le immagini presenti nel percorso specificato.
+    $thumbnails = glob($percorsoThumbnails . "*");
     foreach ($thumbnails as $thumb) {
         print '<li><a href="'.$percorsoGalleria.basename($thumb).'" rel="gallery" class="pirobox_gall'.$nomeClasse.'">
                 <img width="100" alt="Non trovata" height="58" src="'.$thumb.'"></a></li>';

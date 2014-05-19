@@ -10,9 +10,9 @@ if (isset($_SESSION['collegato'])) {
 
         $percorsoThumbnails = '../img/thumb/' . $dati[0]['galleria'] . '/';
 
-        // La funzione glob cerca tutti i file di tipo .jpg presenti nel percorso specificato.
+        // La funzione glob cerca tutte le immagini presenti nel percorso specificato.
 
-        $thumbnails = glob($percorsoThumbnails . "*.jpg");
+        $thumbnails = glob($percorsoThumbnails . "*");
 
         print '<p class="informazione">Seleziona le immagini da eliminare</p>';
 

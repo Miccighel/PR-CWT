@@ -14,6 +14,7 @@ if (isset($_SESSION['collegato'])) {
 
     $dati = eseguiQuery($connessione, $query);
 
+    if($dati) {
     $numeroPagine = ceil(count($dati) / PRODOTTIPERPAGINA);
 
     if (!isset($_GET["pagina"])) {
@@ -46,21 +47,22 @@ if (isset($_SESSION['collegato'])) {
         print '</script>';
         $i++;
     }
+        print '<form id="confermaAcquisto" method="post" action="moduloVisualizzazioneFattura.php">';
 
-    print '<form id="confermaAcquisto" method="post" action="moduloVisualizzazioneFattura.php">';
+        // Questo campo nascosto verrà utilizzato per la conferma dell'acquisto e la conseguente eliminazione del carrello dell'utente.
 
-    // Questo campo nascosto verrà utilizzato per la conferma dell'acquisto e la conseguente eliminazione del carrello dell'utente.
+        print '<input type="hidden" name="codicefiscale" value="' . $dati[0]['codicefiscale'] . '"/>';
+        print '<input type="submit" id="pulsanteAcquisto" value="Conferma l\'acquisto">';
+        print '</form>';
 
-    print '<input type="hidden" name="codicefiscale" value="' . $dati[0]['codicefiscale'] . '"/>';
-    print '<input type="submit" id="pulsanteAcquisto" value="Conferma l\'acquisto">';
-    print '</form>';
+        visualizzaPaginazione($pagina, $numeroPagine, 'Carrello');
 
-    visualizzaPaginazione($pagina, $numeroPagine, 'Carrello');
-
-    print '<script type="text/javascript">';
-    print "gestisciForm('#confermaAcquisto','" . 'moduloVisualizzazioneFattura.php' . "','#coldx');";
-    print '</script>';
-
+        print '<script type="text/javascript">';
+        print "gestisciForm('#confermaAcquisto','" . 'moduloVisualizzazioneFattura.php' . "','#coldx');";
+        print '</script>';
+    } else {
+        print '<p class="informazione">Il tuo carrello &egrave; vuoto.</p>';
+    }
     chiudiConnessione($connessione);
 } else {
     print '<p class="errore">Non sei autorizzato a visualizzare questa pagina, per favore, esegui il login.</p>';

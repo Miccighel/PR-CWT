@@ -1,6 +1,7 @@
 <?php
 include '../settings/configurazione.inc';
 include HOME_ROOT . '/script/funzioni.php';
+print '<script type="text/javascript" src="'.HOME_WEB.'js/funzioni.js"></script>';
 
 if (isset($_SESSION['collegato'])) {
     if ($_SESSION['amministratore'] == true) {

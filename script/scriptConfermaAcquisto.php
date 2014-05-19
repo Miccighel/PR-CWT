@@ -4,7 +4,7 @@ include HOME_ROOT . '/script/funzioni.php';
 
 $connessione = creaConnessione(SERVER,UTENTE,PASSWORD,DATABASE);
 
-$query = sprintf("SELECT codicefiscale FROM tblUtenti WHERE user='".$_SESSION['username']."'");
+$query = sprintf("SELECT codicefiscale FROM tblutenti WHERE user='".$_SESSION['username']."'");
 $dati = eseguiQuery($connessione,$query);
 $codiceFiscale = $dati[0]['codicefiscale'];
 

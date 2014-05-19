@@ -29,7 +29,7 @@ if (isset($_SESSION['collegato'])){
     print '<div class="label"><label >Username</label></div>';
     print '<input type="text" name="username" class="obbligatorio" value="' . $dati[0]['user'] . '"><br /> ';
     print '<div class="label"><label>Password</label></div>';
-    print '<input type="password" name="password" class="obbligatorio" value="' . $dati[0]['psw'] . '"><br /> ';
+    print '<input type="password" name="password" class="obbligatorio" value=""><br /> ';
     print '<input type="submit" class="invia" value="Conferma">';
     print '</fieldset>';
     print '</form>';
