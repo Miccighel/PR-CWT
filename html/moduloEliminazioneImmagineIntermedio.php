@@ -14,29 +14,33 @@ if (isset($_SESSION['collegato'])) {
 
         $thumbnails = glob($percorsoThumbnails . "*");
 
-        print '<p class="informazione">Seleziona le immagini da eliminare</p>';
+        // Se nella galleria sono presenti immagini
+        if($thumbnails) {
+            print '<p class="informazione">Seleziona le immagini da eliminare</p>';
 
-        print '<form id="formEliminazioneImmagini" method="post" action="../script/scriptEliminazioneImmagine.php">';
-        print '<input type="hidden" name="galleria" value="' . $dati[0]['galleria'] . '">';
+            print '<form id="formEliminazioneImmagini" method="post" action="../script/scriptEliminazioneImmagine.php">';
+            print '<input type="hidden" name="galleria" value="' . $dati[0]['galleria'] . '">';
 
-        // Successivamente le thumbnail relative a ciascuna immagine vengono visualizzate
-        // Con la checkbox si indicano quelle da eliminare
+            // Successivamente le thumbnail relative a ciascuna immagine vengono visualizzate
+            // Con la checkbox si indicano quelle da eliminare
 
-        foreach ($thumbnails as $thumb) {
-            print '<div id="immagineEliminazione">';
-            print '<div><img src="' . $thumb . '"></div>';
-            print '<div><input type="checkbox" name="immagine[]" value="' . basename($thumb) . '"/>';
-            print '<label>' . basename($thumb) . '</label></div>';
-            print '</div>';
+            foreach ($thumbnails as $thumb) {
+                print '<div id="immagineEliminazione">';
+                print '<div><img src="' . $thumb . '"></div>';
+                print '<div><input type="checkbox" name="immagine[]" value="' . basename($thumb) . '"/>';
+                print '<label>' . basename($thumb) . '</label></div>';
+                print '</div>';
+            }
+
+            print '<div id="pulsanteEliminazione"><input type="submit" value="Elimina"/></div>';
+            print '</form>';
+
+            print '<script type="text/javascript">';
+            print "gestisciForm('#formEliminazioneImmagini','../script/scriptEliminazioneImmagine.php','#coldx');";
+            print '</script>';
+        } else {
+            print '<p class="informazione">La galleria di questo prodotto &egrave; vuota</p>';
         }
-
-        print '<div id="pulsanteEliminazione"><input type="submit" value="Elimina"/></div>';
-        print '</form>';
-
-        print '<script type="text/javascript">';
-        print "gestisciForm('#formEliminazioneImmagini','../script/scriptEliminazioneImmagine.php','#coldx');";
-        print '</script>';
-
         chiudiConnessione($connessione);
 
     } else {

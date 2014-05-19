@@ -8,6 +8,7 @@ $dati = eseguiQuery($connessione, $query);
 
 chiudiConnessione($connessione);
 
+// Aggiornata la tabella, la sessione verrà distrutta e l'utente dovrà ricollegarsi al sito
 session_destroy();
 
 print '<script type="text/javascript">';

@@ -8,6 +8,6 @@ $dati = eseguiQuery($connessione, $query);
 
 chiudiConnessione($connessione);
 
-print '<p class="successo">' . "L'inserimento della categoria è avvenuto correttamente</p>";
+print '<p class="successo">' . "L'inserimento della categoria &egrave; avvenuto correttamente</p>";
 
 ?>

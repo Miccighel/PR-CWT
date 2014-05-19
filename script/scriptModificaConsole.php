@@ -14,6 +14,6 @@ $dati = eseguiQuery($connessione, $query);
 
 chiudiConnessione($connessione);
 
-print '<p class="successo">La modifica della categoria è avvenuta correttamente</p>';
+print '<p class="successo">La modifica della console &egrave; avvenuta correttamente</p>';
 
 ?>

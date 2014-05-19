@@ -12,6 +12,6 @@ $dati = eseguiQuery($connessione, $query);
 
 chiudiConnessione($connessione);
 
-print '<p class="successo">' . "L'inserimento della console è avvenuto correttamente</p>";
+print '<p class="successo">' . "L'inserimento della console &egrave; avvenuto correttamente</p>";
 
 ?>

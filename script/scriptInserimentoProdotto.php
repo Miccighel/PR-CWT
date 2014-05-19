@@ -20,12 +20,12 @@ $dati = eseguiQuery($connessione, $query);
 
 if(!file_exists($percorsoCartella)){
     mkdir($percorsoCartella);
-    print '<p class="successo">'."La creazione della cartella è avvenuta con successo</p>";
+    print '<p class="successo">'."La creazione della cartella &egrave; avvenuta con successo</p>";
 } else {
-    print '<p class="informazione">'."La cartella è già esistente</p>";
+    print '<p class="informazione">'."La cartella &egrave; già esistente</p>";
 }
 
-print '<p class="successo">'."L'inserimento del prodotto è avvenuto con successo</p>";
+print '<p class="successo">'."L'inserimento del prodotto &egrave; avvenuto con successo</p>";
 
 chiudiConnessione($connessione);
 

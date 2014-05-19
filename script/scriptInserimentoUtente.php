@@ -7,6 +7,6 @@ $query = sprintf("INSERT INTO tblUtenti(codicefiscale, nome, cognome, datanascit
 $dati = eseguiQuery($connessione, $query);
 chiudiConnessione($connessione);
 
-print '<p class="successo">' . "L'inserimento dell'utente è avvenuto correttamente</p>";
+print '<p class="successo">' . "L'inserimento dell'utente &egrave; avvenuto correttamente</p>";
 
 ?>

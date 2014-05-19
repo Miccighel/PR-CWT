@@ -14,7 +14,7 @@ if (isset($_SESSION['collegato'])) {
         } else {
             $query = sprintf("DELETE FROM tblconsole WHERE nome='%s'", $_POST['nome']);
             $dati = eseguiQuery($connessione, $query);
-            print '<p class="successo">La console e tutti i suoi prodotti sono stati eliminati con successo</p>';
+            print '<p class="successo">La console &egrave; stata eliminata con successo</p>';
         }
         chiudiConnessione($connessione);
     } else {

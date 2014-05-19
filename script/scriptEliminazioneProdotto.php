@@ -18,6 +18,7 @@ if (isset($_SESSION['collegato'])) {
         $query = sprintf("SELECT COUNT(galleria) FROM tblprodotti WHERE galleria ='%s'", $dati[0]['galleria']);
         $numeroVersioni = eseguiQuery($connessione, $query);
 
+        // $numeroVersioni indica quanti prodotti condividono la stessa galleria
         if (intval($numeroVersioni[0]['COUNT(galleria)'] > 1)) {
             print '<p class="informazione">Poichè ci sono più versioni dello stesso gioco, la corrispondente galleria non è stata cancellata.</p>';
         } else {
