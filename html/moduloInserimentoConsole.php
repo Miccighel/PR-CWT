@@ -16,16 +16,16 @@ if (isset($_SESSION['collegato'])){
         print '</fieldset>';
         print "</form>";
 
+        print '<script type="text/javascript">';
+        print "gestisciForm('#formInserimentoConsole','../script/scriptInserimentoConsole.php','#coldx');";
+        print '</script>';
+
     } else {
         print '<p class="errore">Per poter visualizzare questa pagina devi avere le credenziali da amministratore.</p>';
     }
 } else {
     print '<p class="errore">Non sei autorizzato a visualizzare questa pagina, per favore, esegui il login.</p>';
 }
-
-print '<script type="text/javascript">';
-print "gestisciForm('#formInserimentoConsole','../script/scriptInserimentoConsole.php','#coldx');";
-print '</script>';
 
 include HOME_ROOT.'/html/coda.html';
 ?>

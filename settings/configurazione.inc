@@ -25,6 +25,4 @@ define('DATABASE','ecommerce');
 
 // PRODOTTIPERPAGINA indica il numero di prodotti da mostrare in una singola pagina del carrello o del catalogo.
 define('PRODOTTIPERPAGINA',3);
-// UTENTIPERPAGINA indica il numero di utenti da mostrare durante le operazioni di amministrazione
-define('UTENTIPERPAGINA',1);
 ?>

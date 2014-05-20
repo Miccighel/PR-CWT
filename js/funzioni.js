@@ -100,7 +100,7 @@ function gestisciForm(selettoreInvio, percorsoServer, selettoreRisposta) {
                 // I dati del form vengono serializzati come stringa
                 data: $(selettoreInvio).serialize(),
                 /* Se la richiesta asincrona avviene con successo, inserisco il corpo della risposta http nell'elemento del DOM
-                individuato dal selettore passato come parametro */
+                 individuato dal selettore passato come parametro */
                 success: function (data) {
                     $(selettoreRisposta).html(data);
                 }
