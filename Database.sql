@@ -17,6 +17,7 @@ INSERT INTO tblcategorie (nome) VALUES
   ('MMORPG'),
   ('TPS'),
   ('Arcade'),
+  ('Avventura'),
   ('Puzzle Game'),
   ('Avventura Grafica');
 
@@ -58,18 +59,20 @@ CREATE TABLE IF NOT EXISTS `tblprodotti` (
 )
   ENGINE =InnoDB;
 
-INSERT INTO tblprodotti (codiceprodotto, nomeprodotto, descrizione, prezzo, numeropezzi, immagine, galleria, categoria)
+  INSERT INTO tblprodotti (codiceprodotto, nomeprodotto, descrizione, prezzo, numeropezzi, immagine, galleria, categoria)
 VALUES
-  ('PRDT1212', 'Borderlands 2', 'Frenetico sparatutto ambientato nel mondo di Pandora', 45.00, 100,
-   'borderlands2coverXbox360.jpg', 'borderlands2', 'FPS'),
-  ('PRDT1313', 'Borderlands 2', 'Frenetico sparatutto ambientato nel mondo di Pandora', 45.00, 100,
-   'borderlands2coverPS3.jpg', 'borderlands2', 'FPS'),
-  ('PRDT1515', 'Total War Rome 2', 'Guida le armate di Roma alla conquista del mondo!', 60.00, 250,
-   'totalwarrome2cover.jpg', 'totalwarrome2', 'RTS'),
-  ('PRDT1616', 'Killzone Shadow Fall', 'Un nuovo emozionante capitolo per la saga di Guerrilla Games', 70.00, 350,
-   'killzoneshadowfallcoverPS4.jpg', 'killzoneshadowfall', 'FPS'),
-  ('PRDT1717', 'Pokemon X', 'Un nuovo bellissimo capitolo della lunghissima saga dei mostriciattoli di Nintendo!', 35.50, 1500,
-   'pokemonxcover3DS.jpg', 'pokemonx', 'RPG');
+  ('PRDT1212', 'Borderlands 2', 'Frenetico sparatutto ambientato nel mondo di Pandora', 45.00, 100,'borderlands2coverXbox360.jpg', 'borderlands2', 'FPS'),
+  ('PRDT1313', 'Borderlands 2', 'Frenetico sparatutto ambientato nel mondo di Pandora', 45.00, 100, 'borderlands2coverPS3.jpg', 'borderlands2', 'FPS'),
+  ('PRDT1414', 'The Last of Us', 'Il nuovo titolo post apocalittico sviluppato da Naughty Dog!', 45, 200, 'thelastofuscoverPS3.JPG', 'thelustofus', 'Avventura'),
+  ('PRDT1515', 'Total War Rome 2', 'Guida le armate di Roma alla conquista del mondo!', 60.00, 250, 'totalwarrome2cover.jpg', 'totalwarrome2', 'RTS'),
+  ('PRDT1616', 'Killzone Shadow Fall', 'Un nuovo emozionante capitolo per la saga di Guerrilla Games', 70.00, 350, 'killzoneshadowfallcoverPS4.jpg', 'killzoneshadowfall', 'FPS'),
+  ('PRDT1717', 'Pokemon X', 'Un nuovo bellissimo capitolo della lunghissima saga dei mostriciattoli di Nintendo!', 35.50, 150, 'pokemonxcover3DS.jpg', 'pokemonx', 'RPG'),
+  ('PRDT1818', 'Call of Duty Black Ops 2', 'Il nuovo capitolo di Call of Duty, ambientato nel futuro.', 55, 340, 'codblackops2coverPS3.JPG', 'blackops2', 'FPS'),
+  ('PRDT1919', 'Call of Duty Black Ops 2', 'Il nuovo capitolo di Call of Duty, ambientato nel futuro.', 55, 210, 'codblackops2coverXbox360.JPG', 'blackops2', 'FPS'),
+  ('PRDT2020', 'Call of Duty Black Ops 2', 'Il nuovo capitolo di Call of Duty, ambientato nel futuro.', 55, 200, 'codblackops2coverPc.JPG', 'blackops2', 'FPS'),
+  ('PRDT2121', 'Bioshock Infinite', 'Il terzo entusiasmante capitolo della saga di Bioshock', 35, 70, 'bioshockinfinitecoverXbox360.JPG', 'bioshockinfinite', 'FPS'),
+  ('PRDT2222', 'Bioshock Infinite', 'Il terzo entusiasmante capitolo della saga di Bioshock', 35, 80, 'bioshockinfinitecoverPc.JPG', 'bioshockinfinite', 'FPS'),
+  ('PRDT2323', 'Bioshock Infinite', 'Il terzo entusiasmante capitolo della saga di Bioshock', 35, 50, 'bioshockinfinitecoverPS3.JPG', 'bioshockinfinite', 'FPS');
 
 DROP TABLE IF EXISTS tblutenti;
 CREATE TABLE IF NOT EXISTS tblutenti (
@@ -89,11 +92,11 @@ CREATE TABLE IF NOT EXISTS tblutenti (
 
 INSERT INTO tblutenti (codicefiscale, nome, cognome, datanascita, indirizzo, email, telefono, user, psw, dirittoAmministratore)
 VALUES
-  ('SPRMHL92T17D962J', 'Mario', 'Rossi', '17/12/92', 'Via Roma 12', 'admin@gamescommerce.it', '3336665454', 'admin',
+  ('SPRMHL92T17D962J', 'Mario', 'Rossi', '17/12/92', 'Udine Via Roma 12', 'admin@gamescommerce.it', '3336665454', 'admin',
    sha1('password'), 'si'),
-  ('THGMGF87D22Y789B', 'Gianni', 'Balengo', '05/03/78', 'Piazza Svizzera 48', 'giannibalengo@gmail.com', '333456871',
+  ('THGMGF87D22Y789B', 'Gianni', 'Balengo', '05/03/78', 'Roma Piazza Svizzera 48', 'giannibalengo@gmail.com', '333456871',
    'gianni', sha1('password2'), 'no'),
-  ('WERTIF22V48Z777N', 'Giuliano', 'Palma', '12/12/88', 'Corso Verdi 3', 'giulianopalma@hotmail.it', '3495412347',
+  ('WERTIF22V48Z777N', 'Giuliano', 'Palma', '12/12/88', 'Milano Corso Verdi 3', 'giulianopalma@hotmail.it', '3495412347',
    'giul', sha1('password3'), 'no');
 
 DROP TABLE IF EXISTS tblcarrelli;
@@ -137,11 +140,17 @@ CREATE TABLE IF NOT EXISTS tblprodotticonsole (
   ENGINE = InnoDB;
 
 INSERT INTO tblprodotticonsole (codiceprodotto, console) VALUES
-  ('PRDT1212', 'XBOX 360'),
-  ('PRDT1313', 'Playstation 3'),
+  ('PRDT1717', '3DS'),
   ('PRDT1515', 'PC'),
+  ('PRDT2020', 'PC'),
+  ('PRDT2222', 'PC'),
+  ('PRDT1313', 'Playstation 3'),
+  ('PRDT1414', 'Playstation 3'),
+  ('PRDT1818', 'Playstation 3'),
+  ('PRDT2323', 'Playstation 3'),
   ('PRDT1616', 'Playstation 4'),
-  ('PRDT1717', '3DS');
-
+  ('PRDT1212', 'XBOX 360'),
+  ('PRDT1919', 'XBOX 360'),
+  ('PRDT2121', 'XBOX 360');
 
 

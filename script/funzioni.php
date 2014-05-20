@@ -45,7 +45,7 @@ function gestioneImmagine($indice, $galleria){
     if ($errore == UPLOAD_ERR_OK) {
         copy($temp, HOME_ROOT . '/' . 'img' . '/'.$galleria.'/' . $nome);
         $messaggio = "L'immagine &egrave; stata caricata senza problemi";
-        print '<p class="successo">' . $nome . ' - Esito : ' . strtoupper($messaggio) . "</p>";
+        print '<p class="successo">' . $nome . ' - Esito : ' . $messaggio . "</p>";
         return true;
     } else {
         // Se viene individuato qualsiasi altro flag, c'è stato un problema
