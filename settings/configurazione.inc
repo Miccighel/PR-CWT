@@ -1,9 +1,8 @@
 <?php
 /* CONFIGURAZIONE NON NON NECESSARIA */
 
-/* HOME_ROOT indica il percorso assoluto del file in cui viene inclusa; non necessita di ulteriore configurazione. Questa
-costante è necessaria perchè in diverse occasioni viene incluso il contenuto di un file a partire da file
-che si trovano in posizioni diverse, quindi è necessario usare un riferimento di tipo assoluto */
+/* HOME_ROOT indica il percorso assoluto della cartella del  file in cui viene inclusa; non necessita di ulteriore configurazione. Questa
+costante è necessaria per poter includere file in maniera assoluta da qualsiasi punto del sito*/
 define('HOME_ROOT',realpath(dirname(__FILE__).'/../'));
 // Inizializzazione della sessione
 session_start();
