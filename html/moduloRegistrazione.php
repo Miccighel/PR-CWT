@@ -15,6 +15,9 @@ include HOME_ROOT . '/html/testa.php';
             <div class="label"><label>Data Nascita</label></div>
             <input type="text" name="datanascita" class="obbligatorio" id="calendario"></input><br/>
 
+            <div class="label"><label >Citt&agrave;</label></div>
+            <input type="text" name="citta" class="obbligatorio"><br />
+
             <div class="label"><label>Indirizzo</label></div>
             <input type="text" name="indirizzo" class="obbligatorio"/><br/>
 

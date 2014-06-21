@@ -20,6 +20,8 @@ if (isset($_SESSION['collegato'])){
     print '<input type="text" name="cognome" class="obbligatorio" value="' . $dati[0]['cognome'] . '"><br /> ';
     print '<div class="label"><label >Data Nascita</label></div>';
     print '<input type="text" name="datanascita" value="'.$dati[0]['datanascita'].'" class="obbligatorio" id="calendario"><br/>';
+    print '<div class="label"><label >Citt&agrave;</label></div>';
+    print '<input type="text" name="citta" class="obbligatorio" value="' . $dati[0]['citta'] . '"><br /> ';
     print '<div class="label"><label >Indirizzo</label></div>';
     print '<input type="text" name="indirizzo" class="obbligatorio" value="' . $dati[0]['indirizzo'] . '"><br /> ';
     print '<div class="label"><label >Email</label></div>';

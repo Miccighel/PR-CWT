@@ -5,7 +5,7 @@ include HOME_ROOT . '/script/funzioni.php';
 if($_SERVER['REQUEST_METHOD'] != 'GET'){
 
     $connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
-    $query = sprintf("INSERT INTO tblUtenti(codicefiscale, nome, cognome, datanascita, indirizzo, email, telefono, user, psw, dirittoamministratore) VALUE ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')", strtoupper($_POST['codicefiscale']), $_POST['nome'], $_POST['cognome'], $_POST['datanascita'], $_POST['indirizzo'], $_POST['email'], $_POST['telefono'], $_POST['username'], sha1($_POST['password']), "no");
+    $query = sprintf("INSERT INTO tblUtenti(codicefiscale, nome, cognome, datanascita, citta, indirizzo, email, telefono, user, psw, dirittoamministratore) VALUE ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')", strtoupper($_POST['codicefiscale']), $_POST['nome'], $_POST['cognome'], $_POST['datanascita'],$_POST['citta'], $_POST['indirizzo'], $_POST['email'], $_POST['telefono'], $_POST['username'], sha1($_POST['password']), "no");
     $dati = eseguiQuery($connessione, $query);
     chiudiConnessione($connessione);
 

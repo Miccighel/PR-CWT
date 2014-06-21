@@ -80,6 +80,7 @@ CREATE TABLE IF NOT EXISTS tblutenti (
   nome                  VARCHAR(20) NOT NULL,
   cognome               VARCHAR(20) NOT NULL,
   datanascita           CHAR(10)    NOT NULL,
+  citta                 VARCHAR(50) NOT NULL,
   indirizzo             VARCHAR(50) NOT NULL,
   email                 VARCHAR(30) NOT NULL UNIQUE,
   telefono              VARCHAR(15) NOT NULL,
@@ -90,13 +91,13 @@ CREATE TABLE IF NOT EXISTS tblutenti (
 )
   ENGINE =InnoDB;
 
-INSERT INTO tblutenti (codicefiscale, nome, cognome, datanascita, indirizzo, email, telefono, user, psw, dirittoAmministratore)
+INSERT INTO tblutenti (codicefiscale, nome, cognome, datanascita, citta, indirizzo, email, telefono, user, psw, dirittoAmministratore)
 VALUES
-  ('SPRMHL92T17D962J', 'Mario', 'Rossi', '17/12/92', 'Udine Via Roma 12', 'admin@gamescommerce.it', '3336665454', 'admin',
+  ('SPRMHL92T17D962J', 'Mario', 'Rossi', '17/12/92', 'Udine', 'Via Roma 12', 'admin@gamescommerce.it', '3336665454', 'admin',
    sha1('password'), 'si'),
-  ('THGMGF87D22Y789B', 'Gianni', 'Balengo', '05/03/78', 'Roma Piazza Svizzera 48', 'giannibalengo@gmail.com', '333456871',
+  ('THGMGF87D22Y789B', 'Gianni', 'Balengo', '05/03/78', 'Roma', 'Piazza Svizzera 48', 'giannibalengo@gmail.com', '333456871',
    'gianni', sha1('password2'), 'no'),
-  ('WERTIF22V48Z777N', 'Giuliano', 'Palma', '12/12/88', 'Milano Corso Verdi 3', 'giulianopalma@hotmail.it', '3495412347',
+  ('WERTIF22V48Z777N', 'Giuliano', 'Palma', '12/12/88', 'Milano', 'Corso Verdi 3', 'giulianopalma@hotmail.it', '3495412347',
    'giul', sha1('password3'), 'no');
 
 DROP TABLE IF EXISTS tblcarrelli;
