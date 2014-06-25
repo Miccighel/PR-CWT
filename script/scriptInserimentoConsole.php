@@ -6,9 +6,9 @@ if($_SERVER['REQUEST_METHOD'] != 'GET'){
 
     $connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
     if (trim($_POST['produttore']) == '') {
-        $query = sprintf("INSERT INTO tblconsole(nome) VALUE ('%s')", $_POST['nome']);
+        $query = sprintf("INSERT INTO tblconsole(nome) VALUE ('%s')", rendiSicuro($_POST['nome']));
     } else {
-        $query = sprintf("INSERT INTO tblconsole(nome,produttore) VALUE ('%s','%s')", $_POST['nome'], $_POST['produttore']);
+        $query = sprintf("INSERT INTO tblconsole(nome,produttore) VALUE ('%s','%s')", rendiSicuro($_POST['nome']), rendiSicuro($_POST['produttore']));
     }
     $dati = eseguiQuery($connessione, $query);
 

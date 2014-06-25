@@ -13,11 +13,11 @@ session_start();
 Esempio: il file index.php si trova nella cartella sito dentro alla cartella public_html
 HOME_WEB: /public_html/sito/
 La costante viene utilizzata quando può essere utilizzato un percorso di tipo relativo*/
-define('HOME_WEB','/Complementi/Progetto/');
+define('HOME_WEB','/');
 // Le costanti SERVER, UTENTE, PASSWORD, DATABASE sono necessarie per eseguire le query alla base di dati desiderata.
 define('SERVER','localhost');
 define('UTENTE','root');
-define('PASSWORD','');
+define('PASSWORD','root');
 define('DATABASE','ecommerce');
 
 /* CONFIGURAZIONE FACOLTATIVA */

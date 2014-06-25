@@ -4,7 +4,7 @@ include HOME_ROOT . '/script/funzioni.php';
 
 if($_SERVER['REQUEST_METHOD'] != 'GET'){
     $connessione = creaConnessione(SERVER,UTENTE,PASSWORD,DATABASE);
-    $query = sprintf("SELECT p.codiceprodotto, p.nomeprodotto, c.quantita, p.prezzo FROM tblcarrelli AS c JOIN tblprodotti AS p ON c.codiceprodotto = p.codiceprodotto WHERE c.codiceutente='%s'",$_POST['codicefiscale']);
+    $query = sprintf("SELECT p.codiceprodotto, p.nomeprodotto, c.quantita, p.prezzo FROM tblcarrelli AS c JOIN tblprodotti AS p ON c.codiceprodotto = p.codiceprodotto WHERE c.codiceutente='%s'",rendiSicuro($_POST['codicefiscale']));
     $dati = eseguiQuery($connessione, $query);
 
     $prezzoFinale = 0;

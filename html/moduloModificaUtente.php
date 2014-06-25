@@ -5,7 +5,7 @@ include HOME_ROOT . '/html/testa.php';
 
 if (isset($_SESSION['collegato'])){
     $connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
-    $query = sprintf("SELECT * FROM tblutenti WHERE user='" . $_SESSION['username']. "'");
+    $query = sprintf("SELECT * FROM tblutenti WHERE user='" . rendiSicuro($_SESSION['username']). "'");
     $dati = eseguiQuery($connessione, $query);
 
     print '<p class="informazione">Attenzione, dovrai eseguire di nuovo il login, una volta modificato il profilo</p>';

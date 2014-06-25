@@ -8,28 +8,28 @@ if($_SERVER['REQUEST_METHOD'] != 'GET'){
 
     /* Il codice fiscale viene salvato per poter recuperare le tuple presenti nella tabella molti a molti del carrello
      in base all'utente collegato con un dato username in quell'istante */
-    $query = sprintf("SELECT codicefiscale FROM tblutenti WHERE user='".$_SESSION['username']."'");
+    $query = sprintf("SELECT codicefiscale FROM tblutenti WHERE user='".rendiSicuro($_SESSION['username'])."'");
     $dati = eseguiQuery($connessione,$query);
     $codiceFiscale = $dati[0]['codicefiscale'];
 
     // Recupero dei prodotti inseriti nel carrello dell'utente collegato
     $connessione = creaConnessione(SERVER,UTENTE,PASSWORD,DATABASE);
-    $query = sprintf("SELECT p.codiceprodotto, p.nomeprodotto, c.quantita, p.prezzo FROM tblcarrelli AS c JOIN tblprodotti AS p ON c.codiceprodotto = p.codiceprodotto WHERE c.codiceutente='%s'",$codiceFiscale);
+    $query = sprintf("SELECT p.codiceprodotto, p.nomeprodotto, c.quantita, p.prezzo FROM tblcarrelli AS c JOIN tblprodotti AS p ON c.codiceprodotto = p.codiceprodotto WHERE c.codiceutente='%s'",rendiSicuro($codiceFiscale));
     $dati = eseguiQuery($connessione, $query);
 
     foreach ($dati as $prodotto) {
         // Per ogni prodotto, viene recuperata la quantità in magazzino
-        $query = sprintf("SELECT numeropezzi FROM tblprodotti WHERE codiceprodotto='%s'",$prodotto['codiceprodotto']);
+        $query = sprintf("SELECT numeropezzi FROM tblprodotti WHERE codiceprodotto='%s'",rendiSicuro($prodotto['codiceprodotto']));
         $infoPezzi = eseguiQuery($connessione,$query);
         // La quantità aggiornata è data dalla quantità in magazzino meno la quantità richiesta
         $quantitàAggiornata = $infoPezzi[0]['numeropezzi'] - $prodotto['quantita'];
         // L'informazione su dabatase viene aggiornata
-        $query = sprintf("UPDATE tblprodotti SET numeropezzi='%d' WHERE codiceprodotto='%s'",$quantitàAggiornata,$prodotto['codiceprodotto']);
+        $query = sprintf("UPDATE tblprodotti SET numeropezzi='%d' WHERE codiceprodotto='%s'",rendiSicuro($quantitàAggiornata),rendiSicuro($prodotto['codiceprodotto']));
         $dati = eseguiQuery($connessione,$query);
     }
 
 // Una volta compiute le operazioni d'aggiornamento, le tuple dell'utente nel carrello vengono cancellate
-    $query = sprintf("DELETE FROM tblcarrelli WHERE codiceutente='%s'",$codiceFiscale);
+    $query = sprintf("DELETE FROM tblcarrelli WHERE codiceutente='%s'",rendiSicuro($codiceFiscale));
     eseguiQuery($connessione, $query);
 
     chiudiConnessione($connessione);

@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD'] != 'GET'){
     $quantitaInserimento = $_POST['quantita'];
     $codiceInserimento = $_POST['codiceprodotto'];
 
-    $query = sprintf("SELECT numeropezzi FROM tblprodotti WHERE codiceprodotto='%s'", $codiceInserimento);
+    $query = sprintf("SELECT numeropezzi FROM tblprodotti WHERE codiceprodotto='%s'", rendiSicuro($codiceInserimento));
     $dati = eseguiQuery($connessione, $query);
 
     if (($quantitaInserimento > $dati[0]['numeropezzi']) || ($quantitaInserimento <= 0)) {
@@ -21,14 +21,14 @@ if($_SERVER['REQUEST_METHOD'] != 'GET'){
         $query = sprintf("SELECT u.codicefiscale, c.codiceprodotto, c.quantita, p.numeropezzi
              FROM (tblutenti AS u JOIN tblcarrelli AS c ON u.codicefiscale = c.codiceutente)
              JOIN tblprodotti AS p on c.codiceprodotto = p.codiceprodotto
-             WHERE u.user='%s' AND c.codiceprodotto='%s'", $utente, $codiceInserimento);
+             WHERE u.user='%s' AND c.codiceprodotto='%s'", rendiSicuro($utente), rendiSicuro($codiceInserimento));
 
         $dati = eseguiQuery($connessione, $query);
         $codiceFiscale = $dati[0]['codicefiscale'];
 
         // Se il prodotto selezionato non è già presente nel carrello, lo aggiunge.
         if (!$dati) {
-            $query = sprintf("INSERT INTO tblcarrelli(codiceprodotto, codiceutente, quantita) VALUE ('%s','%s','%d')", $codiceInserimento, $codiceFiscale, $quantitaInserimento);
+            $query = sprintf("INSERT INTO tblcarrelli(codiceprodotto, codiceutente, quantita) VALUE ('%s','%s','%d')", rendiSicuro($codiceInserimento), rendiSicuro($codiceFiscale), rendiSicuro($quantitaInserimento));
             $dati = eseguiQuery($connessione, $query);
             print '<p class="successo">Inserimento nel carrello avvenuto correttamente</p>';
         } else {
@@ -37,7 +37,7 @@ if($_SERVER['REQUEST_METHOD'] != 'GET'){
             if ($quantitaTotale > $dati[0]['numeropezzi']) {
                 print '<p class="errore">Attenzione, non puoi inserire una quantit&agrave; di prodotto maggiore di quella in magazzino!</p>';
             } else {
-                $query = sprintf("UPDATE tblcarrelli SET quantita='%d' WHERE codiceprodotto='%s' AND codiceutente ='%s'", $quantitaTotale, $codiceInserimento, $codiceFiscale);
+                $query = sprintf("UPDATE tblcarrelli SET quantita='%d' WHERE codiceprodotto='%s' AND codiceutente ='%s'", rendiSicuro($quantitaTotale), rendiSicuro($codiceInserimento), rendiSicuro($codiceFiscale));
                 $dati = eseguiQuery($connessione, $query);
                 print '<p class="successo">Aggiornamento del carrello avvenuto correttamente</p>';
             }

@@ -4,7 +4,7 @@ include HOME_ROOT . '/script/funzioni.php';
 
 if($_SERVER['REQUEST_METHOD'] != 'GET'){
     $connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
-    $query = sprintf("SELECT galleria FROM tblprodotti WHERE codiceprodotto='%s'", $_POST['codiceprodotto']);
+    $query = sprintf("SELECT galleria FROM tblprodotti WHERE codiceprodotto='%s'", rendiSicuro($_POST['codiceprodotto']));
     $dati = eseguiQuery($connessione, $query);
 
     $percorsoThumbnails = '../img/thumb/' . $dati[0]['galleria'] . '/';

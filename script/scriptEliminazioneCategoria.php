@@ -6,13 +6,13 @@ if($_SERVER['REQUEST_METHOD'] != 'GET'){
 
     $connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
 
-    $query = sprintf("SELECT COUNT(codiceprodotto) FROM tblprodotti WHERE categoria='%s'", $_POST['nome']);
+    $query = sprintf("SELECT COUNT(codiceprodotto) FROM tblprodotti WHERE categoria='%s'", rendiSicuro($_POST['nome']));
     $dati = eseguiQuery($connessione, $query);
 
     if(intval($dati[0]['COUNT(codiceprodotto)'] > 0)){
         print '<p class="informazione">Elimina tutti i prodotti presenti in questa categoria prima di procedere</p>';
     } else {
-        $query = sprintf("DELETE FROM tblcategorie WHERE nome='%s'", $_POST['nome']);
+        $query = sprintf("DELETE FROM tblcategorie WHERE nome='%s'", rendiSicuro($_POST['nome']));
         $dati = eseguiQuery($connessione, $query);
         print '<p class="successo">La categoria &egrave; stata eliminata con successo</p>';
     }

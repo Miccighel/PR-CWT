@@ -7,12 +7,10 @@
     <script type="text/javascript" src="<?php print HOME_WEB; ?>js/modernizr.custom.17475.js"></script>
     <script type="text/javascript" src="<?php print HOME_WEB; ?>js/jquery.elastislide.js"></script>
     <script type="text/javascript" src="<?php print HOME_WEB; ?>js/funzioni.js"></script>
-    <style type="text/css">
-        @import url(<?php print HOME_WEB;?>css/stile.css);
-        @import url(<?php print HOME_WEB;?>css/jquery-ui.min.css);
-        @import url(<?php print HOME_WEB;?>css/style.css);
-        @import url(<?php print HOME_WEB;?>css/elastislide.css);
-    </style>
+    <link rel="stylesheet" href="<?php print HOME_WEB;?>css/stile.css" type="text/css">
+    <link rel="stylesheet" href="<?php print HOME_WEB;?>css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="<?php print HOME_WEB;?>css/style.css" type="text/css">
+    <link rel="stylesheet" href="<?php print HOME_WEB;?>css/elastislide.css" type="text/css">
 </head>
 <body>
 <div id="contenuto">

@@ -8,7 +8,7 @@ if($_SERVER['REQUEST_METHOD'] != 'GET'){
     $connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
 
     for($i = 0; $i < count($_POST['user']); $i++) {
-        $query = sprintf("UPDATE tblutenti SET dirittoAmministratore='%s' WHERE user='%s'", $_POST['dirittoAmministratore'][$i], $_POST['user'][$i]);
+        $query = sprintf("UPDATE tblutenti SET dirittoAmministratore='%s' WHERE user='%s'", rendiSicuro($_POST['dirittoAmministratore'][$i]), rendiSicuro($_POST['user'][$i]));
         $dati = eseguiQuery($connessione, $query);
     }
 

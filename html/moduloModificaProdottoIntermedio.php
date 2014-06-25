@@ -5,7 +5,7 @@ print '<script type="text/javascript" src="'.HOME_WEB.'js/funzioni.js"></script>
 
 if($_SERVER['REQUEST_METHOD'] != 'GET'){
     $connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
-    $query = sprintf("SELECT * FROM tblprodotti WHERE codiceprodotto='" . $_POST['codiceprodotto'] . "'");
+    $query = sprintf("SELECT * FROM tblprodotti WHERE codiceprodotto='" . rendiSicuro($_POST['codiceprodotto']) . "'");
     $dati = eseguiQuery($connessione, $query);
     print '<form enctype="multipart/form-data" method="post" action="../script/scriptModificaProdotto.php">';
     print '<fieldset><legend>Modifica Prodotto</legend>';

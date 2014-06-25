@@ -5,7 +5,7 @@ include HOME_ROOT . '/script/funzioni.php';
 if($_SERVER['REQUEST_METHOD'] != 'GET'){
 
     $connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
-    $query = sprintf("INSERT INTO tblUtenti(codicefiscale, nome, cognome, datanascita, citta, indirizzo, email, telefono, user, psw, dirittoamministratore) VALUE ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')", strtoupper($_POST['codicefiscale']), $_POST['nome'], $_POST['cognome'], $_POST['datanascita'],$_POST['citta'], $_POST['indirizzo'], $_POST['email'], $_POST['telefono'], $_POST['username'], sha1($_POST['password']), "no");
+    $query = sprintf("INSERT INTO tblUtenti(codicefiscale, nome, cognome, datanascita, citta, indirizzo, email, telefono, user, psw, dirittoamministratore) VALUE ('%s','%s','%s','%s','%s','%s','%s','%s','%s','%s','%s')", rendiSicuro(strtoupper($_POST['codicefiscale'])), rendiSicuro($_POST['nome']), rendiSicuro($_POST['cognome']), rendiSicuro($_POST['datanascita']),rendiSicuro($_POST['citta']), rendiSicuro($_POST['indirizzo']), rendiSicuro($_POST['email']), rendiSicuro($_POST['telefono']), rendiSicuro($_POST['username']), rendiSicuro(sha1($_POST['password'])), rendiSicuro("no"));
     $dati = eseguiQuery($connessione, $query);
     chiudiConnessione($connessione);
 

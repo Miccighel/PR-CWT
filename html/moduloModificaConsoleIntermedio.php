@@ -6,7 +6,7 @@ print '<script type="text/javascript" src="'.HOME_WEB.'js/funzioni.js"></script>
 if($_SERVER['REQUEST_METHOD'] != 'GET'){
     $connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
 
-    $query = sprintf("SELECT * FROM tblconsole WHERE nome='" . $_POST['nome'] . "'");
+    $query = sprintf("SELECT * FROM tblconsole WHERE nome='" . rendiSicuro($_POST['nome']) . "'");
     $dati = eseguiQuery($connessione, $query);
 
     print '<form id="formModificaConsole" method="post" action="../script/scriptModificaConsole.php">';

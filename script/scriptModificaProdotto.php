@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD'] != 'GET'){
         generaThumbnail($_FILES['immagine']['tmp_name'],'/img/thumb',200,268,$indice);
     }
 
-    $query = sprintf("SELECT galleria, immagine FROM tblprodotti WHERE codiceprodotto='%s'", $_POST['codiceprodotto']);
+    $query = sprintf("SELECT galleria, immagine FROM tblprodotti WHERE codiceprodotto='%s'", rendiSicuro($_POST['codiceprodotto']));
     $dati = eseguiQuery($connessione, $query);
 
 // Utilizzato per la rinomina della galleria
@@ -41,10 +41,10 @@ if($_SERVER['REQUEST_METHOD'] != 'GET'){
         print '<p class="successo">' . "L'immagine principale &egrave; stata aggiornata con successo</p>";
     }
 
-    $query = sprintf("UPDATE tblprodotti SET nomeprodotto='%s', descrizione='%s', prezzo='%d', numeropezzi='%d', immagine='%s',galleria='%s',categoria='%s' WHERE codiceprodotto='%s'", $_POST['nomeprodotto'], $_POST['descrizione'], $_POST['prezzo'], $_POST['numeropezzi'], $_FILES['immagine']['name'], $_POST['galleria'], $_POST['categoria'], $_POST['codiceprodotto']);
+    $query = sprintf("UPDATE tblprodotti SET nomeprodotto='%s', descrizione='%s', prezzo='%d', numeropezzi='%d', immagine='%s',galleria='%s',categoria='%s' WHERE codiceprodotto='%s'", rendiSicuro($_POST['nomeprodotto']), rendiSicuro($_POST['descrizione']), rendiSicuro($_POST['prezzo']), rendiSicuro($_POST['numeropezzi']), rendiSicuro($_FILES['immagine']['name']), rendiSicuro($_POST['galleria']), rendiSicuro($_POST['categoria']), rendiSicuro($_POST['codiceprodotto']));
     $dati = eseguiQuery($connessione, $query);
 
-    $query = sprintf("UPDATE tblprodotti SET galleria='%s' WHERE galleria='%s'", $_POST['galleria'], $galleriaOld);
+    $query = sprintf("UPDATE tblprodotti SET galleria='%s' WHERE galleria='%s'", rendiSicuro($_POST['galleria']), rendiSicuro($galleriaOld));
     $dati = eseguiQuery($connessione, $query);
 
     print '<p class="successo">La modifica del prodotto &egrave; avvenuta correttamente</p>';

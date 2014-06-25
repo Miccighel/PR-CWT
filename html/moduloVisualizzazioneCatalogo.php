@@ -21,7 +21,7 @@ $i = ($pagina * PRODOTTIPERPAGINA) - (PRODOTTIPERPAGINA);
 
 while ($i < PRODOTTIPERPAGINA * $pagina && $i< count($dati)) {
     print '<div class="corpoCatalogo">' . '<div class="catcolsx"><img alt="Immagine non trovata"
-        src="' . HOME_WEB . '/' . $cartellaImmaginePrincipale . '/thumb/' . $dati[$i]['immagine'] . '">' .
+        src="' . HOME_WEB . $cartellaImmaginePrincipale . '/thumb/' . $dati[$i]['immagine'] . '">' .
         '</div>' . '<div class="catcoldx"><p><b>Codice Prodotto: </b>' . $dati[$i]['codiceprodotto'] . '</p>' .
         '<p><b>Nome Prodotto: </b>' . $dati[$i]['nomeprodotto'] . '</p>' .
         '<p><b>Descrizione: </b>' . $dati[$i]['descrizione'] . '</p>' .
