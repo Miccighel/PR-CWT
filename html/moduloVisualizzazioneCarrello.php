@@ -10,7 +10,7 @@ if (isset($_SESSION['collegato'])) {
     $query = sprintf("SELECT u.codicefiscale, c.codiceprodotto, c.quantita, p.nomeprodotto, p.prezzo,
     p.immagine, p.categoria, pc.console FROM ((tblutenti AS u JOIN tblcarrelli AS c
     ON u.codicefiscale = c.codiceutente) JOIN tblprodotti AS p on c.codiceprodotto = p.codiceprodotto)
-    JOIN tblprodotticonsole AS pc ON p.codiceprodotto = pc.codiceprodotto WHERE u.user='%s'", rendiSicuro($_SESSION['username']));
+    JOIN tblprodotticonsole AS pc ON p.codiceprodotto = pc.codiceprodotto WHERE u.user='%s'", $_SESSION['username']);
 
     $dati = eseguiQuery($connessione, $query);
 

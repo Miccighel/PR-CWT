@@ -14,10 +14,10 @@ if($_SERVER['REQUEST_METHOD'] != 'GET'){
     gestioneImmagine($indice,'');
     generaThumbnail($_FILES['immagine']['tmp_name'],'/img/thumb',200,268,$indice);
 
-    $query = sprintf("INSERT INTO tblprodotti(codiceprodotto, nomeprodotto, descrizione, prezzo, numeropezzi, immagine, galleria, categoria) VALUE ('%s','%s','%s','%d','%d','%s','%s','%s')", rendiSicuro(strtoupper(trim($_POST['codiceprodotto']))), rendiSicuro($_POST['nomeprodotto']), rendiSicuro($_POST['descrizione']), rendiSicuro($_POST['prezzo']), rendiSicuro($_POST['numeropezzi']), rendiSicuro($_FILES['immagine']['name']), rendiSicuro(trim($_POST['galleria'])), rendiSicuro($_POST['categoria']));
+    $query = sprintf("INSERT INTO tblprodotti(codiceprodotto, nomeprodotto, descrizione, prezzo, numeropezzi, immagine, galleria, categoria) VALUE ('%s','%s','%s','%d','%d','%s','%s','%s')", rendiSicuro($connessione,strtoupper(trim($_POST['codiceprodotto']))), rendiSicuro($connessione,$_POST['nomeprodotto']), rendiSicuro($connessione,$_POST['descrizione']), rendiSicuro($connessione,$_POST['prezzo']), rendiSicuro($connessione,$_POST['numeropezzi']), rendiSicuro($connessione,$_FILES['immagine']['name']), rendiSicuro($connessione,trim($_POST['galleria'])), rendiSicuro($connessione,$_POST['categoria']));
     $dati = eseguiQuery($connessione, $query);
 
-    $query = sprintf("INSERT INTO tblprodotticonsole(codiceprodotto, console) VALUE ('%s','%s')", rendiSicuro($_POST['codiceprodotto']), rendiSicuro($_POST['console']));
+    $query = sprintf("INSERT INTO tblprodotticonsole(codiceprodotto, console) VALUE ('%s','%s')", rendiSicuro($connessione,$_POST['codiceprodotto']), rendiSicuro($connessione,$_POST['console']));
     $dati = eseguiQuery($connessione, $query);
 
     if(!file_exists($percorsoCartella)){

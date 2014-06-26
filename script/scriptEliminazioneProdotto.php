@@ -6,16 +6,16 @@ if($_SERVER['REQUEST_METHOD'] != 'GET'){
 
     $connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
 
-    $query = sprintf("DELETE FROM tblcarrelli WHERE codiceprodotto='%s'", rendiSicuro($_POST['codiceprodotto']));
+    $query = sprintf("DELETE FROM tblcarrelli WHERE codiceprodotto='%s'", $_POST['codiceprodotto']);
     $dati = eseguiQuery($connessione, $query);
 
-    $query = sprintf("DELETE FROM tblprodotticonsole WHERE codiceprodotto='%s'", rendiSicuro($_POST['codiceprodotto']));
+    $query = sprintf("DELETE FROM tblprodotticonsole WHERE codiceprodotto='%s'", $_POST['codiceprodotto']);
     $dati = eseguiQuery($connessione, $query);
 
-    $query = sprintf("SELECT galleria, immagine FROM tblprodotti WHERE codiceprodotto='%s'", rendiSicuro($_POST['codiceprodotto']));
+    $query = sprintf("SELECT galleria, immagine FROM tblprodotti WHERE codiceprodotto='%s'", $_POST['codiceprodotto']);
     $dati = eseguiQuery($connessione, $query);
 
-    $query = sprintf("SELECT COUNT(galleria) FROM tblprodotti WHERE galleria ='%s'", rendiSicuro($dati[0]['galleria']));
+    $query = sprintf("SELECT COUNT(galleria) FROM tblprodotti WHERE galleria ='%s'", $dati[0]['galleria']);
     $numeroVersioni = eseguiQuery($connessione, $query);
 
     // $numeroVersioni indica quanti prodotti condividono la stessa galleria
@@ -47,7 +47,7 @@ if($_SERVER['REQUEST_METHOD'] != 'GET'){
         print '<p class="errore">La thumbnail dell\'immagine principale non esiste</p>';
     }
 
-    $query = sprintf("DELETE FROM tblprodotti WHERE codiceprodotto='%s'", rendiSicuro($_POST['codiceprodotto']));
+    $query = sprintf("DELETE FROM tblprodotti WHERE codiceprodotto='%s'", $_POST['codiceprodotto']);
     $dati = eseguiQuery($connessione, $query);
 
     print '<p class="successo">Il prodotto &egrave; stato eliminato con successo</p>';

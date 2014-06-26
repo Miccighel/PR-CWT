@@ -20,12 +20,12 @@ function eseguiQuery($connessione,$query){
     return $dati;
 }
 
-function rendiSicuro($parametro){
+function rendiSicuro($connessione,$parametro){
     // La funzione viene impiegata per evitare eventuali tentativi di sql injection nel database
     if(get_magic_quotes_gpc()){
         return $parametro;
     }else{
-        return mysql_real_escape_string($parametro);
+        return mysqli_real_escape_string($connessione,$parametro);
     }
 }
 
@@ -44,11 +44,18 @@ function gestioneImmagine($indice, $galleria){
         $errore = $_FILES['immagine']['error'];
         $nome = $_FILES['immagine']['name'];
         $temp = $_FILES['immagine']['tmp_name'];
+        $ext = pathinfo($nome, PATHINFO_EXTENSION);
     }else{
         // Caso in cui viene gestita un'immagine proveniente dalla galleria
         $errore = $_FILES['immagini']['error'][$indice];
         $nome = $_FILES['immagini']['name'][$indice];
         $temp = $_FILES['immagini']['tmp_name'][$indice];
+        $ext = pathinfo($nome, PATHINFO_EXTENSION);
+    }
+    // Controlla se il file da inserire è un'immagine
+    if($ext != '.jpg' || $ext != '.gif' || $ext != '.png'){
+        print '<p class="errore">' . $nome . ' - Esito : ' . 'Il file caricato non &egrave; un immagine' . "</p>";
+        return false;
     }
     // Se le campo 'error' viene trovato il seguente flag, si può procedere con la copia dell'immagine
     if ($errore == UPLOAD_ERR_OK) {
@@ -82,7 +89,7 @@ function gestioneImmagine($indice, $galleria){
                 break;
         }
         // L'errore viene infine stampato a schermo
-        print '<p class="errore">' . $nome . ' - Esito : ' . strtoupper($messaggio) . "</p>";
+        print '<p class="errore">' . $nome . ' - Esito : ' . $messaggio . "</p>";
         return false;
     }
 }
@@ -144,7 +151,7 @@ function ricercaProdotto($nomeCercato,$destinazione) {
     // La funzione di ricerca viene utilizzata nelle fasi di modifica e cancellazione per individuare l'oggetto dell'operazione
     $connessione = creaConnessione(SERVER,UTENTE,PASSWORD,DATABASE);
     print '<p class="informazione">Sono stati individuati i seguenti risultati potenziali</p>';
-    $query = "SELECT * FROM tblprodotti AS p LEFT JOIN tblprodotticonsole AS pc ON p.codiceprodotto = pc.codiceprodotto WHERE nomeprodotto LIKE '%".rendiSicuro($nomeCercato)."%' ORDER BY nomeprodotto ASC";
+    $query = "SELECT * FROM tblprodotti AS p LEFT JOIN tblprodotticonsole AS pc ON p.codiceprodotto = pc.codiceprodotto WHERE nomeprodotto LIKE '%".rendiSicuro($connessione,$nomeCercato)."%' ORDER BY nomeprodotto ASC";
     $dati = eseguiQuery($connessione,$query);
     $contantoreRisultati = 0;
 
@@ -177,7 +184,7 @@ function ricercaCategoria($nomeCercato, $destinazione){
 
     // La funzione di ricerca viene utilizzata nelle fasi di modifica e cancellazione per individuare l'oggetto dell'operazione
     $connessione = creaConnessione(SERVER,UTENTE,PASSWORD,DATABASE);
-    $query = "SELECT * FROM tblcategorie WHERE nome LIKE '%".rendiSicuro($nomeCercato)."%'"."ORDER BY nome ASC";
+    $query = "SELECT * FROM tblcategorie WHERE nome LIKE '%".rendiSicuro($connessione,$nomeCercato)."%'"."ORDER BY nome ASC";
     $dati = eseguiQuery($connessione,$query);
     $contantoreRisultati = 0;
     print '<p class="informazione">Sono stati individuati i seguenti risultati potenziali</p>';
@@ -212,7 +219,7 @@ function ricercaConsole($nomeCercato, $destinazione){
 
     // La funzione di ricerca viene utilizzata nelle fasi di modifica e cancellazione per individuare l'oggetto dell'operazione
     $connessione = creaConnessione(SERVER,UTENTE,PASSWORD,DATABASE);
-    $query = "SELECT * FROM tblconsole WHERE nome LIKE '%".rendiSicuro($nomeCercato)."%'"."ORDER BY nome ASC";
+    $query = "SELECT * FROM tblconsole WHERE nome LIKE '%".rendiSicuro($connessione,$nomeCercato)."%'"."ORDER BY nome ASC";
     $dati = eseguiQuery($connessione,$query);
     $contantoreRisultati = 0;
 
@@ -243,7 +250,7 @@ function ricercaUtente($utenteCercato, $destinazione){
 
     // La funzione stampa direttamente tutti gli utenti registrati
     $connessione = creaConnessione(SERVER,UTENTE,PASSWORD,DATABASE);
-    $query = "SELECT user, dirittoAmministratore FROM tblutenti WHERE user != '".rendiSicuro($_SESSION['username'])."' AND user LIKE '%".rendiSicuro($utenteCercato)."%'"." ORDER BY user ASC";
+    $query = "SELECT user, dirittoAmministratore FROM tblutenti WHERE user != '".rendiSicuro($connessione,$_SESSION['username'])."' AND user LIKE '%".rendiSicuro($connessione,$utenteCercato)."%'"." ORDER BY user ASC";
     $dati = eseguiQuery($connessione,$query);
     $contantoreRisultati = 0;
 

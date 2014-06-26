@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD'] != 'GET'){
         generaThumbnail($_FILES['immagine']['tmp_name'],'/img/thumb',200,268,$indice);
     }
 
-    $query = sprintf("SELECT galleria, immagine FROM tblprodotti WHERE codiceprodotto='%s'", rendiSicuro($_POST['codiceprodotto']));
+    $query = sprintf("SELECT galleria, immagine FROM tblprodotti WHERE codiceprodotto='%s'", rendiSicuro($connessione,$_POST['codiceprodotto']));
     $dati = eseguiQuery($connessione, $query);
 
 // Utilizzato per la rinomina della galleria
@@ -41,10 +41,10 @@ if($_SERVER['REQUEST_METHOD'] != 'GET'){
         print '<p class="successo">' . "L'immagine principale &egrave; stata aggiornata con successo</p>";
     }
 
-    $query = sprintf("UPDATE tblprodotti SET nomeprodotto='%s', descrizione='%s', prezzo='%d', numeropezzi='%d', immagine='%s',galleria='%s',categoria='%s' WHERE codiceprodotto='%s'", rendiSicuro($_POST['nomeprodotto']), rendiSicuro($_POST['descrizione']), rendiSicuro($_POST['prezzo']), rendiSicuro($_POST['numeropezzi']), rendiSicuro($_FILES['immagine']['name']), rendiSicuro($_POST['galleria']), rendiSicuro($_POST['categoria']), rendiSicuro($_POST['codiceprodotto']));
+    $query = sprintf("UPDATE tblprodotti SET nomeprodotto='%s', descrizione='%s', prezzo='%d', numeropezzi='%d', immagine='%s',galleria='%s',categoria='%s' WHERE codiceprodotto='%s'", rendiSicuro($connessione,$_POST['nomeprodotto']), rendiSicuro($connessione,$_POST['descrizione']), $_POST['prezzo'], $_POST['numeropezzi'], rendiSicuro($connessione,$_FILES['immagine']['name']), rendiSicuro($connessione,$_POST['galleria']), rendiSicuro($connessione,$_POST['categoria']), rendiSicuro($connessione,$_POST['codiceprodotto']));
     $dati = eseguiQuery($connessione, $query);
 
-    $query = sprintf("UPDATE tblprodotti SET galleria='%s' WHERE galleria='%s'", rendiSicuro($_POST['galleria']), rendiSicuro($galleriaOld));
+    $query = sprintf("UPDATE tblprodotti SET galleria='%s' WHERE galleria='%s'", rendiSicuro($connessione,$_POST['galleria']), $galleriaOld);
     $dati = eseguiQuery($connessione, $query);
 
     print '<p class="successo">La modifica del prodotto &egrave; avvenuta correttamente</p>';

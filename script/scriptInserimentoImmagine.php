@@ -6,7 +6,7 @@ include HOME_ROOT . '/html/testa.php';
 if($_SERVER['REQUEST_METHOD'] != 'GET'){
 
     $connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
-    $query = sprintf("SELECT galleria FROM tblprodotti WHERE codiceprodotto='" . rendiSicuro($_POST['codiceprodotto']) . "'");
+    $query = sprintf("SELECT galleria FROM tblprodotti WHERE codiceprodotto='" . $_POST['codiceprodotto'] . "'");
     $dati = eseguiQuery($connessione, $query);
 
     $percorsoGalleria = 'img/' . $dati[0]['galleria'];

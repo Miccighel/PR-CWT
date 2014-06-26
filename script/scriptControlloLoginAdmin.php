@@ -5,7 +5,7 @@ include HOME_ROOT . '/script/funzioni.php';
 if($_SERVER['REQUEST_METHOD'] != 'GET'){
 
     $connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
-    $query = sprintf("SELECT user, psw, dirittoamministratore FROM tblutenti WHERE user=" . "'" . rendiSicuro($_POST['username']) . "'" . " AND " . "psw=" . "'" . rendiSicuro(sha1($_POST['password'])) . "'");
+    $query = sprintf("SELECT user, psw, dirittoamministratore FROM tblutenti WHERE user=" . "'" . rendiSicuro($connessione,$_POST['username']) . "'" . " AND " . "psw=" . "'" . rendiSicuro($connessione,sha1($_POST['password'])) . "'");
     $dati = eseguiQuery($connessione, $query);
 
     if ($dati == null) {

@@ -5,7 +5,7 @@ include HOME_ROOT . '/script/funzioni.php';
 if($_SERVER['REQUEST_METHOD'] != 'GET'){
 
     $connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
-    $query = sprintf("INSERT INTO tblcategorie(nome) VALUE ('%s')", rendiSicuro($_POST['nome']));
+    $query = sprintf("INSERT INTO tblcategorie(nome) VALUE ('%s')", rendiSicuro($connessione,$_POST['nome']));
     $dati = eseguiQuery($connessione, $query);
 
     chiudiConnessione($connessione);

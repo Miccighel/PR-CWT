@@ -5,7 +5,7 @@ include HOME_ROOT . '/script/funzioni.php';
 if($_SERVER['REQUEST_METHOD'] != 'GET'){
 
     $connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
-    $query = sprintf("UPDATE tblcategorie SET nome='%s' WHERE nome='%s'", rendiSicuro($_POST['nome']), rendiSicuro($_POST['nomeOld']));
+    $query = sprintf("UPDATE tblcategorie SET nome='%s' WHERE nome='%s'", rendiSicuro($connessione,$_POST['nome']), $_POST['nomeOld']);
     $dati = eseguiQuery($connessione, $query);
 
     chiudiConnessione($connessione);

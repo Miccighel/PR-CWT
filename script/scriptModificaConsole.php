@@ -7,9 +7,9 @@ if($_SERVER['REQUEST_METHOD'] != 'GET'){
     $connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
 
     if (trim($_POST['produttore']) == '') {
-        $query = sprintf("UPDATE tblconsole SET nome='%s', produttore=NULL WHERE nome='%s'", rendiSicuro($_POST['nome']), rendiSicuro($_POST['nomeOld']));
+        $query = sprintf("UPDATE tblconsole SET nome='%s', produttore=NULL WHERE nome='%s'", rendiSicuro($connessione,$_POST['nome']), $_POST['nomeOld']);
     } else {
-        $query = sprintf("UPDATE tblconsole SET nome='%s', produttore='%s' WHERE nome='%s'", rendiSicuro($_POST['nome']), rendiSicuro($_POST['produttore']), rendiSicuro($_POST['nomeOld']));
+        $query = sprintf("UPDATE tblconsole SET nome='%s', produttore='%s' WHERE nome='%s'", rendiSicuro($connessione,$_POST['nome']), rendiSicuro($connessione,$_POST['produttore']), $_POST['nomeOld']);
     }
 
     $dati = eseguiQuery($connessione, $query);

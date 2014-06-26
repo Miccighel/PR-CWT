@@ -5,7 +5,7 @@ include HOME_ROOT . '/script/funzioni.php';
 if($_SERVER['REQUEST_METHOD'] != 'GET'){
     $connessione = creaConnessione(SERVER, UTENTE, PASSWORD, DATABASE);
 
-    $query = sprintf("SELECT codiceprodotto, nomeprodotto FROM tblprodotti WHERE codiceprodotto='" . rendiSicuro($_POST['codiceprodotto']) . "'");
+    $query = sprintf("SELECT codiceprodotto, nomeprodotto FROM tblprodotti WHERE codiceprodotto='" . $_POST['codiceprodotto'] . "'");
     $dati = eseguiQuery($connessione, $query);
 
     if (!$dati) {

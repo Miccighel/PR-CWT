@@ -1,5 +1,5 @@
 <?php
-/* CONFIGURAZIONE NON NON NECESSARIA */
+/* CONFIGURAZIONE NON NECESSARIA */
 
 /* HOME_ROOT indica il percorso assoluto della cartella del  file in cui viene inclusa; non necessita di ulteriore configurazione. Questa
 costante è necessaria per poter includere file in maniera assoluta da qualsiasi punto del sito*/
