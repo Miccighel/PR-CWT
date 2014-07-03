@@ -34,7 +34,7 @@ if($_SERVER['REQUEST_METHOD'] != 'GET'){
 
     chiudiConnessione($connessione);
 
-    print '<p class="successo">L\'acquisto &egrave stato completato con successo</p>';
+    print '<p class="successo">L\'acquisto &egrave; stato completato con successo</p>';
 
 } else {
     include HOME_ROOT . '/html/testa.php';

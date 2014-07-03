@@ -12,7 +12,7 @@ if($_SERVER['REQUEST_METHOD'] != 'GET'){
         $dati = eseguiQuery($connessione, $query);
     }
 
-    print '<p class="successo">La modifica dei diritti da amministratore &grave; avvenuta correttamente</p>';
+    print '<p class="successo">La modifica dei diritti da amministratore &egrave; avvenuta correttamente</p>';
 
     chiudiConnessione($connessione);
 
