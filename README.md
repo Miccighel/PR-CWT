@@ -1,4 +1,4 @@
 Progetto-Complementi
 ====================
 
-Progetto per il corso di "Complementi di Tecnologie Web"
+Project for the course of "Complements of Web Technologies" of the university of Udine.
